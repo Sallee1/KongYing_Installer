@@ -336,7 +336,9 @@ namespace tianli {
 
   void tianli_widget::onInstallError(std::invalid_argument e)
   {
-    
+    ui->stackedWidget->setCurrentIndex(3);
+    ui->pushButton_UI_Close->setHidden(false);
+    ui->label_err_info->setText(QString::fromLocal8Bit(e.what()));
   }
 
   void tianli_widget::pushButton_Finishing_Cancel()

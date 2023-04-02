@@ -233,7 +233,7 @@ QCheckBox::indicator:checked {
 }</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="page">
     <widget class="QLabel" name="label_Wizard_start">
@@ -943,7 +943,7 @@ font-family: sans-serif
        <x>110</x>
        <y>40</y>
        <width>281</width>
-       <height>21</height>
+       <height>41</height>
       </rect>
      </property>
      <property name="font">
@@ -958,7 +958,7 @@ font-family: sans-serif
                         </string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;很遗憾，安装失败了，请参阅以下信息：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;很遗憾，安装失败了，你可以尝试手动删除文件后重新安装。报错信息如下：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
@@ -1005,9 +1005,9 @@ font-family: sans-serif
      <property name="geometry">
       <rect>
        <x>120</x>
-       <y>70</y>
+       <y>90</y>
        <width>301</width>
-       <height>111</height>
+       <height>91</height>
       </rect>
      </property>
      <property name="font">
