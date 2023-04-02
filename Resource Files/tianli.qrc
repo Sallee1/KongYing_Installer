@@ -2,9 +2,6 @@
   <qresource prefix="/tianli">
     <file>resource/bg.png</file>
   </qresource>
-  <qresource prefix="/qss">
-    <file>Resource/qss/fonts.qss</file>
-  </qresource>
   <qresource prefix="/parts">
     <file>resource/bg_big_star.png</file>
     <file>resource/bg_big_star_b.png</file>
