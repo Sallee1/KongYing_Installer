@@ -253,6 +253,14 @@ namespace tianli {
 
   void tianli_widget::pushButton_FastInstall()
   {
+    //安装时再做检测以避免默认路径有其他软件
+    QString folderPathStr = ui->lineEdit_installPath->text();
+    QString outPathStr = "";
+    if (!tianliWidgetUtils::checkPathIsAvilable(folderPathStr, outPathStr))
+    {
+      QMessageBox::warning(this, QString::fromLocal8Bit("路径无效"), QString::fromLocal8Bit("请选择空白文件夹或者旧版“空荧酒馆原神地图”安装路径"));
+      return;
+    }
     ui->stackedWidget->setCurrentIndex(1);
     this->beginInstall();
   }

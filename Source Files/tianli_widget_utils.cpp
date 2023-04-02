@@ -25,7 +25,7 @@ bool tianliWidgetUtils::checkPathIsAvilable(QString pathStr, QString& outPathStr
   bool isOverWrite = true;
   for (std::wstring fileName : config::installInfo.existFileName)
   {
-    if (fs::exists(std::format(L"{0}/{1}", pathStr.toStdWString(), fileName)))
+    if (!fs::exists(std::format(L"{0}/{1}", pathStr.toStdWString(), fileName)))
     {
       isOverWrite = false;
       break;
@@ -44,7 +44,7 @@ bool tianliWidgetUtils::checkPathIsAvilable(QString pathStr, QString& outPathStr
   {
     for (std::wstring fileName : config::installInfo.existFileName)
     {
-      if (fs::exists(std::format(L"{0}/{1}", folderPath.wstring(), fileName)))
+      if (!fs::exists(std::format(L"{0}/{1}", folderPath.wstring(), fileName)))
       {
         return false;
       }
