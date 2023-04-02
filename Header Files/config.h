@@ -1,61 +1,34 @@
-#pragma once
+﻿#pragma once
 using std::wstring;
 namespace fs = std::filesystem;
 
-static class config
+class config
 {
 public:
-  typedef struct{
-    wstring displayName;
-    wstring displayVersion;
-    wstring publisher;
-    wstring displayIcon;
-    wstring uninstallString;
+  typedef struct RegInfo {
+    wstring displayName=L"空荧酒馆原神地图";
+    wstring displayVersion=L"Beta3.5";
+    wstring publisher=L"空荧酒馆";
+    wstring displayIcon=L"map.exe";
+    wstring uninstallString=L"Uninstall.exe";
+    DWORD estimatedSize = 342016;
   } RegInfo;
 
-  typedef struct {
-    wstring formName;
-    wstring title;
-  } InstallerGlobal;
-
-  typedef struct {
-    wstring subTitle;
-    wstring defaultPath;
+  typedef struct InstallInfo{
+    wstring installPath;
     bool desktopShortcut;
     bool startmenuShortcut;
-    wstring tip;
-    wstring tipLink;
-  } InstallerPage1;
 
-  typedef struct {
-    wstring subTitle;
-  }InstallerPage2;
-
-  typedef struct {
-    wstring subTitle;
-    wstring tip;
-    wstring tipLink;
-    wstring startExe;
-    wstring snsIcon1;
-    wstring snsLink1;
-    wstring snsIcon2;
-    wstring snsLink2;
-  }InstallerPage3;
-
-  typedef struct {
-    wstring subTitle;
-    wstring tip;
-    wstring tipLink;
-  }InstallerPage4;
+    wstring exePath = L"map.exe";
+    //放置用来覆盖安装检测的文件名(夹)，同时检测到文件存在则采取覆盖安装策略
+    std::vector<wstring> existFileName = { L"map.exe" ,L"UnityCrashHandler64.exe",L"UnityPlayer.dll"};    
+  } InstallInfo;
 
 public:
-  RegInfo reginfo;
-  InstallerGlobal installerGlobal;
-  InstallerPage1 installerPage1;
-  InstallerPage2 installerPage2;
-  InstallerPage3 installerPage3;
-  InstallerPage4 installerPage4;
-
-public:
-  config(fs::path);
+  static RegInfo reginfo;
+  static InstallInfo installInfo;
 };
+
+
+config::RegInfo config::reginfo;
+config::InstallInfo config::installInfo;
