@@ -3,7 +3,8 @@
 #include "config.h"
 
 InstallThread::InstallThread(QThread* parent) :
-  installPathStr(QString::fromLocal8Bit("C:/Program Files/KongYingMap")), desktopShortcut(true), startMenuShortcut(true) {}
+  installPathStr(QString::fromStdWString(config::installInfo.defaultInstallPath)), 
+  desktopShortcut(config::installInfo.desktopShortcut), startMenuShortcut(config::installInfo.startmenuShortcut) {}
 ;
 
 inline void InstallThread::copyFiles()
@@ -72,13 +73,13 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
 inline void InstallThread::addShortCut()
 {
   //文件路径
-  QString exePath = this->installPathStr + QString::fromLocal8Bit("\\map.exe");
-  QString uninstallExePath = this->installPathStr + QString::fromLocal8Bit("\\uninstall.exe");
-  QString desktopShortcutPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + QString::fromLocal8Bit("\\空荧酒馆原神地图.lnk");
+  QString exePath = this->installPathStr + "\\" + QString::fromStdWString(config::installInfo.exePath);
+  QString uninstallExePath = this->installPathStr + "\\" + QString::fromStdWString(config::reginfo.uninstallString);
+  QString desktopShortcutPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromStdWString(config::installInfo.desktopShortcut_name);
 
-  QString startMenuFolderPath = QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + QString::fromLocal8Bit("\\空荧酒馆原神地图");
-  QString startMenuShortcutPath = startMenuFolderPath + QString::fromLocal8Bit("\\启动地图.lnk");
-  QString startMenuUninstallShortcutPath = startMenuFolderPath + QString::fromLocal8Bit("\\卸载.lnk");
+  QString startMenuFolderPath = QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdWString(config::installInfo.startmenuShortcut_foldname);
+  QString startMenuShortcutPath = startMenuFolderPath + "\\" + QString::fromStdWString(config::installInfo.startmenuShortcut_progarmName);
+  QString startMenuUninstallShortcutPath = startMenuFolderPath +"\\" + QString::fromStdWString(config::installInfo.startmenuShortcut_uninstallName);
 
   //创建桌面快捷方式
   if (this->desktopShortcut)
@@ -132,22 +133,28 @@ inline void InstallThread::cleanCache()
 
 inline void InstallThread::run()
 {
-  emit this->processChange(InstallThread::ProcessType::MOVE_FILES);
-  emit this->processPercent(0);
-  this->copyFiles();msleep(500);
+  try {
+    emit this->processChange(InstallThread::ProcessType::MOVE_FILES);
+    emit this->processPercent(0);
+    this->copyFiles(); msleep(500);
 
-  emit this->processChange(InstallThread::ProcessType::WRITE_REG);
-  emit this->processPercent(0);
-  this->writeReg(); msleep(500);
+    emit this->processChange(InstallThread::ProcessType::WRITE_REG);
+    emit this->processPercent(0);
+    this->writeReg(); msleep(500);
 
-  emit this->processChange(InstallThread::ProcessType::ADD_SHORTCUT);
-  emit this->processPercent(0);
-  this->addShortCut(); msleep(500);
+    emit this->processChange(InstallThread::ProcessType::ADD_SHORTCUT);
+    emit this->processPercent(0);
+    this->addShortCut(); msleep(500);
 
-  emit this->processChange(InstallThread::ProcessType::CLEAN_CACHE);
-  emit this->processPercent(0);
-  //this->cleanCache();
-  msleep(500);
+    emit this->processChange(InstallThread::ProcessType::CLEAN_CACHE);
+    emit this->processPercent(0);
+    //this->cleanCache();
+    msleep(500);
 
-  emit this->installFinish(true);
+    emit this->installFinish(true);
+  }
+  catch (std::invalid_argument& e)
+  {
+    emit this->throwError(e);
+  }
 }

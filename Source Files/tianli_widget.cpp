@@ -9,6 +9,7 @@
 #include "ui_tianli_widget.h"
 #include "tianli_widget_utils.h"
 #include "time_line_label.h"
+#include "config.h"
 
 namespace tianli {
   tianli_widget::tianli_widget(QWidget* parent) :
@@ -65,7 +66,11 @@ namespace tianli {
     ui->stackedWidget->setCurrentIndex(0);
     ui->widget_CustomOption->setHidden(true);   //默认隐藏自定义选项
     ui->label_Readme->setOpenExternalLinks(true);   //允许打开链接
-
+    //根据配置调整自定义选项
+    ui->lineEdit_installPath->setText(QString::fromStdWString(config::installInfo.defaultInstallPath));
+    ui->checkBox_desktopShortcut->setChecked(config::installInfo.desktopShortcut);
+    ui->checkBox_startMenuShortCut->setChecked(config::installInfo.startmenuShortcut);
+    //检查是否安装过，安装过则自动升级
     setupInstallOrUpdate();
   }
 
@@ -132,7 +137,7 @@ namespace tianli {
   {
     //读取注册信息，如果已经安装后，自动设置位置，并修改文字为升级，禁用路径选项
     HKEY hKey;
-    std::wstring regPath = std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", L"空荧酒馆原神地图");
+    std::wstring regPath = std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName);
     LONG lResult = RegOpenKeyEx(HKEY_LOCAL_MACHINE, regPath.c_str(), 0, KEY_READ, &hKey);
     if (lResult == ERROR_SUCCESS) {
       wchar_t szBuffer[4096];
@@ -146,9 +151,13 @@ namespace tianli {
         ui->pushButton_preview->setHidden(true);
         ui->label_FastInstall->setText(QString::fromLocal8Bit("升级"));
         //检查快捷方式是否存在，不存在则取消钩选
-        if (!fs::exists(std::format(L"{0}\\{1}", QStandardPaths::writableLocation(QStandardPaths::DesktopLocation).toStdWString(), L"空荧酒馆原神地图.lnk")))
+        if (!fs::exists(std::format(L"{0}\\{1}", QStandardPaths::writableLocation(QStandardPaths::DesktopLocation).toStdWString(), config::installInfo.desktopShortcut_name)))
           ui->checkBox_desktopShortcut->setChecked(false);
-        if (!fs::exists(std::format(L"{0}\\{1}\\{2}", QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation).toStdWString(), L"空荧酒馆原神地图",L"启动地图.lnk")))
+        else
+          ui->checkBox_desktopShortcut->setChecked(true);
+        if (!fs::exists(std::format(L"{0}\\{1}\\{2}", QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation).toStdWString(), config::installInfo.startmenuShortcut_foldname,config::installInfo.startmenuShortcut_progarmName)))
+          ui->checkBox_startMenuShortCut->setChecked(false);
+        else
           ui->checkBox_startMenuShortCut->setChecked(false);
       }
     }
@@ -212,6 +221,13 @@ namespace tianli {
 
   void tianli_widget::closeEvent(QCloseEvent* event)
   {
+    if(ui->stackedWidget->currentIndex() == 3)  //安装失败，关闭时清理注册表，防止出现无法卸载
+    {
+      HKEY hKey;
+      RegOpenKeyEx(HKEY_CURRENT_USER, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName).c_str(), 0, KEY_ALL_ACCESS, &hKey);
+      RegDeleteTree(hKey, NULL);
+      RegCloseKey(hKey);
+    }
     event->accept();
   }
 
@@ -295,6 +311,7 @@ namespace tianli {
     progressBar->setGeometry(progressGeometry);
   }
 
+
   void tianli_widget::beginInstall()
   {
     ui->pushButton_UI_Close->setHidden(true);
@@ -317,9 +334,17 @@ namespace tianli {
     setTimeLine(state);
   }
 
+  void tianli_widget::onInstallError(std::invalid_argument e)
+  {
+    
+  }
+
   void tianli_widget::pushButton_Finishing_Cancel()
   {
-    ui->stackedWidget->setCurrentIndex(0);
+    installThread->terminate(); //强行停止线程
+    ui->stackedWidget->setCurrentIndex(3);
+    ui->pushButton_UI_Close->setHidden(false);
+    ui->label_err_info->setText("用户终止了安装操作");
   }
 
   void tianli_widget::pushButton_Finished_Run()

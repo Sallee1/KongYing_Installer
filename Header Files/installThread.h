@@ -38,7 +38,7 @@ signals:
   void processChange(int step);
   void processPercent(int percent);
   void installFinish(bool isSuccess);
-
+  void throwError(std::invalid_argument e);
 
 private:
   void run() override;

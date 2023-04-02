@@ -59,12 +59,16 @@ namespace tianli {
         void pushButton_Finished_Exit();
         void pushButton_preview();
 
+        void setProgress(int percent);
         void changeInstallState(int state);
+
+        void onInstallError(std::invalid_argument e);
+
     //安装器进度条相关
     private:
         std::vector<time_line_label*> timeLineLabelList;
         int activedTimeLabelIdx;
-        void setProgress(int percent);
+
     //安装相关的方法和线程
     private:
       void beginInstall();
