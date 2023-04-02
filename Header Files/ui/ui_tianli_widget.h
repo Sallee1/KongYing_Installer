@@ -35,7 +35,7 @@ public:
     QPushButton *pushButton_UI_Mini;
     QStackedWidget *stackedWidget;
     QWidget *page;
-    QLabel *label_Wizard_0;
+    QLabel *label_Wizard_start;
     QLabel *label_Tag_Down;
     QLabel *label_Readme;
     QLabel *label_Tag_Up;
@@ -55,10 +55,10 @@ public:
     QPushButton *pushButton_FastInstall;
     QLabel *label_FastInstall_Icon;
     QWidget *page_2;
-    QLabel *label_Wizard_1;
+    QLabel *label_Wizard_installing;
     QPushButton *pushButton_Finishing_Cancel;
     QWidget *page_3;
-    QLabel *label_Wizard_2;
+    QLabel *label_Wizard_finish;
     QLabel *label_Documentation;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout;
@@ -67,6 +67,10 @@ public:
     QPushButton *pushButton_Finished_Run;
     QPushButton *pushButton_Finished_Exit;
     QWidget *page_4;
+    QLabel *label_Wizard_failed;
+    QLabel *label_err_documentation;
+    QPushButton *pushButton_Fail_Close_2;
+    QLabel *label_err_info;
     QLabel *label_MainImage;
 
     void setupUi(QWidget *tianli__tianli_widget)
@@ -181,11 +185,11 @@ public:
 "}"));
         page = new QWidget();
         page->setObjectName(QString::fromUtf8("page"));
-        label_Wizard_0 = new QLabel(page);
-        label_Wizard_0->setObjectName(QString::fromUtf8("label_Wizard_0"));
-        label_Wizard_0->setGeometry(QRect(115, 10, 231, 21));
-        label_Wizard_0->setFont(font);
-        label_Wizard_0->setStyleSheet(QString::fromUtf8("\n"
+        label_Wizard_start = new QLabel(page);
+        label_Wizard_start->setObjectName(QString::fromUtf8("label_Wizard_start"));
+        label_Wizard_start->setGeometry(QRect(115, 10, 281, 21));
+        label_Wizard_start->setFont(font);
+        label_Wizard_start->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
 "                            font-size:16px;\n"
 "                        "));
@@ -346,11 +350,11 @@ public:
         stackedWidget->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName(QString::fromUtf8("page_2"));
-        label_Wizard_1 = new QLabel(page_2);
-        label_Wizard_1->setObjectName(QString::fromUtf8("label_Wizard_1"));
-        label_Wizard_1->setGeometry(QRect(115, 10, 166, 21));
-        label_Wizard_1->setFont(font);
-        label_Wizard_1->setStyleSheet(QString::fromUtf8("\n"
+        label_Wizard_installing = new QLabel(page_2);
+        label_Wizard_installing->setObjectName(QString::fromUtf8("label_Wizard_installing"));
+        label_Wizard_installing->setGeometry(QRect(115, 10, 291, 21));
+        label_Wizard_installing->setFont(font);
+        label_Wizard_installing->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
 "                            font-size:16px;\n"
 "                        "));
@@ -372,11 +376,11 @@ public:
         stackedWidget->addWidget(page_2);
         page_3 = new QWidget();
         page_3->setObjectName(QString::fromUtf8("page_3"));
-        label_Wizard_2 = new QLabel(page_3);
-        label_Wizard_2->setObjectName(QString::fromUtf8("label_Wizard_2"));
-        label_Wizard_2->setGeometry(QRect(115, 10, 166, 21));
-        label_Wizard_2->setFont(font);
-        label_Wizard_2->setStyleSheet(QString::fromUtf8("\n"
+        label_Wizard_finish = new QLabel(page_3);
+        label_Wizard_finish->setObjectName(QString::fromUtf8("label_Wizard_finish"));
+        label_Wizard_finish->setGeometry(QRect(115, 10, 301, 21));
+        label_Wizard_finish->setFont(font);
+        label_Wizard_finish->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
 "                            font-size:16px;\n"
 "                        "));
@@ -387,6 +391,9 @@ public:
         label_Documentation->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
 "                        "));
+        label_Documentation->setTextFormat(Qt::RichText);
+        label_Documentation->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        label_Documentation->setWordWrap(true);
         horizontalLayoutWidget = new QWidget(page_3);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
         horizontalLayoutWidget->setGeometry(QRect(119, 99, 231, 81));
@@ -447,6 +454,46 @@ public:
         stackedWidget->addWidget(page_3);
         page_4 = new QWidget();
         page_4->setObjectName(QString::fromUtf8("page_4"));
+        label_Wizard_failed = new QLabel(page_4);
+        label_Wizard_failed->setObjectName(QString::fromUtf8("label_Wizard_failed"));
+        label_Wizard_failed->setGeometry(QRect(115, 10, 301, 21));
+        label_Wizard_failed->setFont(font);
+        label_Wizard_failed->setStyleSheet(QString::fromUtf8("\n"
+"                            color:rgb(47, 47, 47);\n"
+"                            font-size:16px;\n"
+"                        "));
+        label_err_documentation = new QLabel(page_4);
+        label_err_documentation->setObjectName(QString::fromUtf8("label_err_documentation"));
+        label_err_documentation->setGeometry(QRect(110, 40, 281, 21));
+        label_err_documentation->setFont(font2);
+        label_err_documentation->setStyleSheet(QString::fromUtf8("\n"
+"                            color:rgb(47, 47, 47);\n"
+"                        "));
+        label_err_documentation->setTextFormat(Qt::RichText);
+        label_err_documentation->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        label_err_documentation->setWordWrap(true);
+        pushButton_Fail_Close_2 = new QPushButton(page_4);
+        pushButton_Fail_Close_2->setObjectName(QString::fromUtf8("pushButton_Fail_Close_2"));
+        pushButton_Fail_Close_2->setGeometry(QRect(120, 220, 84, 32));
+        pushButton_Fail_Close_2->setFont(font1);
+        pushButton_Fail_Close_2->setStyleSheet(QString::fromUtf8("\n"
+"                            color: #7B7B7B;\n"
+"                            font-size:13px;\n"
+"                            position: absolute;\n"
+"                            width: 58px;\n"
+"                            height: 32px;\n"
+"                            left: calc(50% - 58px/2 + 132.5px);\n"
+"                            top: calc(50% - 32px/2 + 134px);\n"
+"                            border: 2px solid #D1D1D1;\n"
+"                            border-radius: 4px;\n"
+"                        "));
+        label_err_info = new QLabel(page_4);
+        label_err_info->setObjectName(QString::fromUtf8("label_err_info"));
+        label_err_info->setGeometry(QRect(120, 70, 301, 111));
+        QFont font5;
+        font5.setPointSize(10);
+        label_err_info->setFont(font5);
+        label_err_info->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         stackedWidget->addWidget(page_4);
         label_MainImage = new QLabel(tianli__tianli_widget);
         label_MainImage->setObjectName(QString::fromUtf8("label_MainImage"));
@@ -462,7 +509,7 @@ public:
 
         retranslateUi(tianli__tianli_widget);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(tianli__tianli_widget);
@@ -479,7 +526,7 @@ public:
         label_Title->setText(QCoreApplication::translate("tianli::tianli_widget", "\347\251\272\350\215\247\351\205\222\351\246\206\342\204\242", nullptr));
         pushButton_UI_Close->setText(QString());
         pushButton_UI_Mini->setText(QString());
-        label_Wizard_0->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\256\211\350\243\205\345\220\221\345\257\274", nullptr));
+        label_Wizard_start->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\256\211\350\243\205\345\220\221\345\257\274", nullptr));
         label_Tag_Down->setText(QString());
         label_Readme->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p style=\"margin:5px;\"><span style=\" color:#909090;\">Tips: \345\256\211\350\243\205\345\271\266\344\275\277\347\224\250\342\200\234\347\251\272\350\215\247\351\205\222\351\246\206\345\216\237\347\245\236\345\234\260\345\233\276\342\200\235</span></p><p style=\"margin:5px;\"><span style=\" color:#909090;\">\346\204\217\345\221\263\347\235\200\346\202\250\345\220\214\346\204\217\345\271\266\351\201\265\345\256\210</span><a href=\"https://yuanshen.site/docs/disclaimer.html\"><span style=\" text-decoration: underline; color:#ee623c;\">\343\200\212\347\224\250\346\210\267\344\275\277\347\224\250\345\215\217\350\256\256\343\200\213</span></a></p></body></html>", nullptr));
         label_Tag_Up->setText(QString());
@@ -495,15 +542,18 @@ public:
         label_FastInstall_Documentation->setText(QCoreApplication::translate("tianli::tianli_widget", "\346\214\211\347\205\247\347\250\213\345\272\217\351\242\204\350\256\276\350\277\233\350\241\214\345\256\211\350\243\205", nullptr));
         pushButton_FastInstall->setText(QString());
         label_FastInstall_Icon->setText(QString());
-        label_Wizard_1->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \346\255\243\345\234\250\345\256\211\350\243\205", nullptr));
+        label_Wizard_installing->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \346\255\243\345\234\250\345\256\211\350\243\205", nullptr));
         pushButton_Finishing_Cancel->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\217\226\346\266\210\345\256\211\350\243\205", nullptr));
-        label_Wizard_2->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\256\211\350\243\205\345\256\214\346\210\220", nullptr));
-        label_Documentation->setText(QCoreApplication::translate("tianli::tianli_widget", "\346\204\237\350\260\242\346\202\250\347\232\204\345\256\211\350\243\205\357\274\214\346\202\250\345\217\257\344\273\245\351\200\232\350\277\207\344\273\245\344\270\213\346\226\271\345\274\217\345\205\263\346\263\250\346\210\221\344\273\254\n"
-"\347\232\204\347\244\276\344\272\244\350\264\246\345\217\267\357\274\232                       ", nullptr));
-        label_Icon_0->setText(QCoreApplication::translate("tianli::tianli_widget", "TextLabel", nullptr));
-        label_Icon_1->setText(QCoreApplication::translate("tianli::tianli_widget", "TextLabel", nullptr));
+        label_Wizard_finish->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\256\211\350\243\205\345\256\214\346\210\220", nullptr));
+        label_Documentation->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\346\204\237\350\260\242\346\202\250\347\232\204\345\256\211\350\243\205\357\274\214\346\202\250\345\217\257\344\273\245\351\200\232\350\277\207\344\273\245\344\270\213\346\226\271\345\274\217\345\205\263\346\263\250\346\210\221\344\273\254\347\232\204\347\244\276\344\272\244\350\264\246\345\217\267\357\274\232</p></body></html>", nullptr));
+        label_Icon_0->setText(QString());
+        label_Icon_1->setText(QString());
         pushButton_Finished_Run->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\220\257\345\212\250", nullptr));
         pushButton_Finished_Exit->setText(QCoreApplication::translate("tianli::tianli_widget", "\351\200\200\345\207\272", nullptr));
+        label_Wizard_failed->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\256\211\350\243\205\345\244\261\350\264\245", nullptr));
+        label_err_documentation->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\345\276\210\351\201\227\346\206\276\357\274\214\345\256\211\350\243\205\345\244\261\350\264\245\344\272\206\357\274\214\350\257\267\345\217\202\351\230\205\344\273\245\344\270\213\344\277\241\346\201\257\357\274\232</p></body></html>", nullptr));
+        pushButton_Fail_Close_2->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\205\263\351\227\255", nullptr));
+        label_err_info->setText(QCoreApplication::translate("tianli::tianli_widget", "\347\224\250\346\210\267\345\217\226\346\266\210\344\272\206\345\256\211\350\243\205", nullptr));
         label_MainImage->setText(QString());
     } // retranslateUi
 

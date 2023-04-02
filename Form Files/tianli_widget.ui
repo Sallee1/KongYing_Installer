@@ -233,15 +233,15 @@ QCheckBox::indicator:checked {
 }</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page">
-    <widget class="QLabel" name="label_Wizard_0">
+    <widget class="QLabel" name="label_Wizard_start">
      <property name="geometry">
       <rect>
        <x>115</x>
        <y>10</y>
-       <width>231</width>
+       <width>281</width>
        <height>21</height>
       </rect>
      </property>
@@ -669,12 +669,12 @@ font-family: sans-serif
     </widget>
    </widget>
    <widget class="QWidget" name="page_2">
-    <widget class="QLabel" name="label_Wizard_1">
+    <widget class="QLabel" name="label_Wizard_installing">
      <property name="geometry">
       <rect>
        <x>115</x>
        <y>10</y>
-       <width>166</width>
+       <width>291</width>
        <height>21</height>
       </rect>
      </property>
@@ -727,12 +727,12 @@ font-family: sans-serif
     </widget>
    </widget>
    <widget class="QWidget" name="page_3">
-    <widget class="QLabel" name="label_Wizard_2">
+    <widget class="QLabel" name="label_Wizard_finish">
      <property name="geometry">
       <rect>
        <x>115</x>
        <y>10</y>
-       <width>166</width>
+       <width>301</width>
        <height>21</height>
       </rect>
      </property>
@@ -773,8 +773,16 @@ font-family: sans-serif
                         </string>
      </property>
      <property name="text">
-      <string>感谢您的安装，您可以通过以下方式关注我们
-的社交账号：                       </string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;感谢您的安装，您可以通过以下方式关注我们的社交账号：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::RichText</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
     <widget class="QWidget" name="horizontalLayoutWidget">
@@ -810,7 +818,7 @@ font-family: sans-serif
                                     </string>
         </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -834,7 +842,7 @@ font-family: sans-serif
                                     </string>
         </property>
         <property name="text">
-         <string>TextLabel</string>
+         <string/>
         </property>
        </widget>
       </item>
@@ -903,7 +911,118 @@ font-family: sans-serif
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="page_4"/>
+   <widget class="QWidget" name="page_4">
+    <widget class="QLabel" name="label_Wizard_failed">
+     <property name="geometry">
+      <rect>
+       <x>115</x>
+       <y>10</y>
+       <width>301</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>-1</pointsize>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+     </property>
+     <property name="text">
+      <string>原神资源地图 安装失败</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_err_documentation">
+     <property name="geometry">
+      <rect>
+       <x>110</x>
+       <y>40</y>
+       <width>281</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+                            color:rgb(47, 47, 47);
+                        </string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;很遗憾，安装失败了，请参阅以下信息：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="textFormat">
+      <enum>Qt::RichText</enum>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_Fail_Close_2">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>220</y>
+       <width>84</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>-1</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">
+                            color: #7B7B7B;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 132.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            border: 2px solid #D1D1D1;
+                            border-radius: 4px;
+                        </string>
+     </property>
+     <property name="text">
+      <string>关闭</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_err_info">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>70</y>
+       <width>301</width>
+       <height>111</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>用户取消了安装</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </widget>
   </widget>
   <widget class="QLabel" name="label_MainImage">
    <property name="geometry">
