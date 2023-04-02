@@ -22,26 +22,13 @@ public:
     MOVE_FILES, WRITE_REG, ADD_SHORTCUT, CLEAN_CACHE
   };
 
-  typedef struct UninstallInfo {
-    wstring DisplayName;
-    wstring DisplayIcon;
-    wstring DisplayVersion;
-    wstring UninstallString;
-    wstring Publisher;
-    wstring InstallLocation;
-    DWORD EstimateSize;
-
-    UninstallInfo(wstring DisplayName, wstring DisplayIcon, wstring DisplayVersion, wstring UninstallString, wstring Publisher, wstring InstallLocation, DWORD EstimateSize) :
-      DisplayName(DisplayName), DisplayIcon(DisplayIcon), DisplayVersion(DisplayVersion), UninstallString(UninstallString), Publisher(Publisher), InstallLocation(InstallLocation), EstimateSize(EstimateSize) {}
-  } UninstallInfo;
-
 private:
   //第一步，移动文件
   void copyFiles();
   void copyTrees(fs::path inPath, fs::path outPath);
   //第二步，写入注册表
   void writeReg();
-  void createUninstallInfoReg(HKEY &key, InstallThread::UninstallInfo uninstallInfo);
+  void createUninstallInfoReg(HKEY &key);
   //第三步，创建开始菜单和桌面快捷方式
   void addShortCut();
   void createShortCut(QString exePath, QString lnkPath);

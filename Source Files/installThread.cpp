@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "installThread.h"
+#include "config.h"
 
 InstallThread::InstallThread(QThread* parent) :
   installPathStr(QString::fromLocal8Bit("C:/Program Files/KongYingMap")), desktopShortcut(true), startMenuShortcut(true) {}
@@ -16,6 +17,7 @@ inline void InstallThread::copyTrees(fs::path inPath, fs::path outPath)
 {
   if (fs::is_regular_file(inPath))
   {
+    fs::remove(outPath);  //以防万一，先删再复制
     fs::copy_file(inPath, outPath, fs::copy_options::overwrite_existing);
   }
   else
@@ -37,38 +39,30 @@ inline void InstallThread::copyTrees(fs::path inPath, fs::path outPath)
 inline void InstallThread::writeReg()
 {
   HKEY key;
-  InstallThread::UninstallInfo uninstallInfo(
-    L"空荧酒馆原神地图",                                                           // 软件名称
-    this->installPathStr.toStdWString() + L"\\map.exe",                         // 图标
-    L"1.0.0",                                                                   // 版本
-    std::format(L"{0}\\uninstall.exe", this->installPathStr.toStdWString()),    // 卸载命令
-    L"空荧酒馆",                                                                  // 发布者
-    this->installPathStr.toStdWString(),                                        // 安装路径
-    1024                                                                        // 预估大小
-  );
-  // 创建 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall 下的子项
-  if (RegCreateKeyEx(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", uninstallInfo.DisplayName).c_str(),
+  config::reginfo.InstallLocation = this->installPathStr.toStdWString();
+   //创建 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall 下的子项
+  if (RegCreateKeyEx(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName).c_str(),
     0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, NULL) == ERROR_SUCCESS)
-    this->createUninstallInfoReg(key, uninstallInfo);
+    this->createUninstallInfoReg(key);
 }
 
-inline void InstallThread::createUninstallInfoReg(HKEY& key, struct InstallThread::UninstallInfo uninstallInfo) {
+inline void InstallThread::createUninstallInfoReg(HKEY& key) {
 
   {
     // 添加值
-    RegSetValueEx(key, L"DisplayName", 0, REG_SZ, (BYTE*)uninstallInfo.DisplayName.c_str(), uninstallInfo.DisplayName.length() * 2 + 2);
+    RegSetValueEx(key, L"DisplayName", 0, REG_SZ, (BYTE*)config::reginfo.displayName.c_str(), config::reginfo.displayName.length() * 2 + 2);
     msleep(550); emit this->processPercent(14);
-    RegSetValueEx(key, L"DisplayVersion", 0, REG_SZ, (BYTE*)uninstallInfo.DisplayVersion.c_str(), uninstallInfo.DisplayVersion.length() * 2 + 2);
+    RegSetValueEx(key, L"DisplayVersion", 0, REG_SZ, (BYTE*)config::reginfo.displayVersion.c_str(), config::reginfo.displayVersion.length() * 2 + 2);
     msleep(550); emit this->processPercent(28);
-    RegSetValueEx(key, L"UninstallString", 0, REG_SZ, (BYTE*)uninstallInfo.UninstallString.c_str(), uninstallInfo.UninstallString.length() * 2 + 2);
+    RegSetValueEx(key, L"UninstallString", 0, REG_SZ, (BYTE*)config::reginfo.uninstallString.c_str(), config::reginfo.uninstallString.length() * 2 + 2);
     msleep(550); emit this->processPercent(42);
-    RegSetValueEx(key, L"Publisher", 0, REG_SZ, (BYTE*)uninstallInfo.Publisher.c_str(), uninstallInfo.Publisher.length() * 2 + 2);
+    RegSetValueEx(key, L"Publisher", 0, REG_SZ, (BYTE*)config::reginfo.publisher.c_str(), config::reginfo.publisher.length() * 2 + 2);
     msleep(550); emit this->processPercent(57);
-    RegSetValueEx(key, L"InstallLocation", 0, REG_SZ, (BYTE*)uninstallInfo.InstallLocation.c_str(), uninstallInfo.InstallLocation.length() * 2 + 2);
+    RegSetValueEx(key, L"InstallLocation", 0, REG_SZ, (BYTE*)config::reginfo.InstallLocation.c_str(), config::reginfo.InstallLocation.length() * 2 + 2);
     msleep(550); emit this->processPercent(72);
-    RegSetValueEx(key, L"DisplayIcon", 0, REG_SZ, (BYTE*)uninstallInfo.DisplayIcon.c_str(), uninstallInfo.DisplayIcon.length() * 2 + 2);
+    RegSetValueEx(key, L"DisplayIcon", 0, REG_SZ, (BYTE*)config::reginfo.displayIcon.c_str(), config::reginfo.displayIcon.length() * 2 + 2);
     msleep(550); emit this->processPercent(86);
-    RegSetValueEx(key, L"EstimatedSize", 0, REG_DWORD, (BYTE*)uninstallInfo.EstimateSize, sizeof(DWORD));
+    RegSetValueEx(key, L"EstimatedSize", 0, REG_DWORD, (BYTE*)config::reginfo.estimatedSize, sizeof(DWORD));
     msleep(550); emit this->processPercent(100);
     RegCloseKey(key);
   }
