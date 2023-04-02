@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "config.h"
 #include "tianli_widget_utils.h"
 #include "tianli_widget.h"
 
@@ -20,12 +21,35 @@ bool tianliWidgetUtils::checkPathIsAvilable(QString pathStr, QString& outPathStr
     outPathStr = pathStr;
     return true;
   }
-  //否则，放到子文件夹并检测，如果路径存在且非空，则无效
+  //非空，覆盖安装检测
+  bool isOverWrite = true;
+  for (std::wstring fileName : config::installInfo.existFileName)
+  {
+    if (fs::exists(std::format(L"{0}/{1}", pathStr.toStdWString(), fileName)))
+    {
+      isOverWrite = false;
+      break;
+    }
+  }
+  if (isOverWrite)
+  {
+    outPathStr = pathStr;
+    return true;
+  }
+
+  //否则，放到子文件夹并检测，如果路径存在，并且非空，并且没有通过覆盖检测，则无效
   outPathStr = pathStr + "/KongYingMap";
   folderPath = outPathStr.toStdWString();
   if (fs::exists(folderPath) && fs::directory_iterator(folderPath) != fs::directory_iterator())
   {
-    return false;
+    for (std::wstring fileName : config::installInfo.existFileName)
+    {
+      if (fs::exists(std::format(L"{0}/{1}", folderPath.wstring(), fileName)))
+      {
+        return false;
+      }
+    }
+    return true;
   }
   return true;
 }
