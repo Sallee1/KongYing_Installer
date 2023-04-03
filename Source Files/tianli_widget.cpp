@@ -157,7 +157,7 @@ namespace tianli {
           ui->checkBox_desktopShortcut->setChecked(false);
         else
           ui->checkBox_desktopShortcut->setChecked(true);
-        if (!fs::exists(std::format(L"{0}\\{1}\\{2}", QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation).toStdWString(), config::installInfo.startmenuShortcut_foldname,config::installInfo.startmenuShortcut_progarmName)))
+        if (!fs::exists(std::format(L"{0}\\{1}\\{2}", QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation).toStdWString(), config::installInfo.startmenuShortcut_foldername,config::installInfo.startmenuShortcut_progarmName)))
           ui->checkBox_startMenuShortCut->setChecked(false);
         else
           ui->checkBox_startMenuShortCut->setChecked(true);
@@ -275,13 +275,21 @@ namespace tianli {
     //安装时再做检测以避免默认路径有其他软件
     QString folderPathStr = ui->lineEdit_installPath->text();
     QString outPathStr = "";
-    if (!tianliWidgetUtils::checkPathIsAvilable(folderPathStr, outPathStr))
+    if (tianliWidgetUtils::checkPathIsAvilable(folderPathStr, outPathStr))
+    {
+      if (outPathStr != folderPathStr)
+      {
+        QMessageBox::warning(this, QString::fromLocal8Bit("路径无效"), QString::fromLocal8Bit("请选择空白文件夹或者旧版“空荧酒馆原神地图”安装路径"));
+        return;
+      }
+      ui->stackedWidget->setCurrentIndex(1);
+      this->beginInstall();
+    }
+    else
     {
       QMessageBox::warning(this, QString::fromLocal8Bit("路径无效"), QString::fromLocal8Bit("请选择空白文件夹或者旧版“空荧酒馆原神地图”安装路径"));
       return;
     }
-    ui->stackedWidget->setCurrentIndex(1);
-    this->beginInstall();
   }
 
   void tianli_widget::pushButton_CustomizeInstall()

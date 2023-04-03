@@ -44,6 +44,7 @@ private:
   void run() override;
 
 private:
+  uintmax_t totalSize = 0;  //用来计算进度条
   QString installPathStr;
   bool desktopShortcut;
   bool startMenuShortcut;
