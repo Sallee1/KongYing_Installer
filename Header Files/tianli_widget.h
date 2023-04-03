@@ -61,8 +61,7 @@ namespace tianli {
 
         void setProgress(int percent);
         void changeInstallState(int state);
-
-        void onInstallError(std::invalid_argument e);
+        void onInstallError(QString error);
 
     //安装器进度条相关
     private:

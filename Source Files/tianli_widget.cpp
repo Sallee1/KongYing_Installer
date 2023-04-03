@@ -54,6 +54,7 @@ namespace tianli {
     connect(ui->pushButton_Finished_Run, &QPushButton::clicked, this, &tianli_widget::pushButton_Finished_Run);
     connect(ui->pushButton_Finished_Exit, &QPushButton::clicked, this, &tianli_widget::pushButton_Finished_Exit);
     connect(ui->pushButton_preview, &QPushButton::clicked, this, &tianli_widget::pushButton_preview);
+    connect(ui->pushButton_Fail_Close_2, &QPushButton::clicked, this, &tianli_widget::pushButton_UI_Close);
     //加载标题字体
     tianliWidgetUtils::setFont(":/font/Resource/fonts/SOURCEHANSERIFSC-HEAVY.ttf",ui->label_Title,true);   //标题 思源宋体
     auto buttonList = ui->stackedWidget->findChildren<QPushButton*>();
@@ -63,6 +64,7 @@ namespace tianli {
     connect(this, &tianli_widget::setInstallConfig, installThread, &InstallThread::setInstallConfig);
     connect(installThread, &InstallThread::processPercent, this, &tianli_widget::setProgress);
     connect(installThread, &InstallThread::installFinish, this, &tianli_widget::endInstall);
+    connect(installThread, &InstallThread::throwError, this, &tianli_widget::onInstallError);
     ui->stackedWidget->setCurrentIndex(0);
     ui->widget_CustomOption->setHidden(true);   //默认隐藏自定义选项
     ui->label_Readme->setOpenExternalLinks(true);   //允许打开链接
@@ -224,9 +226,10 @@ namespace tianli {
     if(ui->stackedWidget->currentIndex() == 3)  //安装失败，关闭时清理注册表，防止出现无法卸载
     {
       HKEY hKey;
-      RegOpenKeyEx(HKEY_CURRENT_USER, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName).c_str(), 0, KEY_ALL_ACCESS, &hKey);
+      RegOpenKeyEx(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName).c_str(), 0, KEY_ALL_ACCESS, &hKey);
       RegDeleteTree(hKey, NULL);
       RegCloseKey(hKey);
+      RegDeleteKey(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName).c_str());
     }
     event->accept();
   }
@@ -334,11 +337,11 @@ namespace tianli {
     setTimeLine(state);
   }
 
-  void tianli_widget::onInstallError(std::invalid_argument e)
+  void tianli_widget::onInstallError(QString error)
   {
     ui->stackedWidget->setCurrentIndex(3);
     ui->pushButton_UI_Close->setHidden(false);
-    ui->label_err_info->setText(QString::fromLocal8Bit(e.what()));
+    ui->label_err_info->setText(error);
   }
 
   void tianli_widget::pushButton_Finishing_Cancel()
@@ -346,7 +349,7 @@ namespace tianli {
     installThread->terminate(); //强行停止线程
     ui->stackedWidget->setCurrentIndex(3);
     ui->pushButton_UI_Close->setHidden(false);
-    ui->label_err_info->setText("用户终止了安装操作");
+    ui->label_err_info->setText(QString::fromLocal8Bit("用户终止了安装操作"));
   }
 
   void tianli_widget::pushButton_Finished_Run()

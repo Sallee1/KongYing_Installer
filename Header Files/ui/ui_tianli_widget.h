@@ -464,7 +464,7 @@ public:
 "                        "));
         label_err_documentation = new QLabel(page_4);
         label_err_documentation->setObjectName(QString::fromUtf8("label_err_documentation"));
-        label_err_documentation->setGeometry(QRect(110, 40, 281, 21));
+        label_err_documentation->setGeometry(QRect(110, 40, 281, 41));
         label_err_documentation->setFont(font2);
         label_err_documentation->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -489,7 +489,7 @@ public:
 "                        "));
         label_err_info = new QLabel(page_4);
         label_err_info->setObjectName(QString::fromUtf8("label_err_info"));
-        label_err_info->setGeometry(QRect(120, 70, 301, 111));
+        label_err_info->setGeometry(QRect(120, 90, 301, 91));
         QFont font5;
         font5.setPointSize(10);
         label_err_info->setFont(font5);
@@ -509,7 +509,7 @@ public:
 
         retranslateUi(tianli__tianli_widget);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(tianli__tianli_widget);
@@ -551,7 +551,7 @@ public:
         pushButton_Finished_Run->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\220\257\345\212\250", nullptr));
         pushButton_Finished_Exit->setText(QCoreApplication::translate("tianli::tianli_widget", "\351\200\200\345\207\272", nullptr));
         label_Wizard_failed->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\256\211\350\243\205\345\244\261\350\264\245", nullptr));
-        label_err_documentation->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\345\276\210\351\201\227\346\206\276\357\274\214\345\256\211\350\243\205\345\244\261\350\264\245\344\272\206\357\274\214\350\257\267\345\217\202\351\230\205\344\273\245\344\270\213\344\277\241\346\201\257\357\274\232</p></body></html>", nullptr));
+        label_err_documentation->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\345\276\210\351\201\227\346\206\276\357\274\214\345\256\211\350\243\205\345\244\261\350\264\245\344\272\206\357\274\214\344\275\240\345\217\257\344\273\245\345\260\235\350\257\225\346\211\213\345\212\250\345\210\240\351\231\244\346\226\207\344\273\266\345\220\216\351\207\215\346\226\260\345\256\211\350\243\205\343\200\202\346\212\245\351\224\231\344\277\241\346\201\257\345\246\202\344\270\213\357\274\232</p></body></html>", nullptr));
         pushButton_Fail_Close_2->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\205\263\351\227\255", nullptr));
         label_err_info->setText(QCoreApplication::translate("tianli::tianli_widget", "\347\224\250\346\210\267\345\217\226\346\266\210\344\272\206\345\256\211\350\243\205", nullptr));
         label_MainImage->setText(QString());

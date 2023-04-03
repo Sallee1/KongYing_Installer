@@ -16,24 +16,24 @@ inline void InstallThread::copyFiles()
 
 inline void InstallThread::copyTrees(fs::path inPath, fs::path outPath)
 {
-  if (fs::is_regular_file(inPath))
-  {
-    fs::remove(outPath);  //以防万一，先删再复制
-    fs::copy_file(inPath, outPath, fs::copy_options::overwrite_existing);
-  }
-  else
-  {
-    if (!fs::exists(outPath))
-      fs::create_directories(outPath);
-    bool inPathIsExist = fs::exists(inPath);
-    for (fs::directory_entry entry : fs::directory_iterator(inPath))
+    if (fs::is_regular_file(inPath))
     {
-      fs::path inSubPath = entry.path();
-      fs::path outSubPath = std::format("{0}/{1}", outPath.string(), entry.path().filename().string());
-      copyTrees(inSubPath, outSubPath);
+      fs::remove(outPath);  //以防万一，先删再复制
+      fs::copy_file(inPath, outPath, fs::copy_options::overwrite_existing);
+    }
+    else
+    {
+      if (!fs::exists(outPath))
+        fs::create_directories(outPath);
+      bool inPathIsExist = fs::exists(inPath);
+      for (fs::directory_entry entry : fs::directory_iterator(inPath))
+      {
+        fs::path inSubPath = entry.path();
+        fs::path outSubPath = std::format("{0}/{1}", outPath.string(), entry.path().filename().string());
+        copyTrees(inSubPath, outSubPath);
+      }
     }
   }
-}
 
 
 //第二步，写入注册表
@@ -153,8 +153,8 @@ inline void InstallThread::run()
 
     emit this->installFinish(true);
   }
-  catch (std::invalid_argument& e)
+  catch (std::exception e)
   {
-    emit this->throwError(e);
+    emit this->throwError(QString::fromLocal8Bit(e.what()));
   }
 }
