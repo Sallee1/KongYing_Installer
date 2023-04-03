@@ -52,7 +52,7 @@ namespace tianli {
     connect(ui->pushButton_CustomizeInstall, &QPushButton::clicked, this, &tianli_widget::pushButton_CustomizeInstall);
     connect(ui->pushButton_Finishing_Cancel, &QPushButton::clicked, this, &tianli_widget::pushButton_Finishing_Cancel);
     connect(ui->pushButton_Finished_Run, &QPushButton::clicked, this, &tianli_widget::pushButton_Finished_Run);
-    connect(ui->pushButton_Finished_Exit, &QPushButton::clicked, this, &tianli_widget::pushButton_Finished_Exit);
+    connect(ui->pushButton_Finished_Exit, &QPushButton::clicked, this, &tianli_widget::pushButton_UI_Close);
     connect(ui->pushButton_preview, &QPushButton::clicked, this, &tianli_widget::pushButton_preview);
     connect(ui->pushButton_Fail_Close_2, &QPushButton::clicked, this, &tianli_widget::pushButton_UI_Close);
     //加载标题字体
@@ -160,7 +160,7 @@ namespace tianli {
         if (!fs::exists(std::format(L"{0}\\{1}\\{2}", QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation).toStdWString(), config::installInfo.startmenuShortcut_foldname,config::installInfo.startmenuShortcut_progarmName)))
           ui->checkBox_startMenuShortCut->setChecked(false);
         else
-          ui->checkBox_startMenuShortCut->setChecked(false);
+          ui->checkBox_startMenuShortCut->setChecked(true);
       }
     }
   }
@@ -236,7 +236,7 @@ namespace tianli {
 
   void tianli_widget::pushButton_UI_Close()
   {
-    ui->stackedWidget->setCurrentIndex(3);
+    //ui->stackedWidget->setCurrentIndex(3);
 
     //ui.label_MainShadow->hide();
 
