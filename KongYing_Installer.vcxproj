@@ -19,6 +19,7 @@
     <ClInclude Include="Header Files\config.h" />
     <ClInclude Include="Header Files\pch.h" />
     <QtMoc Include="Header Files\tianli_widget_super.h" />
+    <QtMoc Include="Header Files\thread_super.h" />
     <ClInclude Include="Header Files\tianli_widget_utils.h" />
     <QtMoc Include="Header Files\time_line_label.h" />
     <QtMoc Include="Header Files\tianli_widget.h" />
@@ -45,6 +46,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source Files\rounded_rectangle.cpp" />
+    <ClCompile Include="Source Files\thread_super.cpp" />
     <ClCompile Include="Source Files\tianli_widget.cpp" />
     <ClCompile Include="Source Files\tianli_widget_super.cpp" />
     <ClCompile Include="Source Files\tianli_widget_utils.cpp" />

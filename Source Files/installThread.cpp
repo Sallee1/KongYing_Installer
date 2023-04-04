@@ -2,10 +2,7 @@
 #include "installThread.h"
 #include "config.h"
 
-InstallThread::InstallThread(QThread* parent) :
-  installPathStr(QString::fromStdWString(config::installInfo.defaultInstallPath)), 
-  desktopShortcut(config::installInfo.desktopShortcut), startMenuShortcut(config::installInfo.startmenuShortcut) {}
-;
+InstallThread::InstallThread(QThread* parent){};
 
 inline void InstallThread::copyFiles()
 {
