@@ -737,7 +737,7 @@ font-family: sans-serif
         <string>原神资源地图 正在安装</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_Finishing_Cancel">
+      <widget class="QPushButton" name="pushButton_installing_Cancel">
        <property name="geometry">
         <rect>
          <x>115</x>
@@ -1498,7 +1498,7 @@ QCheckBox::indicator:checked {
         <string>原神资源地图 正在升级</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_Finishing_Cancel_Update">
+      <widget class="QPushButton" name="pushButton_update_Cancel">
        <property name="geometry">
         <rect>
          <x>115</x>
@@ -2103,7 +2103,7 @@ QCheckBox::indicator:checked {
         <string>原神资源地图 正在卸载</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_Uninstall_Stop">
+      <widget class="QPushButton" name="pushButton_Uninstall_Cancel">
        <property name="geometry">
         <rect>
          <x>115</x>

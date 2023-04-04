@@ -61,7 +61,7 @@ public:
     QLabel *label_FastInstall_Icon;
     QWidget *page_2;
     QLabel *label_Wizard_installing;
-    QPushButton *pushButton_Finishing_Cancel;
+    QPushButton *pushButton_installing_Cancel;
     QWidget *page_3;
     QLabel *label_Wizard_finish;
     QLabel *label_Documentation;
@@ -99,7 +99,7 @@ public:
     QLabel *label_FastUpdate_Icon;
     QWidget *page_7;
     QLabel *label_Wizard_updateing;
-    QPushButton *pushButton_Finishing_Cancel_Update;
+    QPushButton *pushButton_update_Cancel;
     QWidget *page_8;
     QLabel *label_Wizard_finish_Update;
     QLabel *label_Documentation_Update;
@@ -130,7 +130,7 @@ public:
     QLabel *label_FastUninstall_Icon;
     QWidget *page_15;
     QLabel *label_Wizard_Uninstalling;
-    QPushButton *pushButton_Uninstall_Stop;
+    QPushButton *pushButton_Uninstall_Cancel;
     QWidget *page_16;
     QLabel *label_Wizard_finish_Uninstall;
     QLabel *label_Documentation_Uninstall;
@@ -449,11 +449,11 @@ public:
 "                            color:rgb(47, 47, 47);\n"
 "                            font-size:16px;\n"
 "                        "));
-        pushButton_Finishing_Cancel = new QPushButton(page_2);
-        pushButton_Finishing_Cancel->setObjectName(QString::fromUtf8("pushButton_Finishing_Cancel"));
-        pushButton_Finishing_Cancel->setGeometry(QRect(115, 220, 84, 32));
-        pushButton_Finishing_Cancel->setFont(font1);
-        pushButton_Finishing_Cancel->setStyleSheet(QString::fromUtf8("\n"
+        pushButton_installing_Cancel = new QPushButton(page_2);
+        pushButton_installing_Cancel->setObjectName(QString::fromUtf8("pushButton_installing_Cancel"));
+        pushButton_installing_Cancel->setGeometry(QRect(115, 220, 84, 32));
+        pushButton_installing_Cancel->setFont(font1);
+        pushButton_installing_Cancel->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #7B7B7B;\n"
 "                            font-size:13px;\n"
 "                            position: absolute;\n"
@@ -755,11 +755,11 @@ public:
 "                            color:rgb(47, 47, 47);\n"
 "                            font-size:16px;\n"
 "                        "));
-        pushButton_Finishing_Cancel_Update = new QPushButton(page_7);
-        pushButton_Finishing_Cancel_Update->setObjectName(QString::fromUtf8("pushButton_Finishing_Cancel_Update"));
-        pushButton_Finishing_Cancel_Update->setGeometry(QRect(115, 220, 84, 32));
-        pushButton_Finishing_Cancel_Update->setFont(font1);
-        pushButton_Finishing_Cancel_Update->setStyleSheet(QString::fromUtf8("\n"
+        pushButton_update_Cancel = new QPushButton(page_7);
+        pushButton_update_Cancel->setObjectName(QString::fromUtf8("pushButton_update_Cancel"));
+        pushButton_update_Cancel->setGeometry(QRect(115, 220, 84, 32));
+        pushButton_update_Cancel->setFont(font1);
+        pushButton_update_Cancel->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #7B7B7B;\n"
 "                            font-size:13px;\n"
 "                            position: absolute;\n"
@@ -1001,11 +1001,11 @@ public:
 "                            color:rgb(47, 47, 47);\n"
 "                            font-size:16px;\n"
 "                        "));
-        pushButton_Uninstall_Stop = new QPushButton(page_15);
-        pushButton_Uninstall_Stop->setObjectName(QString::fromUtf8("pushButton_Uninstall_Stop"));
-        pushButton_Uninstall_Stop->setGeometry(QRect(115, 220, 84, 32));
-        pushButton_Uninstall_Stop->setFont(font1);
-        pushButton_Uninstall_Stop->setStyleSheet(QString::fromUtf8("\n"
+        pushButton_Uninstall_Cancel = new QPushButton(page_15);
+        pushButton_Uninstall_Cancel->setObjectName(QString::fromUtf8("pushButton_Uninstall_Cancel"));
+        pushButton_Uninstall_Cancel->setGeometry(QRect(115, 220, 84, 32));
+        pushButton_Uninstall_Cancel->setFont(font1);
+        pushButton_Uninstall_Cancel->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #7B7B7B;\n"
 "                            font-size:13px;\n"
 "                            position: absolute;\n"
@@ -1179,7 +1179,7 @@ public:
         pushButton_FastInstall->setText(QString());
         label_FastInstall_Icon->setText(QString());
         label_Wizard_installing->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \346\255\243\345\234\250\345\256\211\350\243\205", nullptr));
-        pushButton_Finishing_Cancel->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\217\226\346\266\210\345\256\211\350\243\205", nullptr));
+        pushButton_installing_Cancel->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\217\226\346\266\210\345\256\211\350\243\205", nullptr));
         label_Wizard_finish->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\256\211\350\243\205\345\256\214\346\210\220", nullptr));
         label_Documentation->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\346\204\237\350\260\242\346\202\250\347\232\204\345\256\211\350\243\205\357\274\214\346\202\250\345\217\257\344\273\245\351\200\232\350\277\207\344\273\245\344\270\213\346\226\271\345\274\217\345\205\263\346\263\250\346\210\221\344\273\254\347\232\204\347\244\276\344\272\244\350\264\246\345\217\267\357\274\232</p></body></html>", nullptr));
         label_Icon_0->setText(QString());
@@ -1205,7 +1205,7 @@ public:
         pushButton_FastUpdate->setText(QString());
         label_FastUpdate_Icon->setText(QString());
         label_Wizard_updateing->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \346\255\243\345\234\250\345\215\207\347\272\247", nullptr));
-        pushButton_Finishing_Cancel_Update->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\201\234\346\255\242", nullptr));
+        pushButton_update_Cancel->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\201\234\346\255\242", nullptr));
         label_Wizard_finish_Update->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\215\207\347\272\247\345\256\214\346\210\220", nullptr));
         label_Documentation_Update->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\346\204\237\350\260\242\346\202\250\347\232\204\345\256\211\350\243\205\357\274\214\346\202\250\345\217\257\344\273\245\351\200\232\350\277\207\344\273\245\344\270\213\346\226\271\345\274\217\345\205\263\346\263\250\346\210\221\344\273\254\347\232\204\347\244\276\344\272\244\350\264\246\345\217\267\357\274\232</p></body></html>", nullptr));
         label_Icon_2->setText(QString());
@@ -1225,7 +1225,7 @@ public:
         pushButton_FastUninstall->setText(QString());
         label_FastUninstall_Icon->setText(QString());
         label_Wizard_Uninstalling->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \346\255\243\345\234\250\345\215\270\350\275\275", nullptr));
-        pushButton_Uninstall_Stop->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\201\234\346\255\242", nullptr));
+        pushButton_Uninstall_Cancel->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\201\234\346\255\242", nullptr));
         label_Wizard_finish_Uninstall->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\215\270\350\275\275\345\256\214\346\210\220", nullptr));
         label_Documentation_Uninstall->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\346\202\250\345\267\262\346\210\220\345\212\237\345\215\270\350\275\275\347\251\272\350\215\247\351\205\222\351\246\206\342\204\242\345\216\237\347\245\236\345\234\260\345\233\276\357\274\214\346\234\237\345\276\205\344\270\216\346\202\250\347\232\204\345\206\215\346\254\241\347\233\270\344\274\232\357\274\201</p></body></html>", nullptr));
         label_Icon_6->setText(QString());
