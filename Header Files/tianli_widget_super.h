@@ -83,19 +83,19 @@ namespace tianli{
     void pushButton_UI_Close();       //单击关闭按钮
     void pushButton_UI_Mini();        //单击最小化按钮
 
-    void virtual pushButton_Fast();    //单击第一页快速操作按钮
-    void virtual pushButton_Customize(); //单击第一页自定义按钮
-    void virtual pushButton_preview();          //单击第一页路径预览按钮          
-    void virtual pushButton_Cancel();           //单击第二页取消按钮 
-    void virtual pushButton_Finished_Run();     //单击第三页启动软件按钮          
-    void virtual pushButton_Finished_Exit();    //单击第三页关闭按钮
-    void virtual pushButton_Error_exit();       //单击第四页错误关闭按钮
+    void pushButton_Fast();    //单击第一页快速操作按钮
+    void pushButton_Customize(); //单击第一页自定义按钮
+    void pushButton_preview();          //单击第一页路径预览按钮          
+    void pushButton_Cancel();           //单击第二页取消按钮 
+    void pushButton_Finished_Run();     //单击第三页启动软件按钮          
+    void pushButton_Finished_Exit();    //单击第三页关闭按钮
+    void pushButton_Error_exit();       //单击第四页错误关闭按钮
 
     //线程->前端槽
-    void virtual setThreadPrecent(int percent);         //线程进度条
-    void virtual changeThreadState(int state);          //设置步骤
-    void virtual onThreadFinish();                      //线程结束
-    void virtual onThreadThrowError(QString error);     //线程失败
+    void setThreadPrecent(int percent);         //线程进度条
+    void changeThreadState(int state);          //设置步骤
+    void onThreadFinish();                      //线程结束
+    void onThreadThrowError(QString error);     //线程失败
   //信号
   signals:
     void setInstallConfig(QString, bool, bool); //初始化安装线程
