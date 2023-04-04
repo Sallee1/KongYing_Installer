@@ -67,3 +67,12 @@ void tianliWidgetUtils:: setFont(const QString& fontPath, QWidget* widget, bool 
     widget->setFont(font);
   }
 }
+
+void tianliWidgetUtils:: cleanUninstallReg()
+{
+  HKEY hKey;
+  RegOpenKeyEx(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName).c_str(), 0, KEY_ALL_ACCESS, &hKey);
+  RegDeleteTree(hKey, NULL);
+  RegCloseKey(hKey);
+  RegDeleteKey(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName).c_str());
+}
