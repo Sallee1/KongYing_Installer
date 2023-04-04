@@ -4,11 +4,11 @@
 //
 
 #include "pch.h"
-#include "tianli_widget.h"
 #include "ui_tianli_widget.h"
 #include "tianli_widget_utils.h"
 #include "time_line_label.h"
 #include "config.h"
+#include "thread_super.h"
 
 class QGraphicsDropShadowEffect;
 class QPropertyAnimation;
@@ -41,10 +41,11 @@ namespace tianli{
     QPoint m_Press;
     QPoint m_Move;
     bool leftBtnClk = false;
-    void virtual mousePressEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
-    void virtual mouseReleaseEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
-    void virtual mouseMoveEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
-    void virtual closeEvent(QCloseEvent* event) Q_DECL_OVERRIDE;
+    void mousePressEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QMouseEvent* event) Q_DECL_OVERRIDE;
+    void closeEvent(QCloseEvent* event) Q_DECL_OVERRIDE;
+    bool eventFilter(QObject* object, QEvent* event) Q_DECL_OVERRIDE;
 
   //子类装配的界面指针
   protected:
@@ -63,19 +64,23 @@ namespace tianli{
     QLabel* errorInfoLabel;                //第四页，报错信息
 
   //装配方法
-    virtual void initRefQObejct();   //装配指针
+    virtual void init();     //初始化，需要子类执行初始化的信号
     void connectSignal();    //装配信号
 
-  //内部方法
-  private:
+  //其他方法
+  protected:
     void initTimeLine();    //初始化进度条
     void setTimeLine(int step);   //设置活动的进度条
     void virtual beginProcess();  //安装前的准备工作
 
   //容器
-  private:
+  protected:
     std::vector<time_line_label*> timeLineLabelList;
     int activedTimeLabelIdx;
+
+  //线程
+  protected:
+    Thread_super* thread;
 
   //槽函数
   protected slots:
