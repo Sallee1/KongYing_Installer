@@ -147,6 +147,34 @@ namespace tianli {
     //this->close();
   }
 
+  void tianli_widget_super::mousePressEvent(QMouseEvent* event)
+  {
+    if (event->button() == Qt::LeftButton &&
+      ui->label_MainShadow->frameRect().contains(event->globalPos() - this->frameGeometry().topLeft())) {
+      m_Press = event->globalPos();
+      leftBtnClk = true;
+    }
+    event->ignore();
+  }
+
+  void tianli_widget_super::mouseReleaseEvent(QMouseEvent* event)
+  {
+    if (event->button() == Qt::LeftButton) {
+      leftBtnClk = false;
+    }
+    event->ignore();
+  }
+
+  void tianli_widget_super::mouseMoveEvent(QMouseEvent* event)
+  {
+    if (leftBtnClk) {
+      m_Move = event->globalPos();
+      this->move(this->pos() + m_Move - m_Press);
+      m_Press = m_Move;
+    }
+    event->ignore();
+  }
+
   void tianli_widget_super::closeEvent(QCloseEvent* event)
   {
     if (activedWidget->currentIndex() == 3)  //安装失败，关闭时清理注册表，防止出现无法卸载
