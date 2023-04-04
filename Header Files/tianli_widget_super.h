@@ -64,7 +64,7 @@ namespace tianli{
     QLabel* errorInfoLabel;                //第四页，报错信息
 
   //装配方法
-    virtual void init();     //初始化，需要子类执行初始化的信号
+    virtual void init() = 0;     //初始化，需要子类执行初始化的信号
     void connectSignal();    //装配信号
 
   //其他方法

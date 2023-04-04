@@ -8,7 +8,7 @@
 #include "config.h"
 
 namespace tianli {
-  void install_widget::init()
+  void Install_widget::init()
   {
     activedWidget = ui->stackedWidget_install;
     fastButton = ui->pushButton_FastInstall;

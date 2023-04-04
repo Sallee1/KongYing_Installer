@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "config.h"
 #include "tianli_widget_utils.h"
-#include "tianli_widget.h"
 
 namespace fs = std::filesystem;
 

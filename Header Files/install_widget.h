@@ -9,12 +9,10 @@
 #include "tianli_widget_super.h"
 #include "time_line_label.h"
 
-class QGraphicsDropShadowEffect;
-class QPropertyAnimation;
 namespace tianli {
-    class install_widget : public tianli::tianli_widget_super {
+    class Install_widget : public tianli::tianli_widget_super {
 
-    private:
+    protected:
       void init() override;
     };
 
