@@ -73,6 +73,9 @@
     <ClInclude Include="Header Files\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header Files\install_widget.h">
+      <Filter>Header Files\widget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource Files\app_info.rc">
@@ -97,7 +100,7 @@
     <ClCompile Include="Source Files\config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\tianli_widget.cpp">
+    <ClCompile Include="Source Files\install_widget.cpp">
       <Filter>Source Files\widget</Filter>
     </ClCompile>
     <ClCompile Include="Source Files\time_line_label.cpp">
@@ -122,9 +125,6 @@
   <ItemGroup>
     <QtMoc Include="Header Files\tianli_widget_super.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Header Files\tianli_widget.h">
-      <Filter>Header Files\widget</Filter>
     </QtMoc>
     <QtMoc Include="Header Files\rounded_rectangle.h">
       <Filter>Header Files\widget</Filter>

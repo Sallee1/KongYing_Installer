@@ -22,7 +22,7 @@
     <QtMoc Include="Header Files\thread_super.h" />
     <ClInclude Include="Header Files\tianli_widget_utils.h" />
     <QtMoc Include="Header Files\time_line_label.h" />
-    <QtMoc Include="Header Files\tianli_widget.h" />
+    <ClInclude Include="Header Files\install_widget.h" />
     <QtMoc Include="Header Files\rounded_rectangle.h" />
     <QtMoc Include="Header Files\installThread.h" />
     <ClInclude Include="Header Files\ui\ui_rounded_rectangle.h" />
@@ -47,7 +47,7 @@
     </ClCompile>
     <ClCompile Include="Source Files\rounded_rectangle.cpp" />
     <ClCompile Include="Source Files\thread_super.cpp" />
-    <ClCompile Include="Source Files\tianli_widget.cpp" />
+    <ClCompile Include="Source Files\install_widget.cpp" />
     <ClCompile Include="Source Files\tianli_widget_super.cpp" />
     <ClCompile Include="Source Files\tianli_widget_utils.cpp" />
     <ClCompile Include="Source Files\time_line_label.cpp" />
