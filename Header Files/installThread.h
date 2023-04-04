@@ -1,21 +1,13 @@
 #pragma once
 #include <pch.h>
+#include "thread_super.h"
 
 namespace fs = std::filesystem;
 using std::wstring;
 
-class InstallThread :public QThread
+class InstallThread :public Thread_super
 {
   Q_OBJECT
-public:
-  InstallThread(QThread* parent = nullptr);
-public slots:
-  void setInstallConfig(QString installPathStr, bool desktopShortcut, bool startMenuShortcut)
-  {
-    this->installPathStr = installPathStr;
-    this->desktopShortcut = desktopShortcut;
-    this->startMenuShortcut = startMenuShortcut;
-  }
 
 public:
   enum ProcessType {
@@ -34,19 +26,8 @@ private:
   void createShortCut(QString exePath, QString lnkPath);
   //第四步，回收残留文件
   void cleanCache();
-signals:
-  void processChange(int step);
-  void processPercent(int percent);
-  void installFinish(bool isSuccess);
-  void throwError(QString error);
 
 private:
   void run() override;
-
-private:
-  uintmax_t totalSize = 0;  //用来计算进度条
-  QString installPathStr;
-  bool desktopShortcut;
-  bool startMenuShortcut;
 };
 

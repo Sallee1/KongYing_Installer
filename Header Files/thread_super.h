@@ -1,11 +1,11 @@
 #pragma once
 #include <pch.h>
 
-class thread_super :public QThread
+class Thread_super :public QThread
 {
   Q_OBJECT
 public:
-  thread_super(QThread* parent = nullptr);
+  Thread_super(QThread* parent = nullptr);
 
 public slots:
   void setInstallConfig(QString installPathStr, bool desktopShortcut, bool startMenuShortcut)

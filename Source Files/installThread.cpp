@@ -2,8 +2,6 @@
 #include "installThread.h"
 #include "config.h"
 
-InstallThread::InstallThread(QThread* parent){};
-
 inline void InstallThread::copyFiles()
 {
   fs::path installPath = installPathStr.toStdWString();
