@@ -18,6 +18,7 @@
 #include <QPainter>
 #include <QProcess>
 #include <QPropertyAnimation>
+#include <QStackedWidget>
 #include <QStandardPaths>
 #include <QString>
 #include <QThread>
