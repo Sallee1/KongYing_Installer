@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>740</width>
-    <height>424</height>
+    <width>741</width>
+    <height>425</height>
    </rect>
   </property>
   <property name="font">
@@ -201,829 +201,6 @@
     <string/>
    </property>
   </widget>
-  <widget class="QStackedWidget" name="stackedWidget">
-   <property name="geometry">
-    <rect>
-     <x>280</x>
-     <y>100</y>
-     <width>451</width>
-     <height>311</height>
-    </rect>
-   </property>
-   <property name="autoFillBackground">
-    <bool>false</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">QCheckBox::indicator:unchecked {
-	width:16px;
-	height:16px;
-	padding:-4px;
-	margin:4px;
-	background-color:#999999;
-	border-radius:4px;
-}
-
-QCheckBox::indicator:checked {
-	width:16px;
-	height:16px;
-	background-image: url(:/parts/Resource/checked.png);
-    background-repeat:no-repeat;
-    background-position:center;
-    background-origin:border;
-}</string>
-   </property>
-   <property name="currentIndex">
-    <number>3</number>
-   </property>
-   <widget class="QWidget" name="page">
-    <widget class="QLabel" name="label_Wizard_start">
-     <property name="geometry">
-      <rect>
-       <x>115</x>
-       <y>10</y>
-       <width>281</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            color:rgb(47, 47, 47);
-                            font-size:16px;
-                        </string>
-     </property>
-     <property name="text">
-      <string>原神资源地图 安装向导</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_Tag_Down">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>210</y>
-       <width>16</width>
-       <height>2</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            background-color:rgb(219, 219, 219);
-                        </string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_Readme">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>220</y>
-       <width>331</width>
-       <height>50</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="mouseTracking">
-      <bool>true</bool>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p style=&quot;margin:5px;&quot;&gt;&lt;span style=&quot; color:#909090;&quot;&gt;Tips: 安装并使用“空荧酒馆原神地图”&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:5px;&quot;&gt;&lt;span style=&quot; color:#909090;&quot;&gt;意味着您同意并遵守&lt;/span&gt;&lt;a href=&quot;https://yuanshen.site/docs/disclaimer.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#ee623c;&quot;&gt;《用户使用协议》&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="textFormat">
-      <enum>Qt::AutoText</enum>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_Tag_Up">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>0</y>
-       <width>16</width>
-       <height>2</height>
-      </rect>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            background-color:rgb(219, 219, 219);
-                        </string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QWidget" name="widget_CustomOption" native="true">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>150</y>
-       <width>331</width>
-       <height>51</height>
-      </rect>
-     </property>
-     <widget class="QPushButton" name="pushButton_preview">
-      <property name="geometry">
-       <rect>
-        <x>290</x>
-        <y>0</y>
-        <width>38</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>-1</pointsize>
-        <stylestrategy>PreferDefault</stylestrategy>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-                            color: #FFFFFF;
-
-                            font-size:13px;
-                            position: absolute;
-                            width: 58px;
-                            height: 32px;
-                            background: #FFC01C;
-                            border-radius: 4px;
-                        </string>
-      </property>
-      <property name="text">
-       <string>预览</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_installPath">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>291</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>sans-serif</family>
-        <pointsize>9</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgba(0, 0, 0, 0);
-border-bottom-color: rgb(242, 110, 75);
-border-bottom-color: rgba(0, 0, 0, 0);
-font-family: sans-serif
-</string>
-      </property>
-      <property name="text">
-       <string>C:\Program Files\KongYingMap</string>
-      </property>
-      <property name="clearButtonEnabled">
-       <bool>false</bool>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_desktopShortcut">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>30</y>
-        <width>131</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>桌面快捷方式</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_startMenuShortCut">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>30</y>
-        <width>181</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>10</pointsize>
-        <bold>false</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>开始菜单快捷方式</string>
-      </property>
-      <property name="checked">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="widget_CustomButtom" native="true">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>140</y>
-       <width>451</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <widget class="QPushButton" name="pushButton_CustomizeInstall">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>451</width>
-        <height>64</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-                            QPushButton{
-                            background-color:rgba(255, 255, 255,0);
-                            color:rgb(220, 188, 96);
-                            border:0px solid rgb(204, 204, 204);
-                            }
-                            QPushButton:hover {
-                            background-color:rgba(0,0,0, 24);
-                            }
-                            QPushButton:pressed {
-                            background-color:rgba(0,0,0,12);
-                            }
-                        </string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_CustomizeInstall_Icon">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>14</y>
-        <width>16</width>
-        <height>14</height>
-       </rect>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-                            background-image:url(:/parts/resource/vector.png);
-                        </string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_CustomizeInstall_Documentation">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>35</y>
-        <width>161</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>-1</pointsize>
-       </font>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-                            color:rgba(0, 0, 0, 128);
-                            font-size:13px;
-                        </string>
-      </property>
-      <property name="text">
-       <string>设定安装时的选项</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_CustomizeInstall">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>10</y>
-        <width>101</width>
-        <height>19</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>-1</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-                            font-size:14px;
-                        </string>
-      </property>
-      <property name="text">
-       <string>自定义</string>
-      </property>
-     </widget>
-     <zorder>label_CustomizeInstall_Icon</zorder>
-     <zorder>label_CustomizeInstall_Documentation</zorder>
-     <zorder>label_CustomizeInstall</zorder>
-     <zorder>pushButton_CustomizeInstall</zorder>
-    </widget>
-    <widget class="QWidget" name="widget_FastButtom" native="true">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>70</y>
-       <width>451</width>
-       <height>71</height>
-      </rect>
-     </property>
-     <widget class="QLabel" name="label_FastInstall">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>10</y>
-        <width>81</width>
-        <height>19</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>-1</pointsize>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-                            font-size:14px;
-                        </string>
-      </property>
-      <property name="text">
-       <string>快速安装</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_FastInstall_Documentation">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>36</y>
-        <width>161</width>
-        <height>17</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>-1</pointsize>
-       </font>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-                            color:rgba(0, 0, 0, 128);
-                            font-size:13px;
-                        </string>
-      </property>
-      <property name="text">
-       <string>按照程序预设进行安装</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_FastInstall">
-      <property name="geometry">
-       <rect>
-        <x>0</x>
-        <y>0</y>
-        <width>451</width>
-        <height>64</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-                            QPushButton{
-                            background-color:rgba(255, 255, 255,0);
-                            color:rgb(220, 188, 96);
-                            border:0px solid rgb(204, 204, 204);
-                            }
-                            QPushButton:hover {
-                            background-color:rgba(0,0,0, 24);
-                            }
-                            QPushButton:pressed {
-                            background-color:rgba(0,0,0,12);
-                            }
-                        </string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_FastInstall_Icon">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>12</y>
-        <width>16</width>
-        <height>14</height>
-       </rect>
-      </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">
-                            background-image:url(:/parts/resource/vector.png);
-                        </string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="page_2">
-    <widget class="QLabel" name="label_Wizard_installing">
-     <property name="geometry">
-      <rect>
-       <x>115</x>
-       <y>10</y>
-       <width>291</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            color:rgb(47, 47, 47);
-                            font-size:16px;
-                        </string>
-     </property>
-     <property name="text">
-      <string>原神资源地图 正在安装</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_Finishing_Cancel">
-     <property name="geometry">
-      <rect>
-       <x>115</x>
-       <y>220</y>
-       <width>84</width>
-       <height>32</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>-1</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            color: #7B7B7B;
-                            font-size:13px;
-                            position: absolute;
-                            width: 58px;
-                            height: 32px;
-                            left: calc(50% - 58px/2 + 132.5px);
-                            top: calc(50% - 32px/2 + 134px);
-                            border: 2px solid #D1D1D1;
-                            border-radius: 4px;
-                        </string>
-     </property>
-     <property name="text">
-      <string>取消安装</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="page_3">
-    <widget class="QLabel" name="label_Wizard_finish">
-     <property name="geometry">
-      <rect>
-       <x>115</x>
-       <y>10</y>
-       <width>301</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            color:rgb(47, 47, 47);
-                            font-size:16px;
-                        </string>
-     </property>
-     <property name="text">
-      <string>原神资源地图 安装完成</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_Documentation">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>40</y>
-       <width>281</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            color:rgb(47, 47, 47);
-                        </string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;感谢您的安装，您可以通过以下方式关注我们的社交账号：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="textFormat">
-      <enum>Qt::RichText</enum>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QWidget" name="horizontalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>119</x>
-       <y>99</y>
-       <width>231</width>
-       <height>81</height>
-      </rect>
-     </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="sizeConstraint">
-       <enum>QLayout::SetDefaultConstraint</enum>
-      </property>
-      <item>
-       <widget class="QLabel" name="label_Icon_0">
-        <property name="minimumSize">
-         <size>
-          <width>64</width>
-          <height>64</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>64</width>
-          <height>64</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">
-                                        font-size:13px;
-                                    </string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label_Icon_1">
-        <property name="minimumSize">
-         <size>
-          <width>64</width>
-          <height>64</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>64</width>
-          <height>64</height>
-         </size>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">
-                                        font-size:13px;
-                                    </string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-    <widget class="QPushButton" name="pushButton_Finished_Run">
-     <property name="geometry">
-      <rect>
-       <x>115</x>
-       <y>220</y>
-       <width>58</width>
-       <height>32</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>-1</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            color: #FFFFFF;
-                            font-size:13px;
-                            position: absolute;
-                            width: 58px;
-                            height: 32px;
-                            left: calc(50% - 58px/2 + 62.5px);
-                            top: calc(50% - 32px/2 + 134px);
-                            background: #FFC01C;
-                            border-radius: 4px;
-                        </string>
-     </property>
-     <property name="text">
-      <string>启动</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_Finished_Exit">
-     <property name="geometry">
-      <rect>
-       <x>190</x>
-       <y>220</y>
-       <width>58</width>
-       <height>32</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>-1</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            color: #7B7B7B;
-                            font-size:13px;
-                            position: absolute;
-                            width: 58px;
-                            height: 32px;
-                            left: calc(50% - 58px/2 + 132.5px);
-                            top: calc(50% - 32px/2 + 134px);
-                            border: 2px solid #D1D1D1;
-                            border-radius: 4px;
-                        </string>
-     </property>
-     <property name="text">
-      <string>退出</string>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QWidget" name="page_4">
-    <widget class="QLabel" name="label_Wizard_failed">
-     <property name="geometry">
-      <rect>
-       <x>115</x>
-       <y>10</y>
-       <width>301</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>-1</pointsize>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            color:rgb(47, 47, 47);
-                            font-size:16px;
-                        </string>
-     </property>
-     <property name="text">
-      <string>原神资源地图 安装失败</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_err_documentation">
-     <property name="geometry">
-      <rect>
-       <x>110</x>
-       <y>40</y>
-       <width>281</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-       <bold>false</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            color:rgb(47, 47, 47);
-                        </string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;很遗憾，安装失败了，你可以尝试手动删除文件后重新安装。报错信息如下：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="textFormat">
-      <enum>Qt::RichText</enum>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButton_Fail_Close_2">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>220</y>
-       <width>84</width>
-       <height>32</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>-1</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">
-                            color: #7B7B7B;
-                            font-size:13px;
-                            position: absolute;
-                            width: 58px;
-                            height: 32px;
-                            left: calc(50% - 58px/2 + 132.5px);
-                            top: calc(50% - 32px/2 + 134px);
-                            border: 2px solid #D1D1D1;
-                            border-radius: 4px;
-                        </string>
-     </property>
-     <property name="text">
-      <string>关闭</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="label_err_info">
-     <property name="geometry">
-      <rect>
-       <x>120</x>
-       <y>90</y>
-       <width>301</width>
-       <height>91</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>用户取消了安装</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-   </widget>
-  </widget>
   <widget class="QLabel" name="label_MainImage">
    <property name="geometry">
     <rect>
@@ -1047,6 +224,2196 @@ font-family: sans-serif
     <cstring>pushButton_UI_Mini</cstring>
    </property>
   </widget>
+  <widget class="QStackedWidget" name="stackedWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>90</y>
+     <width>451</width>
+     <height>331</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="page_install">
+    <widget class="QStackedWidget" name="stackedWidget_install">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>451</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox::indicator:unchecked {
+	width:16px;
+	height:16px;
+	padding:-4px;
+	margin:4px;
+	background-color:#999999;
+	border-radius:4px;
+}
+
+QCheckBox::indicator:checked {
+	width:16px;
+	height:16px;
+	background-image: url(:/parts/Resource/checked.png);
+    background-repeat:no-repeat;
+    background-position:center;
+    background-origin:border;
+}</string>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_1">
+      <widget class="QLabel" name="label_Wizard_start">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>281</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 安装向导</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Tag_Down">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>210</y>
+         <width>16</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            background-color:rgb(219, 219, 219);
+                        </string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Readme">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>220</y>
+         <width>331</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p style=&quot;margin:5px;&quot;&gt;&lt;span style=&quot; color:#909090;&quot;&gt;Tips: 安装并使用“空荧酒馆原神地图”&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:5px;&quot;&gt;&lt;span style=&quot; color:#909090;&quot;&gt;意味着您同意并遵守&lt;/span&gt;&lt;a href=&quot;https://yuanshen.site/docs/disclaimer.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#ee623c;&quot;&gt;《用户使用协议》&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Tag_Up">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>0</y>
+         <width>16</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            background-color:rgb(219, 219, 219);
+                        </string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QWidget" name="widget_CustomOption" native="true">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>150</y>
+         <width>331</width>
+         <height>51</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QStackedWidget" name="stackedWidget_InstallCustom">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>451</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="page1_CustomInstallButtom">
+        <widget class="QPushButton" name="pushButton_CustomizeInstall">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>451</width>
+           <height>64</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+                            QPushButton{
+                            background-color:rgba(255, 255, 255,0);
+                            color:rgb(220, 188, 96);
+                            border:0px solid rgb(204, 204, 204);
+                            }
+                            QPushButton:hover {
+                            background-color:rgba(0,0,0, 24);
+                            }
+                            QPushButton:pressed {
+                            background-color:rgba(0,0,0,12);
+                            }
+                        </string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_CustomizeInstall_Icon">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>14</y>
+           <width>16</width>
+           <height>14</height>
+          </rect>
+         </property>
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+                            background-image:url(:/parts/resource/vector.png);
+                        </string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_CustomizeInstall_Documentation">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>35</y>
+           <width>261</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>-1</pointsize>
+          </font>
+         </property>
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+                            color:rgba(0, 0, 0, 128);
+                            font-size:13px;
+                        </string>
+         </property>
+         <property name="text">
+          <string>设置安装的路径以及快捷方式</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_CustomizeInstall">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>10</y>
+           <width>101</width>
+           <height>19</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>-1</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+                            font-size:14px;
+                        </string>
+         </property>
+         <property name="text">
+          <string>自定义</string>
+         </property>
+        </widget>
+        <zorder>label_CustomizeInstall_Icon</zorder>
+        <zorder>label_CustomizeInstall_Documentation</zorder>
+        <zorder>label_CustomizeInstall</zorder>
+        <zorder>pushButton_CustomizeInstall</zorder>
+       </widget>
+       <widget class="QWidget" name="page2_CustomInstallOption">
+        <widget class="QCheckBox" name="checkBox_startMenuShortCut">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>40</y>
+           <width>181</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>开始菜单快捷方式</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButton_preview">
+         <property name="geometry">
+          <rect>
+           <x>390</x>
+           <y>10</y>
+           <width>38</width>
+           <height>31</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>-1</pointsize>
+           <stylestrategy>PreferDefault</stylestrategy>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+                            color: #FFFFFF;
+
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            background: #FFC01C;
+                            border-radius: 4px;
+                        </string>
+         </property>
+         <property name="text">
+          <string>预览</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="lineEdit_installPath">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>10</y>
+           <width>291</width>
+           <height>30</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <family>sans-serif</family>
+           <pointsize>9</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">background-color: rgba(0, 0, 0, 0);
+border-bottom-color: rgb(242, 110, 75);
+border-bottom-color: rgba(0, 0, 0, 0);
+font-family: sans-serif
+</string>
+         </property>
+         <property name="text">
+          <string>C:\Program Files\KongYingMap</string>
+         </property>
+         <property name="clearButtonEnabled">
+          <bool>false</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="checkBox_desktopShortcut">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>40</y>
+           <width>131</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>桌面快捷方式</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="widget_FastButtom" native="true">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>451</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="label_FastInstall">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>10</y>
+          <width>81</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            font-size:14px;
+                        </string>
+        </property>
+        <property name="text">
+         <string>快速安装</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_FastInstall_Documentation">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>36</y>
+          <width>161</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>-1</pointsize>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            color:rgba(0, 0, 0, 128);
+                            font-size:13px;
+                        </string>
+        </property>
+        <property name="text">
+         <string>按照程序预设进行安装</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_FastInstall">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>451</width>
+          <height>64</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            QPushButton{
+                            background-color:rgba(255, 255, 255,0);
+                            color:rgb(220, 188, 96);
+                            border:0px solid rgb(204, 204, 204);
+                            }
+                            QPushButton:hover {
+                            background-color:rgba(0,0,0, 24);
+                            }
+                            QPushButton:pressed {
+                            background-color:rgba(0,0,0,12);
+                            }
+                        </string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_FastInstall_Icon">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>12</y>
+          <width>16</width>
+          <height>14</height>
+         </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            background-image:url(:/parts/resource/vector.png);
+                        </string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_2">
+      <widget class="QLabel" name="label_Wizard_installing">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>291</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 正在安装</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Finishing_Cancel">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>220</y>
+         <width>84</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #7B7B7B;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 132.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            border: 2px solid #D1D1D1;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>取消安装</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_3">
+      <widget class="QLabel" name="label_Wizard_finish">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>301</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 安装完成</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Documentation">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>40</y>
+         <width>281</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                        </string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;感谢您的安装，您可以通过以下方式关注我们的社交账号：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>119</x>
+         <y>99</y>
+         <width>231</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_Icon_0">
+          <property name="minimumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+                                        font-size:13px;
+                                    </string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_Icon_1">
+          <property name="minimumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+                                        font-size:13px;
+                                    </string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Finished_Run">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>220</y>
+         <width>58</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #FFFFFF;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 62.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            background: #FFC01C;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>启动</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Finished_Exit">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>220</y>
+         <width>58</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #7B7B7B;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 132.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            border: 2px solid #D1D1D1;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>退出</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_4">
+      <widget class="QLabel" name="label_Wizard_failed">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>301</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 安装失败</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_err_documentation">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>40</y>
+         <width>281</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                        </string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;很遗憾，安装失败了，你可以尝试手动删除文件后重新安装。报错信息如下：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Fail_Close">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>220</y>
+         <width>84</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #7B7B7B;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 132.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            border: 2px solid #D1D1D1;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>关闭</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_err_info">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>90</y>
+         <width>301</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>用户取消了安装</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_update">
+    <widget class="QStackedWidget" name="stackedWidget_update">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>451</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox::indicator:unchecked {
+	width:16px;
+	height:16px;
+	padding:-4px;
+	margin:4px;
+	background-color:#999999;
+	border-radius:4px;
+}
+
+QCheckBox::indicator:checked {
+	width:16px;
+	height:16px;
+	background-image: url(:/parts/Resource/checked.png);
+    background-repeat:no-repeat;
+    background-position:center;
+    background-origin:border;
+}</string>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_6">
+      <widget class="QLabel" name="label_Wizard_start_Update">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>281</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 升级向导</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Tag_Down_2">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>210</y>
+         <width>16</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            background-color:rgb(219, 219, 219);
+                        </string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Readme_Update">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>220</y>
+         <width>331</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p style=&quot;margin:5px;&quot;&gt;&lt;span style=&quot; color:#909090;&quot;&gt;Tips: 安装并使用“空荧酒馆原神地图”&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin:5px;&quot;&gt;&lt;span style=&quot; color:#909090;&quot;&gt;意味着您同意并遵守&lt;/span&gt;&lt;a href=&quot;https://yuanshen.site/docs/disclaimer.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#ee623c;&quot;&gt;《用户使用协议》&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Tag_Up_2">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>0</y>
+         <width>16</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            background-color:rgb(219, 219, 219);
+                        </string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QStackedWidget" name="stackedWidget_UpdataCustom">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>451</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="page1_CustomUpdateButtom">
+        <widget class="QPushButton" name="pushButton_CustomizeUpdate">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>451</width>
+           <height>64</height>
+          </rect>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+                            QPushButton{
+                            background-color:rgba(255, 255, 255,0);
+                            color:rgb(220, 188, 96);
+                            border:0px solid rgb(204, 204, 204);
+                            }
+                            QPushButton:hover {
+                            background-color:rgba(0,0,0, 24);
+                            }
+                            QPushButton:pressed {
+                            background-color:rgba(0,0,0,12);
+                            }
+                        </string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_CustomizeUpdate_Icon">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>14</y>
+           <width>16</width>
+           <height>14</height>
+          </rect>
+         </property>
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+                            background-image:url(:/parts/resource/vector.png);
+                        </string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_CustomizeUpdate_Documentation">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>35</y>
+           <width>161</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>-1</pointsize>
+          </font>
+         </property>
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+                            color:rgba(0, 0, 0, 128);
+                            font-size:13px;
+                        </string>
+         </property>
+         <property name="text">
+          <string>快捷方式相关设定</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_CustomizeUpdate">
+         <property name="geometry">
+          <rect>
+           <x>130</x>
+           <y>10</y>
+           <width>101</width>
+           <height>19</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>-1</pointsize>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">
+                            font-size:14px;
+                        </string>
+         </property>
+         <property name="text">
+          <string>自定义</string>
+         </property>
+        </widget>
+        <zorder>label_CustomizeUpdate_Icon</zorder>
+        <zorder>label_CustomizeUpdate_Documentation</zorder>
+        <zorder>label_CustomizeUpdate</zorder>
+        <zorder>pushButton_CustomizeUpdate</zorder>
+       </widget>
+       <widget class="QWidget" name="page2_CustomUpdateOption">
+        <widget class="QCheckBox" name="checkBox_startMenuShortCutUpdate">
+         <property name="geometry">
+          <rect>
+           <x>230</x>
+           <y>10</y>
+           <width>181</width>
+           <height>21</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>开始菜单快捷方式</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+        <widget class="QCheckBox" name="checkBox_desktopShortcutUpdate">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>10</y>
+           <width>131</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>桌面快捷方式</string>
+         </property>
+         <property name="checked">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="widget_FastButtom_Update" native="true">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>70</y>
+         <width>451</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="label_FastUpdate">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>10</y>
+          <width>81</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            font-size:14px;
+                        </string>
+        </property>
+        <property name="text">
+         <string>升级/修复</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_FastUpdate_Documentation">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>36</y>
+          <width>161</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>-1</pointsize>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            color:rgba(0, 0, 0, 128);
+                            font-size:13px;
+                        </string>
+        </property>
+        <property name="text">
+         <string>按照程序预设进行安装</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_FastUpdate">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>451</width>
+          <height>64</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            QPushButton{
+                            background-color:rgba(255, 255, 255,0);
+                            color:rgb(220, 188, 96);
+                            border:0px solid rgb(204, 204, 204);
+                            }
+                            QPushButton:hover {
+                            background-color:rgba(0,0,0, 24);
+                            }
+                            QPushButton:pressed {
+                            background-color:rgba(0,0,0,12);
+                            }
+                        </string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_FastUpdate_Icon">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>12</y>
+          <width>16</width>
+          <height>14</height>
+         </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            background-image:url(:/parts/resource/vector.png);
+                        </string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_7">
+      <widget class="QLabel" name="label_Wizard_updateing">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>291</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 正在升级</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Finishing_Cancel_Update">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>220</y>
+         <width>84</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #7B7B7B;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 132.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            border: 2px solid #D1D1D1;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>停止</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_8">
+      <widget class="QLabel" name="label_Wizard_finish_Update">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>301</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 升级完成</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Documentation_Update">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>40</y>
+         <width>281</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                        </string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;感谢您的安装，您可以通过以下方式关注我们的社交账号：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>119</x>
+         <y>99</y>
+         <width>231</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_Icon_2">
+          <property name="minimumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+                                        font-size:13px;
+                                    </string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_Icon_3">
+          <property name="minimumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+                                        font-size:13px;
+                                    </string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Finished_Run_Update">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>220</y>
+         <width>58</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #FFFFFF;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 62.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            background: #FFC01C;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>启动</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Finished_Exit_Update">
+       <property name="geometry">
+        <rect>
+         <x>190</x>
+         <y>220</y>
+         <width>58</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #7B7B7B;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 132.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            border: 2px solid #D1D1D1;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>退出</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_9">
+      <widget class="QLabel" name="label_Wizard_failed_Update">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>301</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 升级失败</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_err_documentation_Update">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>40</y>
+         <width>281</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                        </string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;很遗憾，升级失败了，你可以尝试手动删除文件后重新安装。报错信息如下：&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Fail_Close_Updaye">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>220</y>
+         <width>84</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #7B7B7B;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 132.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            border: 2px solid #D1D1D1;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>关闭</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_err_info_Update">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>90</y>
+         <width>301</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>用户取消了安装</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_uninstall">
+    <widget class="QStackedWidget" name="stackedWidget_uninstall">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>451</width>
+       <height>301</height>
+      </rect>
+     </property>
+     <property name="autoFillBackground">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QCheckBox::indicator:unchecked {
+	width:16px;
+	height:16px;
+	padding:-4px;
+	margin:4px;
+	background-color:#999999;
+	border-radius:4px;
+}
+
+QCheckBox::indicator:checked {
+	width:16px;
+	height:16px;
+	background-image: url(:/parts/Resource/checked.png);
+    background-repeat:no-repeat;
+    background-position:center;
+    background-origin:border;
+}</string>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="page_14">
+      <widget class="QLabel" name="label_Wizard_start_uninstall">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>281</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 卸载向导</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Tag_Down_4">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>210</y>
+         <width>16</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            background-color:rgb(219, 219, 219);
+                        </string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Tag_Up_4">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>0</y>
+         <width>16</width>
+         <height>2</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            background-color:rgb(219, 219, 219);
+                        </string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QStackedWidget" name="stackedWidget_UnInstallCustom">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>170</y>
+         <width>451</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="page2_CustomUnInstallOption">
+        <widget class="QCheckBox" name="checkBox_removeUserData">
+         <property name="geometry">
+          <rect>
+           <x>100</x>
+           <y>10</y>
+           <width>301</width>
+           <height>20</height>
+          </rect>
+         </property>
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>删除本机用户数据</string>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="widget_FastUninstallButtom" native="true">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>80</y>
+         <width>451</width>
+         <height>71</height>
+        </rect>
+       </property>
+       <widget class="QLabel" name="label_FastUninstall">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>10</y>
+          <width>81</width>
+          <height>19</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            font-size:14px;
+                        </string>
+        </property>
+        <property name="text">
+         <string>卸载</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_FastUninstall_Documentation">
+        <property name="geometry">
+         <rect>
+          <x>130</x>
+          <y>36</y>
+          <width>161</width>
+          <height>17</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>-1</pointsize>
+         </font>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            color:rgba(0, 0, 0, 128);
+                            font-size:13px;
+                        </string>
+        </property>
+        <property name="text">
+         <string>从本机删除原神资源地图</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_FastUninstall">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>451</width>
+          <height>64</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            QPushButton{
+                            background-color:rgba(255, 255, 255,0);
+                            color:rgb(220, 188, 96);
+                            border:0px solid rgb(204, 204, 204);
+                            }
+                            QPushButton:hover {
+                            background-color:rgba(0,0,0, 24);
+                            }
+                            QPushButton:pressed {
+                            background-color:rgba(0,0,0,12);
+                            }
+                        </string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_FastUninstall_Icon">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>12</y>
+          <width>16</width>
+          <height>14</height>
+         </rect>
+        </property>
+        <property name="mouseTracking">
+         <bool>true</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">
+                            background-image:url(:/parts/resource/vector.png);
+                        </string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_15">
+      <widget class="QLabel" name="label_Wizard_Uninstalling">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>291</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 正在卸载</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Uninstall_Stop">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>220</y>
+         <width>84</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #7B7B7B;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 132.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            border: 2px solid #D1D1D1;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>停止</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_16">
+      <widget class="QLabel" name="label_Wizard_finish_Uninstall">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>301</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 卸载完成</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_Documentation_Uninstall">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>40</y>
+         <width>281</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                        </string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;您已成功卸载空荧酒馆™原神地图，期待与您的再次相会！&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget_4">
+       <property name="geometry">
+        <rect>
+         <x>119</x>
+         <y>99</y>
+         <width>231</width>
+         <height>81</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <item>
+         <widget class="QLabel" name="label_Icon_6">
+          <property name="minimumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+                                        font-size:13px;
+                                    </string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_Icon_7">
+          <property name="minimumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>64</width>
+            <height>64</height>
+           </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">
+                                        font-size:13px;
+                                    </string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Finished_Exit_Uninstall">
+       <property name="geometry">
+        <rect>
+         <x>117</x>
+         <y>220</y>
+         <width>81</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #7B7B7B;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 132.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            border: 2px solid #D1D1D1;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>退出</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="page_17">
+      <widget class="QLabel" name="label_Wizard_failed_Uninstall">
+       <property name="geometry">
+        <rect>
+         <x>115</x>
+         <y>10</y>
+         <width>301</width>
+         <height>21</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                            font-size:16px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>原神资源地图 卸载失败</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_err_documentation_Uninstall">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>40</y>
+         <width>331</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color:rgb(47, 47, 47);
+                        </string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;很遗憾，卸载失败了。不过不用担心，注册表项已清除，你只需要删除剩余的文件即可。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_Fail_Close_Uninstall">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>220</y>
+         <width>84</width>
+         <height>32</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>-1</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+                            color: #7B7B7B;
+                            font-size:13px;
+                            position: absolute;
+                            width: 58px;
+                            height: 32px;
+                            left: calc(50% - 58px/2 + 132.5px);
+                            top: calc(50% - 32px/2 + 134px);
+                            border: 2px solid #D1D1D1;
+                            border-radius: 4px;
+                        </string>
+       </property>
+       <property name="text">
+        <string>关闭</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_err_info_Uninstall">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>90</y>
+         <width>301</width>
+         <height>91</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>用户取消了安装</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <zorder>label_MainShadow</zorder>
+  <zorder>label_MainShadow_B</zorder>
+  <zorder>label_MainShadow_A</zorder>
+  <zorder>label_Satellite_Orbit</zorder>
+  <zorder>label_Star</zorder>
+  <zorder>label_Title</zorder>
+  <zorder>pushButton_UI_Close</zorder>
+  <zorder>pushButton_UI_Mini</zorder>
+  <zorder>stackedWidget_2</zorder>
+  <zorder>label_MainImage</zorder>
  </widget>
  <resources>
   <include location="../Resource Files/tianli.qrc"/>

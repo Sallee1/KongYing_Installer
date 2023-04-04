@@ -19,6 +19,7 @@
     <ClInclude Include="Header Files\config.h" />
     <ClInclude Include="Header Files\pch.h" />
     <ClInclude Include="Header Files\tianli_widget_utils.h" />
+    <QtMoc Include="tianli_widget_super.h" />
     <QtMoc Include="Header Files\time_line_label.h" />
     <QtMoc Include="Header Files\tianli_widget.h" />
     <QtMoc Include="Header Files\rounded_rectangle.h" />
@@ -47,6 +48,7 @@
     <ClCompile Include="Source Files\tianli_widget.cpp" />
     <ClCompile Include="Source Files\tianli_widget_utils.cpp" />
     <ClCompile Include="Source Files\time_line_label.cpp" />
+    <ClCompile Include="tianli_widget_super.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="outExe\x64\Debug\installer.ini" />

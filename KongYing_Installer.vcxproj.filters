@@ -100,6 +100,9 @@
     <ClCompile Include="Source Files\config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tianli_widget_super.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Header Files\installThread.h">
@@ -112,6 +115,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Header Files\time_line_label.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="tianli_widget_super.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
