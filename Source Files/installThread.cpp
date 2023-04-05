@@ -62,10 +62,8 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
     RegSetValueEx(key, L"UserDataLocation", 0, REG_SZ, (BYTE*)tianli::config::reginfo.UserDataLocation.c_str(), tianli::config::reginfo.UserDataLocation.length() * 2 + 2);
     msleep(100); emit this->processPercent(75);
     std::wstring DisplayIcon = std::format(L"{0}\\{1}", this->installPathStr.toStdWString(), tianli::config::reginfo.displayIcon);
-    RegSetValueEx(key, L"DisplayIcon", 0, REG_SZ, (BYTE*)DisplayIcon.c_str(), DisplayIcon.length() * 2 + 2);
     msleep(100); emit this->processPercent(88);
-    
-    int err = RegSetValueEx(key, L"EstimatedSize", 0, REG_DWORD, (BYTE*)tianli::config::reginfo.estimatedSize, sizeof(DWORD));
+    RegSetValueEx(key, L"EstimatedSize", 0, REG_DWORD, (BYTE*)&tianli::config::reginfo.estimatedSize, sizeof(DWORD));
     msleep(100); emit this->processPercent(100);
     RegCloseKey(key);
   }
