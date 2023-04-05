@@ -1,22 +1,21 @@
 //
-// Created by YuSuiXian on 2023/2/9.
+// Created by Sallee on 2023/4/4.
 //
+#pragma once
 
-#ifndef TIANLI_INSTALLER_TIANLI_WIDGET_H
-#define TIANLI_INSTALLER_TIANLI_WIDGET_H
 #include <pch.h>
 #include "installThread.h"
 #include "tianli_widget_super.h"
-#include "time_line_label.h"
 
 namespace tianli {
     class Install_widget : public tianli::tianli_widget_super {
-
+      Q_OBJECT 
+    public:
+      explicit Install_widget(QWidget* parent = nullptr);
+      ~Install_widget();
     protected:
       void init() override;
     };
 
 
 } // tianli
-
-#endif //TIANLI_INSTALLER_TIANLI_WIDGET_H

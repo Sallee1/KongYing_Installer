@@ -8,11 +8,18 @@
 #include "config.h"
 
 namespace tianli {
+  Install_widget::Install_widget(QWidget* parent) : tianli_widget_super(parent) {
+    init();
+    afterInit();    
+    ui->stackedWidget_2->setCurrentIndex(0);
+
+  }
   void Install_widget::init()
   {
     activedWidget = ui->stackedWidget_install;
     fastButton = ui->pushButton_FastInstall;
     customButton = ui->pushButton_CustomizeInstall;
+    customStackedWidget = ui->stackedWidget_InstallCustom;
     previewButton = ui->pushButton_preview;
     pathLineEdit = ui->lineEdit_installPath;
     desktopCheckBox = ui->checkBox_desktopShortcut;
@@ -23,8 +30,9 @@ namespace tianli {
     finishExitButton = ui->pushButton_Finished_Exit;
     errorExitButton = ui->pushButton_Fail_Close;
     errorInfoLabel = ui->label_err_info;
-
-    ui->stackedWidget_2->setCurrentIndex(0);
     thread = new InstallThread();
+  }
+  inline Install_widget::~Install_widget() {
+    delete thread;
   }
 } // tianli
