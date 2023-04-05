@@ -25,7 +25,7 @@ namespace tianliWidgetUtils {
     bool isOverWrite = true;
     for (std::wstring fileName : config::installInfo.existFileName)
     {
-      if (!fs::exists(std::format(L"{0}/{1}", pathStr.toStdWString(), fileName)))
+      if (!fs::exists(std::format(L"{0}\\{1}", pathStr.toStdWString(), fileName)))
       {
         isOverWrite = false;
         break;
@@ -38,13 +38,13 @@ namespace tianliWidgetUtils {
     }
 
     //否则，放到子文件夹并检测，如果路径存在，并且非空，并且没有通过覆盖检测，则无效
-    outPathStr = pathStr + "/KongYingMap";
+    outPathStr = pathStr + "\\KongYingMap";
     folderPath = outPathStr.toStdWString();
     if (fs::exists(folderPath) && fs::directory_iterator(folderPath) != fs::directory_iterator())
     {
       for (std::wstring fileName : config::installInfo.existFileName)
       {
-        if (!fs::exists(std::format(L"{0}/{1}", folderPath.wstring(), fileName)))
+        if (!fs::exists(std::format(L"{0}\\{1}", folderPath.wstring(), fileName)))
         {
           return false;
         }

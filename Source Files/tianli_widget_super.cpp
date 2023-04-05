@@ -265,6 +265,7 @@ namespace tianli {
     QString folderPathStr = QFileDialog::getExistingDirectory(this, QString::fromLocal8Bit("请选择需要安装的文件夹"), pathLineEdit->text());
     if (folderPathStr == "")
       return;
+    folderPathStr = QDir::toNativeSeparators(folderPathStr);  //转换为windows反斜杠
 
     QString outPathStr = "";
     if (!tianliWidgetUtils::checkPathIsAvilable(folderPathStr, outPathStr))
