@@ -128,7 +128,7 @@ inline void InstallThread::cleanCache()
   fs::_Remove_all_dir(L"./package",ec,removed_count);
 }
 
-inline void InstallThread::run()
+void InstallThread::run()
 {
   try {
     emit this->processChange(InstallThread::ProcessType::MOVE_FILES);
@@ -148,7 +148,7 @@ inline void InstallThread::run()
     //this->cleanCache();
     msleep(500);
 
-    emit this->installFinish(true);
+    emit this->processFinish(true);
   }
   catch (std::exception e)
   {

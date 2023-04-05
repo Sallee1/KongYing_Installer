@@ -28,6 +28,6 @@ private:
   void cleanCache();
 
 private:
-  void run() override;
+  void run() Q_DECL_OVERRIDE;
 };
 
