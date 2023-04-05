@@ -73,9 +73,6 @@
     <ClInclude Include="Header Files\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\install_widget.h">
-      <Filter>Header Files\widget</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource Files\app_info.rc">
@@ -121,6 +118,9 @@
     <ClCompile Include="Source Files\thread_super.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\update_widget.cpp">
+      <Filter>Source Files\widget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Header Files\tianli_widget_super.h">
@@ -137,6 +137,12 @@
     </QtMoc>
     <QtMoc Include="Header Files\thread_super.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Header Files\install_widget.h">
+      <Filter>Header Files\widget</Filter>
+    </QtMoc>
+    <QtMoc Include="Header Files\update_widget.h">
+      <Filter>Header Files\widget</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
