@@ -49,17 +49,19 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
   {
     // Ìí¼ÓÖµ
     RegSetValueEx(key, L"DisplayName", 0, REG_SZ, (BYTE*)config::reginfo.displayName.c_str(), config::reginfo.displayName.length() * 2 + 2);
-    msleep(100); emit this->processPercent(14);
+    msleep(100); emit this->processPercent(12);
     RegSetValueEx(key, L"DisplayVersion", 0, REG_SZ, (BYTE*)config::reginfo.displayVersion.c_str(), config::reginfo.displayVersion.length() * 2 + 2);
-    msleep(100); emit this->processPercent(28);
+    msleep(100); emit this->processPercent(25);
     RegSetValueEx(key, L"UninstallString", 0, REG_SZ, (BYTE*)config::reginfo.uninstallString.c_str(), config::reginfo.uninstallString.length() * 2 + 2);
-    msleep(100); emit this->processPercent(42);
+    msleep(100); emit this->processPercent(38);
     RegSetValueEx(key, L"Publisher", 0, REG_SZ, (BYTE*)config::reginfo.publisher.c_str(), config::reginfo.publisher.length() * 2 + 2);
-    msleep(100); emit this->processPercent(57);
+    msleep(100); emit this->processPercent(50);
     RegSetValueEx(key, L"InstallLocation", 0, REG_SZ, (BYTE*)config::reginfo.InstallLocation.c_str(), config::reginfo.InstallLocation.length() * 2 + 2);
-    msleep(100); emit this->processPercent(72);
+    msleep(100); emit this->processPercent(63);
+    RegSetValueEx(key, L"UserDataLocation", 0, REG_SZ, (BYTE*)config::reginfo.UserDataLocation.c_str(), config::reginfo.UserDataLocation.length() * 2 + 2);
+    msleep(100); emit this->processPercent(75);
     RegSetValueEx(key, L"DisplayIcon", 0, REG_SZ, (BYTE*)config::reginfo.displayIcon.c_str(), config::reginfo.displayIcon.length() * 2 + 2);
-    msleep(100); emit this->processPercent(86);
+    msleep(100); emit this->processPercent(88);
     RegSetValueEx(key, L"EstimatedSize", 0, REG_DWORD, (BYTE*)config::reginfo.estimatedSize, sizeof(DWORD));
     msleep(100); emit this->processPercent(100);
     RegCloseKey(key);

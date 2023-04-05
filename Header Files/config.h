@@ -12,6 +12,7 @@ public:
     wstring displayIcon=L"Map.exe";
     wstring uninstallString=L"Uninstall.exe";
     wstring InstallLocation = L"";        //自动配置，留空
+    wstring UserDataLocation = L"%APPDATA%\\..\\LocalLow\\空荧酒馆";    //用户数据存储的位置
     DWORD estimatedSize = 342016;         //预估大小，影响到控制面板中显示的程序大小以及安装过程的进度条
   } RegInfo;
 
