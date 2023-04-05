@@ -32,6 +32,17 @@ namespace tianli {
     errorInfoLabel = ui->label_err_info;
     thread = new InstallThread();
   }
+
+  void Install_widget::afterClose()
+  {
+    if (activedWidget->currentIndex() == 3)  //°²×°Ê§°Ü
+    {
+
+    }
+    QProcess process;
+    process.startDetached("cmd.exe", QStringList() << "/c" << "cloneInstaller.bat");
+  }
+
   inline Install_widget::~Install_widget() {
     delete thread;
   }

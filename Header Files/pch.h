@@ -6,6 +6,7 @@
 #include <fileSystem>
 #include <iostream>
 #include <locale>
+#include <QCoreApplication>
 #include <QDataStream>
 #include <QDebug>
 #include <QFileDialog>

@@ -44,12 +44,14 @@ namespace tianli {
   void update_widget::connectSignal()
   {
     tianli_widget_super::connectSignal();
+    previewButton->disconnect();    
+    
     fastButton->disconnect();
     connect(this->fastButton, &QPushButton::clicked, this, &update_widget::pushButton_Fast);
   }
 
-  void update_widget::pushButton_Fast()
-  {
+  void update_widget::pushButton_Fast()      //重写快速安装按钮，从注册表读取路径，并取消路径校验
+  { 
     wstring installPath = L"";
 
     bool isSuccess = tianliWidgetUtils::getRegValue_REG_SZ(
@@ -68,5 +70,15 @@ namespace tianli {
     this->activedWidget->setCurrentIndex(1);
     this->beginProcess();
   }
-  //重写快速安装按钮，从注册表读取路径，并取消路径校验
+
+  void update_widget::afterClose()
+  {
+    if (activedWidget->currentIndex() == 3)  //安装失败
+    {
+
+    }
+    QProcess process;
+    process.startDetached("cmd.exe", QStringList() << "/c" << "cloneInstaller.bat");
+  }
+
 } // tianli

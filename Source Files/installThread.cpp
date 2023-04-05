@@ -52,7 +52,8 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
     msleep(100); emit this->processPercent(12);
     RegSetValueEx(key, L"DisplayVersion", 0, REG_SZ, (BYTE*)config::reginfo.displayVersion.c_str(), config::reginfo.displayVersion.length() * 2 + 2);
     msleep(100); emit this->processPercent(25);
-    RegSetValueEx(key, L"UninstallString", 0, REG_SZ, (BYTE*)config::reginfo.uninstallString.c_str(), config::reginfo.uninstallString.length() * 2 + 2);
+    std::wstring uninstallerLocation = std::format(L"{0}\\{1}", this->installPathStr.toStdWString(), config::reginfo.uninstallString);
+    RegSetValueEx(key, L"UninstallString", 0, REG_SZ, (BYTE*)uninstallerLocation.c_str(), uninstallerLocation.length() * 2 + 2);
     msleep(100); emit this->processPercent(38);
     RegSetValueEx(key, L"Publisher", 0, REG_SZ, (BYTE*)config::reginfo.publisher.c_str(), config::reginfo.publisher.length() * 2 + 2);
     msleep(100); emit this->processPercent(50);
@@ -60,7 +61,8 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
     msleep(100); emit this->processPercent(63);
     RegSetValueEx(key, L"UserDataLocation", 0, REG_SZ, (BYTE*)config::reginfo.UserDataLocation.c_str(), config::reginfo.UserDataLocation.length() * 2 + 2);
     msleep(100); emit this->processPercent(75);
-    RegSetValueEx(key, L"DisplayIcon", 0, REG_SZ, (BYTE*)config::reginfo.displayIcon.c_str(), config::reginfo.displayIcon.length() * 2 + 2);
+    std::wstring DisplayIcon = std::format(L"{0}\\{1}", this->installPathStr.toStdWString(), config::reginfo.displayIcon);
+    RegSetValueEx(key, L"DisplayIcon", 0, REG_SZ, (BYTE*)DisplayIcon.c_str(), DisplayIcon.length() * 2 + 2);
     msleep(100); emit this->processPercent(88);
     RegSetValueEx(key, L"EstimatedSize", 0, REG_DWORD, (BYTE*)config::reginfo.estimatedSize, sizeof(DWORD));
     msleep(100); emit this->processPercent(100);
@@ -127,7 +129,22 @@ inline void InstallThread::cleanCache()
 {
   std::error_code ec;
   uintmax_t removed_count = 0;
-  fs::_Remove_all_dir(L"./package",ec,removed_count);
+  //fs::_Remove_all_dir(L"./package",ec,removed_count); //能用
+  msleep(100); emit this->processPercent(75);
+  
+  //创建一个bat，用来将安装卸载二合一向导复制到安装目录
+  //自己无法复制自己！！！只能在执行后用bat复制
+  fs::path installerLocation = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdWString().c_str();
+  fs::path uninstallerLocation = std::format(L"{0}\\{1}", this->installPathStr.toStdWString(), config::reginfo.uninstallString);
+  QFile cloneBat("cloneInstaller.bat");
+  cloneBat.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
+  {
+    QTextStream qOut(&cloneBat);
+    qOut << QString::fromStdWString(L"TIMEOUT /T 3") << endl;
+    qOut << QString::fromStdWString(std::format(L"move \"{0}\" \"{1}\"", installerLocation.wstring(), uninstallerLocation.wstring())) << endl;
+  }
+  cloneBat.close();
+  msleep(100); emit this->processPercent(100);
 }
 
 void InstallThread::run()
@@ -147,8 +164,7 @@ void InstallThread::run()
 
     emit this->processChange(InstallThread::ProcessType::CLEAN_CACHE);
     emit this->processPercent(0);
-    //this->cleanCache();
-    msleep(500);
+    this->cleanCache();msleep(500);
 
     emit this->processFinish(true);
   }
