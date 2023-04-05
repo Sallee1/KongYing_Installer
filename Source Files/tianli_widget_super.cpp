@@ -43,12 +43,14 @@ namespace tianli {
     delete ui;
   }
 
-
-  //初始化，需要子类执行初始化的信号
-
   inline void tianli_widget_super::afterInit() {
     connectSignal();
     initTimeLine();
+    //加载默认设置
+    this->pathLineEdit->setText(QString::fromStdWString(config::installInfo.defaultInstallPath));
+    this->desktopCheckBox->setChecked(config::installInfo.desktopShortcut);
+    this->startmenuCheckBox->setChecked(config::installInfo.startmenuShortcut);
+
   }
 
   void tianli_widget_super::connectSignal()
@@ -192,6 +194,7 @@ namespace tianli {
     {
       tianliWidgetUtils::cleanUninstallReg();
     }
+    afterClose();
     event->accept();
   }
 

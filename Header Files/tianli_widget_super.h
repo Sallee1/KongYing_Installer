@@ -64,13 +64,14 @@ namespace tianli{
     QPushButton* errorExitButton;     //第四页，错误关闭按钮
     QLabel* errorInfoLabel;           //第四页，报错信息
 
-  //可重写的装配方法
+  //可重写的方法
   public:
     void virtual init() = 0;         //初始化，需要子类执行初始化的信号
     void virtual afterInit();
     void virtual initTimeLine();     //初始化进度条
     void virtual beginProcess();     //线程开始前的准备工作
     void virtual connectSignal();    //装配信号，因为槽函数不能重写，所以需要在这里手动指定要重写的槽函数
+    void virtual afterClose() {};    //关闭后要执行的方法
 
   //其他方法
   protected:
