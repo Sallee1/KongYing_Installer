@@ -18,7 +18,7 @@ public slots:
 signals:
   void processChange(int step);
   void processPercent(int percent);
-  void installFinish(bool isSuccess);
+  void processFinish(bool isSuccess);
   void throwError(QString error);
 
 protected:
@@ -26,5 +26,7 @@ protected:
   QString installPathStr;
   bool desktopShortcut;
   bool startMenuShortcut;
+
+  virtual void run() Q_DECL_OVERRIDE {};
 };
 
