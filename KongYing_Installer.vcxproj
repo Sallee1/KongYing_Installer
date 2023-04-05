@@ -29,6 +29,8 @@
     <ClInclude Include="Header Files\ui\ui_tianli_widget.h" />
     <ClInclude Include="Header Files\ui\ui_time_line_label.h" />
     <QtMoc Include="Header Files\update_widget.h" />
+    <ClInclude Include="Header Files\uninstall_thread.h" />
+    <QtMoc Include="Header Files\uninstall_widget.h" />
     <ClInclude Include="Resource Files\resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -52,9 +54,17 @@
     <ClCompile Include="Source Files\tianli_widget_super.cpp" />
     <ClCompile Include="Source Files\tianli_widget_utils.cpp" />
     <ClCompile Include="Source Files\time_line_label.cpp" />
+    <ClCompile Include="Source Files\uninstall_thread.cpp" />
+    <ClCompile Include="Source Files\uninstall_widget.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
     <ClCompile Include="Source Files\update_widget.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Misc Files\removeDir.bat" />
     <None Include="outExe\x64\Debug\installer.ini" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

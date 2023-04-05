@@ -15,6 +15,7 @@ public:
   };
 
 private:
+  uintmax_t totalSize = 0;
   //第一步，移动文件
   void copyFiles();
   void copyTrees(fs::path inPath, fs::path outPath);

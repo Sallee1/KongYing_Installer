@@ -47,9 +47,9 @@ namespace tianli {
     connectSignal();
     initTimeLine();
     //¼ÓÔØÄ¬ÈÏÉèÖÃ
-    this->pathLineEdit->setText(QString::fromStdWString(config::installInfo.defaultInstallPath));
-    this->desktopCheckBox->setChecked(config::installInfo.desktopShortcut);
-    this->startmenuCheckBox->setChecked(config::installInfo.startmenuShortcut);
+    this->pathLineEdit->setText(QString::fromStdWString(tianli::config::installInfo.defaultInstallPath));
+    this->desktopCheckBox->setChecked(tianli::config::installInfo.desktopShortcut);
+    this->startmenuCheckBox->setChecked(tianli::config::installInfo.startmenuShortcut);
 
   }
 

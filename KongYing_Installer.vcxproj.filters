@@ -73,6 +73,9 @@
     <ClInclude Include="Header Files\config.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Header Files\uninstall_thread.h">
+      <Filter>Header Files\thread</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource Files\app_info.rc">
@@ -121,6 +124,12 @@
     <ClCompile Include="Source Files\update_widget.cpp">
       <Filter>Source Files\widget</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\uninstall_thread.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\uninstall_widget.cpp">
+      <Filter>Source Files\widget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="Header Files\tianli_widget_super.h">
@@ -144,10 +153,16 @@
     <QtMoc Include="Header Files\update_widget.h">
       <Filter>Header Files\widget</Filter>
     </QtMoc>
+    <QtMoc Include="Header Files\uninstall_widget.h">
+      <Filter>Header Files\widget</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <None Include="outExe\x64\Debug\installer.ini">
       <Filter>Misc Files</Filter>
+    </None>
+    <None Include="Misc Files\removeDir.bat">
+      <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
 </Project>

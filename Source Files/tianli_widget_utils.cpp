@@ -23,7 +23,7 @@ namespace tianliWidgetUtils {
     }
     //·Ç¿Õ£¬¸²¸Ç°²×°¼ì²â
     bool isOverWrite = true;
-    for (std::wstring fileName : config::installInfo.existFileName)
+    for (std::wstring fileName : tianli::config::installInfo.existFileName)
     {
       if (!fs::exists(std::format(L"{0}\\{1}", pathStr.toStdWString(), fileName)))
       {
@@ -42,7 +42,7 @@ namespace tianliWidgetUtils {
     folderPath = outPathStr.toStdWString();
     if (fs::exists(folderPath) && fs::directory_iterator(folderPath) != fs::directory_iterator())
     {
-      for (std::wstring fileName : config::installInfo.existFileName)
+      for (std::wstring fileName : tianli::config::installInfo.existFileName)
       {
         if (!fs::exists(std::format(L"{0}\\{1}", folderPath.wstring(), fileName)))
         {
@@ -71,10 +71,10 @@ namespace tianliWidgetUtils {
   void cleanUninstallReg()
   {
     HKEY hKey;
-    RegOpenKeyEx(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName).c_str(), 0, KEY_ALL_ACCESS, &hKey);
+    RegOpenKeyEx(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str(), 0, KEY_ALL_ACCESS, &hKey);
     RegDeleteTree(hKey, NULL);
     RegCloseKey(hKey);
-    RegDeleteKey(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName).c_str());
+    RegDeleteKey(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str());
   }
 
 
