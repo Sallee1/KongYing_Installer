@@ -34,10 +34,6 @@ namespace tianli {
     mainShadow_B->setBlurRadius(14);
     ui->label_MainShadow_B->setGraphicsEffect(mainShadow_B);
 
-    //初始化
-    init();
-    initTimeLine();
-
     //加载标题字体
     tianliWidgetUtils::setFont(":/font/Resource/fonts/SOURCEHANSERIFSC-HEAVY.ttf", ui->label_Title, true);   //标题 思源宋体
   }
@@ -47,7 +43,15 @@ namespace tianli {
     delete ui;
   }
 
-  inline void tianli_widget_super::connectSignal()
+
+  //初始化，需要子类执行初始化的信号
+
+  inline void tianli_widget_super::afterInit() {
+    connectSignal();
+    initTimeLine();
+  }
+
+  void tianli_widget_super::connectSignal()
   {
     //公用信号
     connect(ui->pushButton_UI_Close, &QPushButton::clicked, this, &tianli_widget_super::pushButton_UI_Close);
@@ -61,6 +65,13 @@ namespace tianli {
     connect(this->startProgramButton, &QPushButton::clicked, this, &tianli_widget_super::pushButton_Finished_Run);
     connect(this->finishExitButton, &QPushButton::clicked, this, &tianli_widget_super::pushButton_Finished_Exit);
     connect(this->errorExitButton, &QPushButton::clicked, this, &tianli_widget_super::pushButton_Error_exit);
+
+    //线程信号
+    connect(this, &tianli_widget_super::setInstallConfig, this->thread, &Thread_super::setInstallConfig);
+    connect(this->thread, &Thread_super::processChange, this, &tianli_widget_super::processChange);
+    connect(this->thread, &Thread_super::processPercent, this, &tianli_widget_super::processPercent);
+    connect(this->thread, &Thread_super::processFinish, this, &tianli_widget_super::onThreadFinish);
+    connect(this->thread, &Thread_super::throwError, this, &tianli_widget_super::onThreadThrowError);
   }
 
   void tianli_widget_super::initTimeLine()
@@ -243,7 +254,7 @@ namespace tianli {
 
   void tianli_widget_super::pushButton_Customize()
   {
-    qobject_cast<QStackedWidget*>(this->customButton->parentWidget())->setCurrentIndex(1);
+    customStackedWidget->setCurrentIndex(1);
   }
 
   void tianli_widget_super::pushButton_preview()
@@ -286,7 +297,7 @@ namespace tianli {
     this->close();
   }
 
-  void tianli_widget_super::setThreadPrecent(int percent)
+  void tianli_widget_super::processPercent(int percent)
   {
     QLabel* progressBar = this->timeLineLabelList[this->activedTimeLabelIdx]->findChild<QLabel*>("label_ProgressBar");
     QRect progressGeometry = progressBar->geometry();
@@ -294,7 +305,7 @@ namespace tianli {
     progressBar->setGeometry(progressGeometry);
   }
 
-  void tianli_widget_super::changeThreadState(int state)
+  void tianli_widget_super::processChange(int state)
   {
     setTimeLine(state);
   }

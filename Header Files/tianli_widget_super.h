@@ -47,11 +47,12 @@ namespace tianli{
     void closeEvent(QCloseEvent* event) Q_DECL_OVERRIDE;
     bool eventFilter(QObject* object, QEvent* event) Q_DECL_OVERRIDE;
 
-  //子类装配的界面指针
+  //子类需要装配的界面指针
   protected:
     QStackedWidget* activedWidget;    //活动的流程页面
     QPushButton* fastButton;          //第一页，快速操作按钮
     QPushButton* customButton;        //第一页，自定义按钮
+    QStackedWidget* customStackedWidget;  //第一页，自定义按钮切换翻页
     QPushButton* previewButton;       //第一页，预览按钮
     QLineEdit* pathLineEdit;          //第一页，路径栏
     QCheckBox* desktopCheckBox;       //第一页，桌面快捷方式选框
@@ -61,17 +62,19 @@ namespace tianli{
     QPushButton* startProgramButton;  //第三页，启动软件按钮
     QPushButton* finishExitButton;    //第三页，关闭按钮
     QPushButton* errorExitButton;     //第四页，错误关闭按钮
-    QLabel* errorInfoLabel;                //第四页，报错信息
+    QLabel* errorInfoLabel;           //第四页，报错信息
 
-  //装配方法
-    virtual void init() = 0;     //初始化，需要子类执行初始化的信号
-    void connectSignal();    //装配信号
+  //可重写的装配方法
+  public:
+    void virtual init() = 0;         //初始化，需要子类执行初始化的信号
+    void virtual afterInit();
+    void virtual initTimeLine();     //初始化进度条
+    void virtual beginProcess();     //线程开始前的准备工作
+    void virtual connectSignal();    //装配信号，因为槽函数不能重写，所以需要在这里手动指定要重写的槽函数
 
   //其他方法
   protected:
-    void initTimeLine();    //初始化进度条
     void setTimeLine(int step);   //设置活动的进度条
-    void virtual beginProcess();  //安装前的准备工作
 
   //容器
   protected:
@@ -85,11 +88,11 @@ namespace tianli{
   //槽函数
   protected slots:
     //前端->界面槽
-    void pushButton_UI_Close();       //单击关闭按钮
-    void pushButton_UI_Mini();        //单击最小化按钮
+    void pushButton_UI_Close();         //单击关闭按钮
+    void pushButton_UI_Mini();         //单击最小化按钮
 
-    void pushButton_Fast();    //单击第一页快速操作按钮
-    void pushButton_Customize(); //单击第一页自定义按钮
+    void pushButton_Fast();             //单击第一页快速操作按钮
+    void pushButton_Customize();        //单击第一页自定义按钮
     void pushButton_preview();          //单击第一页路径预览按钮          
     void pushButton_Cancel();           //单击第二页取消按钮 
     void pushButton_Finished_Run();     //单击第三页启动软件按钮          
@@ -97,8 +100,8 @@ namespace tianli{
     void pushButton_Error_exit();       //单击第四页错误关闭按钮
 
     //线程->前端槽
-    void setThreadPrecent(int percent);         //线程进度条
-    void changeThreadState(int state);          //设置步骤
+    void processPercent(int percent);         //线程进度条
+    void processChange(int state);          //设置步骤
     void onThreadFinish();                      //线程结束
     void onThreadThrowError(QString error);     //线程失败
   //信号
