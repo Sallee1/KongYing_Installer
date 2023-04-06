@@ -21,6 +21,8 @@ namespace tianli {
     void init() override;
     void connectSignal() override;
     void pushButton_Fast();
+    void beginProcess() override;
+    
 
   signals:
     void setUninstallConfig(bool); //初始化卸载线程

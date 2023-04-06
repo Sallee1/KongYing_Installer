@@ -234,7 +234,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="page_install">
     <widget class="QStackedWidget" name="stackedWidget_install">
@@ -1064,6 +1064,9 @@ font-family: sans-serif
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
        </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
       </widget>
      </widget>
     </widget>
@@ -1825,6 +1828,9 @@ QCheckBox::indicator:checked {
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
        </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
       </widget>
      </widget>
     </widget>
@@ -1932,7 +1938,7 @@ QCheckBox::indicator:checked {
          <x>10</x>
          <y>170</y>
          <width>451</width>
-         <height>71</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="currentIndex">
@@ -2075,6 +2081,34 @@ QCheckBox::indicator:checked {
          <string/>
         </property>
        </widget>
+      </widget>
+      <widget class="QLabel" name="label_Uninstall_ReadMe">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>220</y>
+         <width>331</width>
+         <height>61</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-weight:700; color:#ed5f39;&quot;&gt;警告：如果选择删除用户数据，则重新安装后所有点位标记信息将会丢失！&lt;/span&gt;&lt;br/&gt;&lt;span style=&quot; font-weight:700; color:#ed5f39;&quot;&gt;请确保你的存档已经云备份！&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::RichText</enum>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
       </widget>
      </widget>
      <widget class="QWidget" name="page_15">
@@ -2398,6 +2432,9 @@ QCheckBox::indicator:checked {
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>

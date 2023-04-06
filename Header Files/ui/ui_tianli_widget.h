@@ -128,6 +128,7 @@ public:
     QLabel *label_FastUninstall_Documentation;
     QPushButton *pushButton_FastUninstall;
     QLabel *label_FastUninstall_Icon;
+    QLabel *label_Uninstall_ReadMe;
     QWidget *page_15;
     QLabel *label_Wizard_Uninstalling;
     QPushButton *pushButton_Uninstall_Cancel;
@@ -585,6 +586,7 @@ public:
         font5.setPointSize(10);
         label_err_info->setFont(font5);
         label_err_info->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        label_err_info->setWordWrap(true);
         stackedWidget_install->addWidget(page_4);
         stackedWidget_2->addWidget(page_install);
         page_update = new QWidget();
@@ -889,6 +891,7 @@ public:
         label_err_info_Update->setGeometry(QRect(120, 90, 301, 91));
         label_err_info_Update->setFont(font5);
         label_err_info_Update->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        label_err_info_Update->setWordWrap(true);
         stackedWidget_update->addWidget(page_9);
         stackedWidget_2->addWidget(page_update);
         page_uninstall = new QWidget();
@@ -938,7 +941,7 @@ public:
 "                        "));
         stackedWidget_UnInstallCustom = new QStackedWidget(page_14);
         stackedWidget_UnInstallCustom->setObjectName(QString::fromUtf8("stackedWidget_UnInstallCustom"));
-        stackedWidget_UnInstallCustom->setGeometry(QRect(10, 170, 451, 71));
+        stackedWidget_UnInstallCustom->setGeometry(QRect(10, 170, 451, 41));
         page2_CustomUnInstallOption = new QWidget();
         page2_CustomUnInstallOption->setObjectName(QString::fromUtf8("page2_CustomUnInstallOption"));
         checkBox_removeUserData = new QCheckBox(page2_CustomUnInstallOption);
@@ -990,6 +993,13 @@ public:
         label_FastUninstall_Icon->setStyleSheet(QString::fromUtf8("\n"
 "                            background-image:url(:/parts/resource/vector.png);\n"
 "                        "));
+        label_Uninstall_ReadMe = new QLabel(page_14);
+        label_Uninstall_ReadMe->setObjectName(QString::fromUtf8("label_Uninstall_ReadMe"));
+        label_Uninstall_ReadMe->setGeometry(QRect(110, 220, 331, 61));
+        label_Uninstall_ReadMe->setFont(font2);
+        label_Uninstall_ReadMe->setMouseTracking(true);
+        label_Uninstall_ReadMe->setTextFormat(Qt::RichText);
+        label_Uninstall_ReadMe->setWordWrap(true);
         stackedWidget_uninstall->addWidget(page_14);
         page_15 = new QWidget();
         page_15->setObjectName(QString::fromUtf8("page_15"));
@@ -1120,6 +1130,7 @@ public:
         label_err_info_Uninstall->setGeometry(QRect(120, 90, 301, 91));
         label_err_info_Uninstall->setFont(font5);
         label_err_info_Uninstall->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
+        label_err_info_Uninstall->setWordWrap(true);
         stackedWidget_uninstall->addWidget(page_17);
         stackedWidget_2->addWidget(page_uninstall);
         label_MainShadow->raise();
@@ -1138,7 +1149,7 @@ public:
 
         retranslateUi(tianli__tianli_widget);
 
-        stackedWidget_2->setCurrentIndex(0);
+        stackedWidget_2->setCurrentIndex(2);
         stackedWidget_install->setCurrentIndex(0);
         stackedWidget_InstallCustom->setCurrentIndex(0);
         stackedWidget_update->setCurrentIndex(0);
@@ -1224,6 +1235,7 @@ public:
         label_FastUninstall_Documentation->setText(QCoreApplication::translate("tianli::tianli_widget", "\344\273\216\346\234\254\346\234\272\345\210\240\351\231\244\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276", nullptr));
         pushButton_FastUninstall->setText(QString());
         label_FastUninstall_Icon->setText(QString());
+        label_Uninstall_ReadMe->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p><span style=\" font-weight:700; color:#ed5f39;\">\350\255\246\345\221\212\357\274\232\345\246\202\346\236\234\351\200\211\346\213\251\345\210\240\351\231\244\347\224\250\346\210\267\346\225\260\346\215\256\357\274\214\345\210\231\351\207\215\346\226\260\345\256\211\350\243\205\345\220\216\346\211\200\346\234\211\347\202\271\344\275\215\346\240\207\350\256\260\344\277\241\346\201\257\345\260\206\344\274\232\344\270\242\345\244\261\357\274\201</span><br/><span style=\" font-weight:700; color:#ed5f39;\">\350\257\267\347\241\256\344\277\235\344\275\240\347\232\204\345\255\230\346\241\243\345\267\262\347\273\217\344\272\221\345\244\207\344\273\275\357\274\201</span></p></body></html>", nullptr));
         label_Wizard_Uninstalling->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \346\255\243\345\234\250\345\215\270\350\275\275", nullptr));
         pushButton_Uninstall_Cancel->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\201\234\346\255\242", nullptr));
         label_Wizard_finish_Uninstall->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\215\270\350\275\275\345\256\214\346\210\220", nullptr));

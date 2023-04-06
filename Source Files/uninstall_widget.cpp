@@ -32,6 +32,9 @@ void tianli::uninstall_widget::init()
   errorExitButton = ui->pushButton_Fail_Close_Uninstall;
   errorInfoLabel = ui->label_err_info_Uninstall;
   thread = new Uninstall_thread();     //重写的卸载线程
+  
+  //卸载的说明文件
+  ui->label_Uninstall_ReadMe->setHidden(true);
 }
 
 void tianli::uninstall_widget::connectSignal()
@@ -43,8 +46,10 @@ void tianli::uninstall_widget::connectSignal()
   fastButton->disconnect();
   connect(this->fastButton, &QPushButton::clicked, this, &uninstall_widget::pushButton_Fast);
 
-  thread->disconnect();
+  thread->disconnect(this,&tianli_widget_super::setInstallConfig,thread,&Thread_super::setInstallConfig);
   connect(this, &uninstall_widget::setUninstallConfig, dynamic_cast<Uninstall_thread*>(this->thread), &Uninstall_thread::setUnnstallConfig);
+
+  connect(this->removeUserDataCheckBox, &QCheckBox::toggled, ui->label_Uninstall_ReadMe, &QLabel::setVisible);
 }
 
 void tianli::uninstall_widget::pushButton_Fast()
@@ -63,7 +68,15 @@ void tianli::uninstall_widget::pushButton_Fast()
     errorInfoLabel->setText("尝试获取安装路径失败，请手动删除文件");
   }
 
-  this->pathLineEdit->setText(QString::fromStdWString(installPath));
   this->activedWidget->setCurrentIndex(1);
   this->beginProcess();
+}
+
+void tianli::uninstall_widget::beginProcess()
+{
+  ui->pushButton_UI_Close->setHidden(true);
+
+  emit this->setUninstallConfig(this->removeUserDataCheckBox->isChecked());
+  thread->start();
+
 }
