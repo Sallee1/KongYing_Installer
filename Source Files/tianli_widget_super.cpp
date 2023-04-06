@@ -35,7 +35,7 @@ namespace tianli {
     ui->label_MainShadow_B->setGraphicsEffect(mainShadow_B);
 
     //加载标题字体
-    tianliWidgetUtils::setFont(":/font/Resource/fonts/SOURCEHANSERIFSC-HEAVY.ttf", ui->label_Title, true);   //标题 思源宋体
+    tianliUtils::setFont(":/font/Resource/fonts/SOURCEHANSERIFSC-HEAVY.ttf", ui->label_Title, true);   //标题 思源宋体
   }
 
   tianli_widget_super::~tianli_widget_super()
@@ -192,7 +192,7 @@ namespace tianli {
   {
     if (activedWidget->currentIndex() == 3)  //安装失败，关闭时清理注册表，防止出现无法卸载
     {
-      tianliWidgetUtils::cleanUninstallReg();
+      tianliUtils::cleanUninstallReg();
     }
     afterClose();
     event->accept();
@@ -238,7 +238,7 @@ namespace tianli {
     //安装时再做检测以避免默认路径有其他软件
     QString folderPathStr = pathLineEdit->text();
     QString outPathStr = "";
-    if (tianliWidgetUtils::checkPathIsAvilable(folderPathStr, outPathStr))
+    if (tianliUtils::checkPathIsAvilable(folderPathStr, outPathStr))
     {
       if (outPathStr != folderPathStr)
       {
@@ -268,7 +268,7 @@ namespace tianli {
     folderPathStr = QDir::toNativeSeparators(folderPathStr);  //转换为windows反斜杠
 
     QString outPathStr = "";
-    if (!tianliWidgetUtils::checkPathIsAvilable(folderPathStr, outPathStr))
+    if (!tianliUtils::checkPathIsAvilable(folderPathStr, outPathStr))
     {
       QMessageBox::warning(this, QString::fromLocal8Bit("路径无效"), QString::fromLocal8Bit("请选择空白文件夹或者旧版“空荧酒馆原神地图”安装路径"));
       return;

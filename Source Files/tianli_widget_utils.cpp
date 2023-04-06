@@ -4,7 +4,7 @@
 
 namespace fs = std::filesystem;
 
-namespace tianliWidgetUtils {
+namespace tianliUtils {
   bool checkPathIsAvilable(QString pathStr, QString& outPathStr)
   {
     if (pathStr == "")return false;

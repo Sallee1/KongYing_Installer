@@ -1,7 +1,7 @@
 #pragma once
 #include <pch.h>
 
-namespace tianliWidgetUtils {
+namespace tianliUtils {
   bool checkPathIsAvilable(QString pathStr, QString& outPathStr);
   void setFont(const QString& fontPath, QWidget* widget, bool isBold = false);
 

@@ -8,20 +8,20 @@ void Uninstall_thread::readReg()
   bool isSuccess;
   std::wstring installPath;
   std::wstring userDataPath;
-  isSuccess=tianliWidgetUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
+  isSuccess=tianliUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
     std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
     L"InstallLocation",
     installPath);
   if (!isSuccess) throw std::exception("readReg: 读取InstallLocation失败，注册信息可能已经损坏");
 
-  isSuccess = tianliWidgetUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
+  isSuccess = tianliUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
     std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
     L"UserDataLocation",
     userDataPath);
   if (!isSuccess) throw std::exception("readReg: 读取UserDataLocation失败，注册信息可能已经损坏");
 
   int EstimatedSize;
-  isSuccess = tianliWidgetUtils::getRegValue_DWORD(HKEY_LOCAL_MACHINE,
+  isSuccess = tianliUtils::getRegValue_DWORD(HKEY_LOCAL_MACHINE,
     std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
     L"EstimatedSize",
     EstimatedSize);
@@ -35,7 +35,7 @@ void Uninstall_thread::readReg()
 
 void Uninstall_thread::eraserReg()
 {
-  tianliWidgetUtils::cleanUninstallReg();
+  tianliUtils::cleanUninstallReg();
   msleep(100); emit this->processPercent(100);
 }
 
@@ -90,7 +90,7 @@ void Uninstall_thread::removeTree(fs::path rmPath)
 
 void Uninstall_thread::removeUserData()
 {
-  wstring absoluteUserPath = tianliWidgetUtils::envPath2AbsolutePath(tianli::config::reginfo.UserDataLocation);
+  wstring absoluteUserPath = tianliUtils::envPath2AbsolutePath(tianli::config::reginfo.UserDataLocation);
 
   std::error_code ec;
   uintmax_t removed_count = 0;

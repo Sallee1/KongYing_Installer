@@ -56,7 +56,7 @@ void tianli::uninstall_widget::pushButton_Fast()
 {
   wstring installPath = L"";
 
-  bool isSuccess = tianliWidgetUtils::getRegValue_REG_SZ(
+  bool isSuccess = tianliUtils::getRegValue_REG_SZ(
     HKEY_LOCAL_MACHINE,
     std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
     L"InstallLocation",
