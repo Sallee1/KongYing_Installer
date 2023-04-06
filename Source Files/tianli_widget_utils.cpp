@@ -118,7 +118,7 @@ namespace tianliWidgetUtils {
     DWORD dwType = REG_DWORD;
     DWORD dwSize = sizeof(DWORD);
 
-    lRes = RegGetValue(hKey, NULL, Key.c_str(), RRF_RT_REG_SZ, &dwType, &lpData, &dwSize);
+    lRes = RegGetValue(hKey, NULL, Key.c_str(), RRF_RT_REG_DWORD, &dwType, &lpData, &dwSize);
     if (lRes != ERROR_SUCCESS)
     {
       RegCloseKey(hKey);
