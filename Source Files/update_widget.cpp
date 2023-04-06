@@ -4,7 +4,7 @@
 
 #include "pch.h"
 #include "install_widget.h"
-#include "tianli_widget_utils.h"
+#include "tianli_utils.h"
 #include "config.h"
 #include "update_widget.h"
 

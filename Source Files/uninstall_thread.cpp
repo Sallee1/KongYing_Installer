@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "uninstall_thread.h"
-#include "tianli_widget_utils.h"
+#include "tianli_utils.h"
 #include "config.h"
 
 void Uninstall_thread::readReg()
@@ -60,7 +60,11 @@ void Uninstall_thread::removeShortcut()
 void Uninstall_thread::removeProgram()
 {
   fs::path installPath = tianli::config::reginfo.InstallLocation;
-  removeTree(installPath);
+  for (fs::directory_entry entry : fs::directory_iterator(tianli::config::reginfo.InstallLocation))
+  {
+    fs::path inSubPath = entry.path();
+    removeTree(inSubPath);
+  }
 }
 
 
@@ -69,7 +73,7 @@ void Uninstall_thread::removeTree(fs::path rmPath)
 {
   if (fs::is_regular_file(rmPath))
   {
-    if (rmPath == fs::path(tianli::config::reginfo.uninstallString))
+    if (rmPath == fs::path(tianli::config::reginfo.uninstallString))    //ÅÅ³ý×Ô¼ºÒÔÃâÉ¾³ýÊ§°Ü
       return;
     this->totalSize += fs::file_size(rmPath) / 1024;
     emit this->processPercent(min(this->totalSize / static_cast<float>(tianli::config::reginfo.estimatedSize), 1) * 100);

@@ -5,7 +5,7 @@
 
 #include "pch.h"
 #include "ui_tianli_widget.h"
-#include "tianli_widget_utils.h"
+#include "tianli_utils.h"
 #include "time_line_label.h"
 #include "config.h"
 #include "thread_super.h"

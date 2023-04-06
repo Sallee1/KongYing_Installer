@@ -7,7 +7,11 @@ tianli::uninstall_widget::uninstall_widget(QWidget* parent)
   init();
   afterInit();
   ui->stackedWidget_2->setCurrentIndex(2);
-  //读取注册表，获取安装路径
+  //修改说明文字
+  timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("清理注册表"));
+  timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除快捷方式"));
+  timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除程序"));
+  timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除用户数据"));
 }
 
 tianli::uninstall_widget::~uninstall_widget()

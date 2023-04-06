@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "config.h"
-#include "tianli_widget_utils.h"
+#include "tianli_utils.h"
 
 namespace fs = std::filesystem;
 
@@ -129,7 +129,7 @@ namespace tianliUtils {
     return true;
   }
 
-  wstring envPath2AbsolutePath(std::wstring envPath)
+  std::wstring envPath2AbsolutePath(std::wstring envPath)
   {
     wchar_t expanded_path[4096]; 
 

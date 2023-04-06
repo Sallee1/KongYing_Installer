@@ -67,7 +67,7 @@
     <ClInclude Include="Header Files\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\tianli_widget_utils.h">
+    <ClInclude Include="Header Files\tianli_utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header Files\config.h">
@@ -115,7 +115,7 @@
     <ClCompile Include="Source Files\tianli_widget_super.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\tianli_widget_utils.cpp">
+    <ClCompile Include="Source Files\tianli_utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source Files\thread_super.cpp">
