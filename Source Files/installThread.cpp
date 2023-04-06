@@ -11,26 +11,26 @@ inline void InstallThread::copyFiles()
 
 inline void InstallThread::copyTrees(fs::path inPath, fs::path outPath)
 {
-    if (fs::is_regular_file(inPath))
+  if (fs::is_regular_file(inPath))
+  {
+    this->totalSize += fs::file_size(inPath) / 1024;
+    emit this->processPercent(min(this->totalSize / static_cast<float>(tianli::config::reginfo.estimatedSize), 1) * 100);
+    fs::remove(outPath);  //以防万一，先删再复制
+    fs::copy_file(inPath, outPath, fs::copy_options::overwrite_existing);
+  }
+  else
+  {
+    if (!fs::exists(outPath))
+      fs::create_directories(outPath);
+    bool inPathIsExist = fs::exists(inPath);
+    for (fs::directory_entry entry : fs::directory_iterator(inPath))
     {
-      this->totalSize += fs::file_size(inPath) / 1024;
-      emit this->processPercent(min(this->totalSize / static_cast<float>(tianli::config::reginfo.estimatedSize), 1) * 100);
-      fs::remove(outPath);  //以防万一，先删再复制
-      fs::copy_file(inPath, outPath, fs::copy_options::overwrite_existing);
-    }
-    else
-    {
-      if (!fs::exists(outPath))
-        fs::create_directories(outPath);
-      bool inPathIsExist = fs::exists(inPath);
-      for (fs::directory_entry entry : fs::directory_iterator(inPath))
-      {
-        fs::path inSubPath = entry.path();
-        fs::path outSubPath = std::format("{0}\\{1}", outPath.string(), entry.path().filename().string());
-        copyTrees(inSubPath, outSubPath);
-      }
+      fs::path inSubPath = entry.path();
+      fs::path outSubPath = std::format("{0}\\{1}", outPath.string(), entry.path().filename().string());
+      copyTrees(inSubPath, outSubPath);
     }
   }
+}
 
 
 //第二步，写入注册表
@@ -38,7 +38,7 @@ inline void InstallThread::writeReg()
 {
   HKEY key;
   tianli::config::reginfo.InstallLocation = this->installPathStr.toStdString();
-   //创建 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall 下的子项
+  //创建 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall 下的子项
   if (RegCreateKeyEx(HKEY_LOCAL_MACHINE, std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str(),
     0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, NULL) == ERROR_SUCCESS)
     this->createUninstallInfoReg(key);
@@ -79,7 +79,7 @@ inline void InstallThread::addShortCut()
 
   QString startMenuFolderPath = QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_foldername);
   QString startMenuShortcutPath = startMenuFolderPath + "\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_progarmName);
-  QString startMenuUninstallShortcutPath = startMenuFolderPath +"\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_uninstallName);
+  QString startMenuUninstallShortcutPath = startMenuFolderPath + "\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_uninstallName);
 
   //创建桌面快捷方式
   if (this->desktopShortcut)
@@ -94,7 +94,7 @@ inline void InstallThread::addShortCut()
     createShortCut(exePath, startMenuShortcutPath);
     msleep(100);  emit this->processPercent(75);
     createShortCut(uninstallExePath, startMenuUninstallShortcutPath);
-  }    
+  }
   msleep(100); emit this->processPercent(100);
 }
 
@@ -130,7 +130,7 @@ inline void InstallThread::cleanCache()
   uintmax_t removed_count = 0;
   //fs::_Remove_all_dir("./package",ec,removed_count); //能用
   msleep(100); emit this->processPercent(75);
-  
+
   //创建一个bat，用来将安装卸载二合一向导复制到安装目录
   //自己无法复制自己！！！只能在执行后用bat复制
   fs::path installerLocation = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdString().c_str();
@@ -163,7 +163,7 @@ void InstallThread::run()
 
     emit this->processChange(InstallThread::ProcessType::CLEAN_CACHE);
     emit this->processPercent(0);
-    this->cleanCache();msleep(500);
+    this->cleanCache(); msleep(500);
 
     emit this->processFinish(true);
   }
