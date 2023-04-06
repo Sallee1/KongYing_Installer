@@ -115,7 +115,10 @@ void Uninstall_thread::run()
 
     emit this->processChange(Uninstall_thread::ProcessType::REMOVE_DATA);
     emit this->processPercent(0);
-    this->removeShortcut(); msleep(500);
+    if (userData)
+    {
+      this->removeUserData(); msleep(500);
+    }
     emit this->processFinish(true);
   }
   catch (std::exception e)

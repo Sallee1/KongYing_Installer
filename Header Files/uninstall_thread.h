@@ -12,6 +12,7 @@ public:
 
 private:
   uintmax_t totalSize = 0;
+  bool userData = false;
   //第零步，读取注册表
   void readReg();
   //第一步，清空注册表
@@ -24,6 +25,12 @@ private:
 
   //第四步，删除用户数据
   void removeUserData();
+
+public slots:
+  void setUnnstallConfig(bool userData)
+  {
+    this->userData = userData;
+  }
 
 private:
   void run() Q_DECL_OVERRIDE;

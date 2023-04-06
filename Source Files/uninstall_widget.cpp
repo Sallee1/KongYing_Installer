@@ -42,6 +42,9 @@ void tianli::uninstall_widget::connectSignal()
 
   fastButton->disconnect();
   connect(this->fastButton, &QPushButton::clicked, this, &uninstall_widget::pushButton_Fast);
+
+  thread->disconnect();
+  connect(this, &uninstall_widget::setUninstallConfig, dynamic_cast<Uninstall_thread*>(this->thread), &Uninstall_thread::setUnnstallConfig);
 }
 
 void tianli::uninstall_widget::pushButton_Fast()
