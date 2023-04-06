@@ -8,4 +8,5 @@ namespace tianliWidgetUtils {
   void cleanUninstallReg();
   bool getRegValue_REG_SZ(HKEY root, std::wstring Item, std::wstring Key, std::wstring& ret, int maxLength = 4096);
   bool getRegValue_DWORD(HKEY root, std::wstring Item, std::wstring Key, int& ret);
+  wstring envPath2AbsolutePath(std::wstring envPath);
 }

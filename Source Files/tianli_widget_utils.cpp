@@ -77,7 +77,6 @@ namespace tianliWidgetUtils {
     RegDeleteKey(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str());
   }
 
-
   bool getRegValue_REG_SZ(HKEY root,std::wstring Item, std::wstring Key, std::wstring& ret, int maxLength)
   {
     HKEY hKey;
@@ -128,5 +127,15 @@ namespace tianliWidgetUtils {
     ret = lpData;
     RegCloseKey(hKey);
     return true;
+  }
+
+  wstring envPath2AbsolutePath(std::wstring envPath)
+  {
+    wchar_t expanded_path[4096]; 
+
+    DWORD result = ExpandEnvironmentStrings(envPath.c_str(), expanded_path, MAX_PATH);
+    if (result == 0) throw std::exception("ExpandEnvironmentStrings:路径中包含不合法的环境变量");
+    
+    return std::wstring(expanded_path);
   }
 };
