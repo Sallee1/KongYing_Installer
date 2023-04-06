@@ -6,30 +6,30 @@
 void Uninstall_thread::readReg()
 {
   bool isSuccess;
-  std::wstring installPath;
-  std::wstring userDataPath;
+  std::string installPath;
+  std::string userDataPath;
   isSuccess=tianliUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
-    std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
-    L"InstallLocation",
+    std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
+    "InstallLocation",
     installPath);
   if (!isSuccess) throw std::exception("readReg: 读取InstallLocation失败，注册信息可能已经损坏");
 
   isSuccess = tianliUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
-    std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
-    L"UserDataLocation",
+    std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
+    "UserDataLocation",
     userDataPath);
   if (!isSuccess) throw std::exception("readReg: 读取UserDataLocation失败，注册信息可能已经损坏");
 
   int EstimatedSize;
   isSuccess = tianliUtils::getRegValue_DWORD(HKEY_LOCAL_MACHINE,
-    std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
-    L"EstimatedSize",
+    std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
+    "EstimatedSize",
     EstimatedSize);
   if (!isSuccess) throw std::exception("readReg: 读取EstimatedSize失败，注册信息可能已经损坏");
 
   tianli::config::reginfo.InstallLocation = installPath;
   tianli::config::reginfo.UserDataLocation = userDataPath;
-  tianli::config::reginfo.uninstallString = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdWString();
+  tianli::config::reginfo.uninstallString = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdString();
   
 }
 
@@ -41,19 +41,19 @@ void Uninstall_thread::eraserReg()
 
 void Uninstall_thread::removeShortcut()
 {
-  QString desktopShortcutPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromStdWString(tianli::config::installInfo.desktopShortcut_name));
-  QString startMenuFolderPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdWString(tianli::config::installInfo.startmenuShortcut_foldername));
+  QString desktopShortcutPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.desktopShortcut_name));
+  QString startMenuFolderPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_foldername));
 
   //删除桌面快捷方式
-  if (fs::exists(desktopShortcutPath.toStdWString()))
-    fs::remove(desktopShortcutPath.toStdWString());
+  if (fs::exists(desktopShortcutPath.toStdString()))
+    fs::remove(desktopShortcutPath.toStdString());
   msleep(100); emit this->processPercent(25);
 
   //删除开始菜单快捷方式
   std::error_code ec;
   uintmax_t removed_count = 0;
-  if (fs::exists(startMenuFolderPath.toStdWString()))
-    fs::_Remove_all_dir(startMenuFolderPath.toStdWString(),ec,removed_count);
+  if (fs::exists(startMenuFolderPath.toStdString()))
+    fs::_Remove_all_dir(startMenuFolderPath.toStdString(),ec,removed_count);
   msleep(100); emit this->processPercent(100);
 }
 
@@ -94,7 +94,7 @@ void Uninstall_thread::removeTree(fs::path rmPath)
 
 void Uninstall_thread::removeUserData()
 {
-  wstring absoluteUserPath = tianliUtils::envPath2AbsolutePath(tianli::config::reginfo.UserDataLocation);
+  string absoluteUserPath = tianliUtils::envPath2AbsolutePath(tianli::config::reginfo.UserDataLocation);
 
   std::error_code ec;
   uintmax_t removed_count = 0;

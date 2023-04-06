@@ -9,9 +9,9 @@ tianli::uninstall_widget::uninstall_widget(QWidget* parent)
   ui->stackedWidget_2->setCurrentIndex(2);
   //修改说明文字
   timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("清理注册表"));
-  timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除快捷方式"));
-  timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除程序"));
-  timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除用户数据"));
+  timeLineLabelList[1]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除快捷方式"));
+  timeLineLabelList[2]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除程序"));
+  timeLineLabelList[3]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除用户数据"));
 }
 
 tianli::uninstall_widget::~uninstall_widget()
@@ -58,12 +58,12 @@ void tianli::uninstall_widget::connectSignal()
 
 void tianli::uninstall_widget::pushButton_Fast()
 {
-  wstring installPath = L"";
+  string installPath = "";
 
   bool isSuccess = tianliUtils::getRegValue_REG_SZ(
     HKEY_LOCAL_MACHINE,
-    std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
-    L"InstallLocation",
+    std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
+    "InstallLocation",
     installPath);
 
   if (!isSuccess)

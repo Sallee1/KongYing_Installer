@@ -52,12 +52,12 @@ namespace tianli {
 
   void update_widget::pushButton_Fast()      //重写快速安装按钮，从注册表读取路径，并取消路径校验
   { 
-    wstring installPath = L"";
+    string installPath = "";
 
     bool isSuccess = tianliUtils::getRegValue_REG_SZ(
       HKEY_LOCAL_MACHINE,
-      std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
-      L"InstallLocation",
+      std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
+      "InstallLocation",
       installPath);
 
     if (!isSuccess)
@@ -66,7 +66,7 @@ namespace tianli {
       errorInfoLabel->setText("尝试获取安装路径失败，请尝试重新安装。");
     }
 
-    this->pathLineEdit->setText(QString::fromStdWString(installPath));
+    this->pathLineEdit->setText(QString::fromStdString(installPath));
     this->activedWidget->setCurrentIndex(1);
     this->beginProcess();
   }

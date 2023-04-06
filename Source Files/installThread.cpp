@@ -4,8 +4,8 @@
 
 inline void InstallThread::copyFiles()
 {
-  fs::path installPath = installPathStr.toStdWString();
-  fs::path sourcePath = L"./package";
+  fs::path installPath = installPathStr.toStdString();
+  fs::path sourcePath = "./package";
   copyTrees(sourcePath, installPath);
 }
 
@@ -37,9 +37,9 @@ inline void InstallThread::copyTrees(fs::path inPath, fs::path outPath)
 inline void InstallThread::writeReg()
 {
   HKEY key;
-  tianli::config::reginfo.InstallLocation = this->installPathStr.toStdWString();
+  tianli::config::reginfo.InstallLocation = this->installPathStr.toStdString();
    //创建 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall 下的子项
-  if (RegCreateKeyEx(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str(),
+  if (RegCreateKeyEx(HKEY_LOCAL_MACHINE, std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str(),
     0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, NULL) == ERROR_SUCCESS)
     this->createUninstallInfoReg(key);
 }
@@ -48,22 +48,22 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
 
   {
     // 添加值
-    RegSetValueEx(key, L"DisplayName", 0, REG_SZ, (BYTE*)tianli::config::reginfo.displayName.c_str(), tianli::config::reginfo.displayName.length() * 2 + 2);
+    RegSetValueEx(key, "DisplayName", 0, REG_SZ, (BYTE*)tianli::config::reginfo.displayName.c_str(), tianli::config::reginfo.displayName.length() * 2 + 2);
     msleep(100); emit this->processPercent(12);
-    RegSetValueEx(key, L"DisplayVersion", 0, REG_SZ, (BYTE*)tianli::config::reginfo.displayVersion.c_str(), tianli::config::reginfo.displayVersion.length() * 2 + 2);
+    RegSetValueEx(key, "DisplayVersion", 0, REG_SZ, (BYTE*)tianli::config::reginfo.displayVersion.c_str(), tianli::config::reginfo.displayVersion.length() * 2 + 2);
     msleep(100); emit this->processPercent(25);
-    std::wstring uninstallerLocation = std::format(L"{0}\\{1}", this->installPathStr.toStdWString(), tianli::config::reginfo.uninstallString);
-    RegSetValueEx(key, L"UninstallString", 0, REG_SZ, (BYTE*)uninstallerLocation.c_str(), uninstallerLocation.length() * 2 + 2);
+    std::string uninstallerLocation = std::format("{0}\\{1}", this->installPathStr.toStdString(), tianli::config::reginfo.uninstallString);
+    RegSetValueEx(key, "UninstallString", 0, REG_SZ, (BYTE*)uninstallerLocation.c_str(), uninstallerLocation.length() * 2 + 2);
     msleep(100); emit this->processPercent(38);
-    RegSetValueEx(key, L"Publisher", 0, REG_SZ, (BYTE*)tianli::config::reginfo.publisher.c_str(), tianli::config::reginfo.publisher.length() * 2 + 2);
+    RegSetValueEx(key, "Publisher", 0, REG_SZ, (BYTE*)tianli::config::reginfo.publisher.c_str(), tianli::config::reginfo.publisher.length() * 2 + 2);
     msleep(100); emit this->processPercent(50);
-    RegSetValueEx(key, L"InstallLocation", 0, REG_SZ, (BYTE*)tianli::config::reginfo.InstallLocation.c_str(), tianli::config::reginfo.InstallLocation.length() * 2 + 2);
+    RegSetValueEx(key, "InstallLocation", 0, REG_SZ, (BYTE*)tianli::config::reginfo.InstallLocation.c_str(), tianli::config::reginfo.InstallLocation.length() * 2 + 2);
     msleep(100); emit this->processPercent(63);
-    RegSetValueEx(key, L"UserDataLocation", 0, REG_SZ, (BYTE*)tianli::config::reginfo.UserDataLocation.c_str(), tianli::config::reginfo.UserDataLocation.length() * 2 + 2);
+    RegSetValueEx(key, "UserDataLocation", 0, REG_SZ, (BYTE*)tianli::config::reginfo.UserDataLocation.c_str(), tianli::config::reginfo.UserDataLocation.length() * 2 + 2);
     msleep(100); emit this->processPercent(75);
-    std::wstring DisplayIcon = std::format(L"{0}\\{1}", this->installPathStr.toStdWString(), tianli::config::reginfo.displayIcon);
+    std::string DisplayIcon = std::format("{0}\\{1}", this->installPathStr.toStdString(), tianli::config::reginfo.displayIcon);
     msleep(100); emit this->processPercent(88);
-    RegSetValueEx(key, L"EstimatedSize", 0, REG_DWORD, (BYTE*)&tianli::config::reginfo.estimatedSize, sizeof(DWORD));
+    RegSetValueEx(key, "EstimatedSize", 0, REG_DWORD, (BYTE*)&tianli::config::reginfo.estimatedSize, sizeof(DWORD));
     msleep(100); emit this->processPercent(100);
     RegCloseKey(key);
   }
@@ -73,13 +73,13 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
 inline void InstallThread::addShortCut()
 {
   //文件路径
-  QString exePath = this->installPathStr + "\\" + QString::fromStdWString(tianli::config::installInfo.exePath);
-  QString uninstallExePath = this->installPathStr + "\\" + QString::fromStdWString(tianli::config::reginfo.uninstallString);
-  QString desktopShortcutPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromStdWString(tianli::config::installInfo.desktopShortcut_name);
+  QString exePath = this->installPathStr + "\\" + QString::fromStdString(tianli::config::installInfo.exePath);
+  QString uninstallExePath = this->installPathStr + "\\" + QString::fromStdString(tianli::config::reginfo.uninstallString);
+  QString desktopShortcutPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.desktopShortcut_name);
 
-  QString startMenuFolderPath = QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdWString(tianli::config::installInfo.startmenuShortcut_foldername);
-  QString startMenuShortcutPath = startMenuFolderPath + "\\" + QString::fromStdWString(tianli::config::installInfo.startmenuShortcut_progarmName);
-  QString startMenuUninstallShortcutPath = startMenuFolderPath +"\\" + QString::fromStdWString(tianli::config::installInfo.startmenuShortcut_uninstallName);
+  QString startMenuFolderPath = QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_foldername);
+  QString startMenuShortcutPath = startMenuFolderPath + "\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_progarmName);
+  QString startMenuUninstallShortcutPath = startMenuFolderPath +"\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_uninstallName);
 
   //创建桌面快捷方式
   if (this->desktopShortcut)
@@ -88,8 +88,8 @@ inline void InstallThread::addShortCut()
   // 创建开始菜单文件夹，包含卸载向导的快捷方式
   if (this->startMenuShortcut)
   {
-    if (!fs::exists(startMenuShortcutPath.toStdWString()))
-      fs::create_directory(startMenuFolderPath.toStdWString());
+    if (!fs::exists(startMenuShortcutPath.toStdString()))
+      fs::create_directory(startMenuFolderPath.toStdString());
     msleep(100); emit this->processPercent(50);
     createShortCut(exePath, startMenuShortcutPath);
     msleep(100);  emit this->processPercent(75);
@@ -108,7 +108,7 @@ void InstallThread::createShortCut(QString exePath, QString lnkPath)
   hres = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLinkW, (LPVOID*)&pShellLink);
 
   // 设置快捷方式路径和名称
-  pShellLink->SetPath(exePath.toStdWString().c_str());
+  pShellLink->SetPath(exePath.toStdString().c_str());
 
   // 创建IPersistFile对象
   IPersistFile* pPersistFile = NULL;
@@ -128,19 +128,19 @@ inline void InstallThread::cleanCache()
 {
   std::error_code ec;
   uintmax_t removed_count = 0;
-  //fs::_Remove_all_dir(L"./package",ec,removed_count); //能用
+  //fs::_Remove_all_dir("./package",ec,removed_count); //能用
   msleep(100); emit this->processPercent(75);
   
   //创建一个bat，用来将安装卸载二合一向导复制到安装目录
   //自己无法复制自己！！！只能在执行后用bat复制
-  fs::path installerLocation = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdWString().c_str();
-  fs::path uninstallerLocation = std::format(L"{0}\\{1}", this->installPathStr.toStdWString(), tianli::config::reginfo.uninstallString);
+  fs::path installerLocation = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdString().c_str();
+  fs::path uninstallerLocation = std::format("{0}\\{1}", this->installPathStr.toStdString(), tianli::config::reginfo.uninstallString);
   QFile cloneBat("cloneInstaller.bat");
   cloneBat.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
   {
     QTextStream qOut(&cloneBat);
-    qOut << QString::fromStdWString(L"TIMEOUT /T 3") << endl;
-    qOut << QString::fromStdWString(std::format(L"move \"{0}\" \"{1}\"", installerLocation.wstring(), uninstallerLocation.wstring())) << endl;
+    qOut << QString::fromStdString("TIMEOUT /T 3") << endl;
+    qOut << QString::fromStdString(std::format("move \"{0}\" \"{1}\"", installerLocation.string(), uninstallerLocation.string())) << endl;
   }
   cloneBat.close();
   msleep(100); emit this->processPercent(100);

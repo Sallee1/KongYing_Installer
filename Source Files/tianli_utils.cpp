@@ -8,7 +8,7 @@ namespace tianliUtils {
   bool checkPathIsAvilable(QString pathStr, QString& outPathStr)
   {
     if (pathStr == "")return false;
-    fs::path folderPath = pathStr.toStdWString();
+    fs::path folderPath = pathStr.toStdString();
     //文件夹不存在，路径有效
     if (!fs::exists(folderPath))
     {
@@ -23,9 +23,9 @@ namespace tianliUtils {
     }
     //非空，覆盖安装检测
     bool isOverWrite = true;
-    for (std::wstring fileName : tianli::config::installInfo.existFileName)
+    for (std::string fileName : tianli::config::installInfo.existFileName)
     {
-      if (!fs::exists(std::format(L"{0}\\{1}", pathStr.toStdWString(), fileName)))
+      if (!fs::exists(std::format("{0}\\{1}", pathStr.toStdString(), fileName)))
       {
         isOverWrite = false;
         break;
@@ -39,12 +39,12 @@ namespace tianliUtils {
 
     //否则，放到子文件夹并检测，如果路径存在，并且非空，并且没有通过覆盖检测，则无效
     outPathStr = pathStr + "\\KongYingMap";
-    folderPath = outPathStr.toStdWString();
+    folderPath = outPathStr.toStdString();
     if (fs::exists(folderPath) && fs::directory_iterator(folderPath) != fs::directory_iterator())
     {
-      for (std::wstring fileName : tianli::config::installInfo.existFileName)
+      for (std::string fileName : tianli::config::installInfo.existFileName)
       {
-        if (!fs::exists(std::format(L"{0}\\{1}", folderPath.wstring(), fileName)))
+        if (!fs::exists(std::format("{0}\\{1}", folderPath.string(), fileName)))
         {
           return false;
         }
@@ -71,13 +71,13 @@ namespace tianliUtils {
   void cleanUninstallReg()
   {
     HKEY hKey;
-    RegOpenKeyEx(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str(), 0, KEY_ALL_ACCESS, &hKey);
+    RegOpenKeyEx(HKEY_LOCAL_MACHINE, std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str(), 0, KEY_ALL_ACCESS, &hKey);
     RegDeleteTree(hKey, NULL);
     RegCloseKey(hKey);
-    RegDeleteKey(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str());
+    RegDeleteKey(HKEY_LOCAL_MACHINE, std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str());
   }
 
-  bool getRegValue_REG_SZ(HKEY root,std::wstring Item, std::wstring Key, std::wstring& ret, int maxLength)
+  bool getRegValue_REG_SZ(HKEY root,std::string Item, std::string Key, std::string& ret, int maxLength)
   {
     HKEY hKey;
     long lRes = RegOpenKeyEx(root, Item.c_str(), 0, KEY_READ, &hKey);
@@ -86,7 +86,7 @@ namespace tianliUtils {
       RegCloseKey(hKey);
       return false;
     }
-    wchar_t* lpData = new wchar_t[maxLength];
+    char* lpData = new char[maxLength];
     DWORD dwType = REG_SZ;
     DWORD dwSize = maxLength;
 
@@ -104,7 +104,7 @@ namespace tianliUtils {
     return true;
   }
 
-  bool getRegValue_DWORD(HKEY root, std::wstring Item, std::wstring Key, int& ret)
+  bool getRegValue_DWORD(HKEY root, std::string Item, std::string Key, int& ret)
   {
     HKEY hKey;
     long lRes = RegOpenKeyEx(root, Item.c_str(), 0, KEY_READ, &hKey);
@@ -129,13 +129,13 @@ namespace tianliUtils {
     return true;
   }
 
-  std::wstring envPath2AbsolutePath(std::wstring envPath)
+  std::string envPath2AbsolutePath(std::string envPath)
   {
-    wchar_t expanded_path[4096]; 
+    char expanded_path[4096]; 
 
     DWORD result = ExpandEnvironmentStrings(envPath.c_str(), expanded_path, MAX_PATH);
     if (result == 0) throw std::exception("ExpandEnvironmentStrings:路径中包含不合法的环境变量");
     
-    return std::wstring(expanded_path);
+    return std::string(expanded_path);
   }
 };

@@ -3,7 +3,7 @@
 #include "thread_super.h"
 
 namespace fs = std::filesystem;
-using std::wstring;
+using std::string;
 
 class InstallThread :public Thread_super
 {
