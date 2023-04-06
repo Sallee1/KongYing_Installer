@@ -29,7 +29,7 @@ void Uninstall_thread::readReg()
 
   tianli::config::reginfo.InstallLocation = installPath;
   tianli::config::reginfo.UserDataLocation = userDataPath;
-  tianli::config::reginfo.uninstallString = QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdString();
+  tianli::config::reginfo.uninstallString = std::string(QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toLocal8Bit());
   
 }
 
@@ -41,19 +41,19 @@ void Uninstall_thread::eraserReg()
 
 void Uninstall_thread::removeShortcut()
 {
-  QString desktopShortcutPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.desktopShortcut_name));
-  QString startMenuFolderPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_foldername));
+  QString desktopShortcutPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromLocal8Bit(tianli::config::installInfo.desktopShortcut_name.c_str()));
+  QString startMenuFolderPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromLocal8Bit(tianli::config::installInfo.startmenuShortcut_foldername.c_str()));
 
   //删除桌面快捷方式
-  if (fs::exists(desktopShortcutPath.toStdString()))
-    fs::remove(desktopShortcutPath.toStdString());
+  if (fs::exists(std::string(desktopShortcutPath.toLocal8Bit())))
+    fs::remove(std::string(desktopShortcutPath.toLocal8Bit()));
   msleep(100); emit this->processPercent(25);
 
   //删除开始菜单快捷方式
   std::error_code ec;
   uintmax_t removed_count = 0;
-  if (fs::exists(startMenuFolderPath.toStdString()))
-    fs::_Remove_all_dir(startMenuFolderPath.toStdString(),ec,removed_count);
+  if (fs::exists(std::string(startMenuFolderPath.toLocal8Bit())))
+    fs::_Remove_all_dir(std::string(startMenuFolderPath.toLocal8Bit()),ec,removed_count);
   msleep(100); emit this->processPercent(100);
 }
 

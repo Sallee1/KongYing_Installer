@@ -8,7 +8,7 @@ namespace tianliUtils {
   bool checkPathIsAvilable(QString pathStr, QString& outPathStr)
   {
     if (pathStr == "")return false;
-    fs::path folderPath = pathStr.toStdString();
+    fs::path folderPath = std::string(pathStr.toLocal8Bit());
     //文件夹不存在，路径有效
     if (!fs::exists(folderPath))
     {
@@ -25,7 +25,7 @@ namespace tianliUtils {
     bool isOverWrite = true;
     for (std::string fileName : tianli::config::installInfo.existFileName)
     {
-      if (!fs::exists(std::format("{0}\\{1}", pathStr.toStdString(), fileName)))
+      if (!fs::exists(std::format("{0}\\{1}", std::string(pathStr.toLocal8Bit()), fileName)))
       {
         isOverWrite = false;
         break;
@@ -39,7 +39,7 @@ namespace tianliUtils {
 
     //否则，放到子文件夹并检测，如果路径存在，并且非空，并且没有通过覆盖检测，则无效
     outPathStr = pathStr + "\\KongYingMap";
-    folderPath = outPathStr.toStdString();
+    folderPath = std::string(outPathStr.toLocal8Bit());
     if (fs::exists(folderPath) && fs::directory_iterator(folderPath) != fs::directory_iterator())
     {
       for (std::string fileName : tianli::config::installInfo.existFileName)

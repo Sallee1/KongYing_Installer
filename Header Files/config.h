@@ -36,6 +36,16 @@ namespace tianli {
     static RegInfo reginfo;
     static InstallInfo installInfo;
   };
+  namespace bat {
+    inline std::string removeSelf =
+      R"(@echo off
+setlocal enableextensions
+set "folder=%~dp0"
+timeout /t 10
+cd /d "%SystemDrive%\"
+rd /s /q "%folder%"
+del %0)";
+  };
 }
 
 inline tianli::config::RegInfo tianli::config::reginfo;

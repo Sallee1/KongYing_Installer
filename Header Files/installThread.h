@@ -24,7 +24,7 @@ private:
   void createUninstallInfoReg(HKEY &key);
   //第三步，创建开始菜单和桌面快捷方式
   void addShortCut();
-  void createShortCut(QString exePath, QString lnkPath);
+  void createShortCut(std::string exePath, std::string lnkPath);
   //第四步，回收残留文件
   void cleanCache();
 

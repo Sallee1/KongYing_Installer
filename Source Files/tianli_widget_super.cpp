@@ -47,7 +47,7 @@ namespace tianli {
     connectSignal();
     initTimeLine();
     //¼ÓÔØÄ¬ÈÏÉèÖÃ
-    this->pathLineEdit->setText(QString::fromStdString(tianli::config::installInfo.defaultInstallPath));
+    this->pathLineEdit->setText(QString::fromLocal8Bit(tianli::config::installInfo.defaultInstallPath.c_str()));
     this->desktopCheckBox->setChecked(tianli::config::installInfo.desktopShortcut);
     this->startmenuCheckBox->setChecked(tianli::config::installInfo.startmenuShortcut);
 
@@ -287,7 +287,8 @@ namespace tianli {
   void tianli_widget_super::pushButton_Finished_Run()
   {
     QProcess process;
-    process.startDetached(QString::fromStdString("\"" + (ui->lineEdit_installPath->text() + "\\map.exe").toStdString() + "\""));
+    std::string processPath = std::format("\"{0}\\{1}\"", std::string(ui->lineEdit_installPath->text().toLocal8Bit()), config::installInfo.exePath);
+    process.startDetached(QString::fromLocal8Bit(processPath.c_str()));
     this->close();
   }
 

@@ -66,7 +66,7 @@ namespace tianli {
       errorInfoLabel->setText("尝试获取安装路径失败，请尝试重新安装。");
     }
 
-    this->pathLineEdit->setText(QString::fromStdString(installPath));
+    this->pathLineEdit->setText(QString::fromLocal8Bit(installPath.c_str()));
     this->activedWidget->setCurrentIndex(1);
     this->beginProcess();
   }
@@ -77,8 +77,28 @@ namespace tianli {
     {
 
     }
-    QProcess process;
-    process.startDetached("cmd.exe", QStringList() << "/c" << "cloneInstaller.bat");
+    else
+    {
+      QProcess process;
+      process.startDetached("cmd.exe", QStringList() << "/c" << "cloneInstaller.bat");
+    }
+    //只有安装器在Temp目录，才允许自我删除，以避免误删
+    fs::path pt1 = fs::absolute(fs::path(".."));
+    fs::path pt2 = tianliUtils::envPath2AbsolutePath("%TEMP%");
+    if (fs::equivalent(fs::path("..\\"), tianliUtils::envPath2AbsolutePath("%TEMP%")))
+    {
+      QFile removeSelfBat("removeSelf.bat");
+      removeSelfBat.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
+      {
+        QTextStream qOut(&removeSelfBat);
+        qOut << QString::fromLocal8Bit(tianli::bat::removeSelf.c_str());
+      }
+      removeSelfBat.close();
+
+      QProcess process;
+      process.startDetached("cmd.exe", QStringList() << "/c" << "removeSelf.bat");
+      return;
+    }
   }
 
 } // tianli

@@ -161,8 +161,5 @@
     <None Include="outExe\x64\Debug\installer.ini">
       <Filter>Misc Files</Filter>
     </None>
-    <None Include="Misc Files\removeDir.bat">
-      <Filter>Resource Files</Filter>
-    </None>
   </ItemGroup>
 </Project>
