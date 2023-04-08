@@ -165,7 +165,7 @@
     <TargetName>install</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutDir>$(SolutionDir)release\</OutDir>
+    <OutDir>$(SolutionDir)release\tianli\</OutDir>
     <TargetName>install</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_test|x64'">
