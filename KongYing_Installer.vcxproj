@@ -71,7 +71,7 @@
     <ClCompile Include="Source Files\update_widget.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="outExe\x64\Debug\installer.ini" />
+    <None Include="Misc Files\installer.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{16992624-275D-44F6-9E6A-58182E5DAB8B}</ProjectGuid>
@@ -157,6 +157,10 @@
     <QtUic>
       <QtUicDir>$(projectDir)Header Files\ui</QtUicDir>
     </QtUic>
+    <PreBuildEvent>
+      <Command>xcopy /sey "$(ProjectDir)package\" "$(TargetDir)\package\"
+xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'">
     <ClCompile>
@@ -169,6 +173,10 @@
     <QtUic>
       <QtUicDir>$(projectDir)Header Files\ui</QtUicDir>
     </QtUic>
+    <PreBuildEvent>
+      <Command>xcopy /sey "$(ProjectDir)package\" "$(TargetDir)\package\"
+xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -181,6 +189,10 @@
     <QtUic>
       <QtUicDir>$(projectDir)Header Files\ui</QtUicDir>
     </QtUic>
+    <PreBuildEvent>
+      <Command>xcopy /sey "$(ProjectDir)package\" "$(TargetDir)\package\"
+xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>

@@ -1,0 +1,29 @@
+﻿{
+  "RegInfo": {
+    "displayName": "空荧酒馆原神地图",
+    "displayVersion": "Beta3.5",
+    "publisher": "空荧酒馆",
+    "displayIcon": "Map.exe",
+    "uninstallString": "Uninstall.exe",
+    "UserDataLocation": "%APPDATA%\\..\\LocalLow\\空荧酒馆",
+    "URLInfoAbout": "https://yuanshen.site/docs/",
+    "HelpLink":"https://support.qq.com/products/321980/faqs/94938",
+    "URLUpdateInfo":"https://support.qq.com/products/321980/blog/505884",
+    "estimatedSize": 342016
+  },
+  "InstallerGlobal": {
+    "defaultInstallPath": "C:\\Program Files\\KongYingMap",
+    "desktopShortcut": true,
+    "desktopShortcut_name": "空荧酒馆原神地图.lnk",
+    "startmenuShortcut": true,
+    "startmenuShortcut_foldername": "空荧酒馆原神地图",
+    "startmenuShortcut_programName": "启动地图.lnk",
+    "startmenuShortcut_uninstallName": "卸载.lnk",
+    "exePath": "Map.exe",
+    "existFileName": [
+      "Map.exe",
+      "UnityCrashHandler64.exe",
+      "UnityPlayer.dll"
+    ]
+  }
+}

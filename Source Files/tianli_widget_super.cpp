@@ -76,6 +76,37 @@ namespace tianli {
     connect(this->thread, &Thread_super::throwError, this, &tianli_widget_super::onThreadThrowError);
   }
 
+
+  inline void tianli_widget_super::afterClose() 
+  {
+    if (activedWidget->currentIndex() == 3)  //安装失败
+    {
+      tianliUtils::cleanUninstallReg();
+    }
+    else
+    {
+      QProcess process;
+      process.startDetached("cmd.exe", QStringList() << "/c" << "cloneInstaller.bat");
+    }
+    //只有安装器在Temp目录，才允许自我删除，以避免误删
+    fs::path pt1 = fs::absolute(fs::path(".."));
+    fs::path pt2 = tianliUtils::envPath2AbsolutePath("%TEMP%");
+    if (fs::equivalent(fs::path("..\\"), tianliUtils::envPath2AbsolutePath("%TEMP%")))
+    {
+      QFile removeSelfBat("removeSelf.bat");
+      removeSelfBat.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
+      {
+        QTextStream qOut(&removeSelfBat);
+        qOut << QString::fromLocal8Bit(bat::removeSelf.c_str());
+      }
+      removeSelfBat.close();
+
+      QProcess process;
+      process.startDetached("cmd.exe", QStringList() << "/c" << "removeSelf.bat");
+      return;
+    }
+  }
+
   void tianli_widget_super::initTimeLine()
   {
     int y = 51;

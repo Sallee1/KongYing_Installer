@@ -21,6 +21,7 @@ namespace tianli {
     void init() override;
     void connectSignal() override;
     void pushButton_Fast();
+    void afterClose() override;
     void beginProcess() override;
     
 

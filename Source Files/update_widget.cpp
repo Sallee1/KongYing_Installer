@@ -39,6 +39,20 @@ namespace tianli {
     errorExitButton = ui->pushButton_Fail_Close_Updaye;
     errorInfoLabel = ui->label_err_info_Update;
     thread = new InstallThread();     //可以沿用安装线程
+
+    //检查快捷方式是否存在
+    if (fs::exists(std::format("{0}\\{1}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).toLocal8Bit()), tianli::config::installInfo.desktopShortcut_name)))
+    {
+      desktopCheckBox->setChecked(true);
+      desktopCheckBox->setEnabled(false);
+    }
+
+    std::string path = std::format("{0}\\{1}\\{2}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName);
+    if (fs::exists(std::format("{0}\\{1}\\{2}",std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName)))
+    {
+      startmenuCheckBox->setChecked(true);
+      startmenuCheckBox->setEnabled(false);
+    }
   }
 
   void update_widget::connectSignal()
@@ -69,36 +83,6 @@ namespace tianli {
     this->pathLineEdit->setText(QString::fromLocal8Bit(installPath.c_str()));
     this->activedWidget->setCurrentIndex(1);
     this->beginProcess();
-  }
-
-  void update_widget::afterClose()
-  {
-    if (activedWidget->currentIndex() == 3)  //安装失败
-    {
-
-    }
-    else
-    {
-      QProcess process;
-      process.startDetached("cmd.exe", QStringList() << "/c" << "cloneInstaller.bat");
-    }
-    //只有安装器在Temp目录，才允许自我删除，以避免误删
-    fs::path pt1 = fs::absolute(fs::path(".."));
-    fs::path pt2 = tianliUtils::envPath2AbsolutePath("%TEMP%");
-    if (fs::equivalent(fs::path("..\\"), tianliUtils::envPath2AbsolutePath("%TEMP%")))
-    {
-      QFile removeSelfBat("removeSelf.bat");
-      removeSelfBat.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
-      {
-        QTextStream qOut(&removeSelfBat);
-        qOut << QString::fromLocal8Bit(tianli::bat::removeSelf.c_str());
-      }
-      removeSelfBat.close();
-
-      QProcess process;
-      process.startDetached("cmd.exe", QStringList() << "/c" << "removeSelf.bat");
-      return;
-    }
   }
 
 } // tianli

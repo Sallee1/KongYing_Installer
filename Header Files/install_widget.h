@@ -15,7 +15,6 @@ namespace tianli {
       ~Install_widget();
     protected:
       void init() override;
-      void afterClose() override;
     };
 
 

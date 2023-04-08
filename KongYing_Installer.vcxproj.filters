@@ -158,7 +158,7 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <None Include="outExe\x64\Debug\installer.ini">
+    <None Include="Misc Files\installer.json">
       <Filter>Misc Files</Filter>
     </None>
   </ItemGroup>

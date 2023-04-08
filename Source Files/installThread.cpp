@@ -49,27 +49,36 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
   {
     // 添加值
     RegSetValueEx(key, "DisplayName", 0, REG_SZ, (BYTE*)tianli::config::reginfo.displayName.c_str(), tianli::config::reginfo.displayName.length() * 2 + 2);
-    msleep(100); emit this->processPercent(12);
+    msleep(100); emit this->processPercent(10);
 
     RegSetValueEx(key, "DisplayVersion", 0, REG_SZ, (BYTE*)tianli::config::reginfo.displayVersion.c_str(), tianli::config::reginfo.displayVersion.length() * 2 + 2);
-    msleep(100); emit this->processPercent(25);
+    msleep(100); emit this->processPercent(20);
 
     std::string uninstallerLocation = std::format("{0}\\{1}", this->installPathStr, tianli::config::reginfo.uninstallString);
     RegSetValueEx(key, "UninstallString", 0, REG_SZ, (BYTE*)uninstallerLocation.c_str(), uninstallerLocation.length() * 2 + 2);
-    msleep(100); emit this->processPercent(38);
+    msleep(100); emit this->processPercent(30);
 
     RegSetValueEx(key, "Publisher", 0, REG_SZ, (BYTE*)tianli::config::reginfo.publisher.c_str(), tianli::config::reginfo.publisher.length() * 2 + 2);
-    msleep(100); emit this->processPercent(50);
+    msleep(100); emit this->processPercent(40);
 
     RegSetValueEx(key, "InstallLocation", 0, REG_SZ, (BYTE*)tianli::config::reginfo.InstallLocation.c_str(), tianli::config::reginfo.InstallLocation.length() * 2 + 2);
-    msleep(100); emit this->processPercent(63);
+    msleep(100); emit this->processPercent(50);
 
     RegSetValueEx(key, "UserDataLocation", 0, REG_SZ, (BYTE*)tianli::config::reginfo.UserDataLocation.c_str(), tianli::config::reginfo.UserDataLocation.length() * 2 + 2);
-    msleep(100); emit this->processPercent(75);
+    msleep(100); emit this->processPercent(60);
+
+    RegSetValueEx(key, "URLInfoAbout", 0, REG_SZ, (BYTE*)tianli::config::reginfo.URLInfoAbout.c_str(), tianli::config::reginfo.URLInfoAbout.length() * 2 + 2);
+    msleep(100); emit this->processPercent(70);
+
+    RegSetValueEx(key, "HelpLink", 0, REG_SZ, (BYTE*)tianli::config::reginfo.HelpLink.c_str(), tianli::config::reginfo.HelpLink.length() * 2 + 2);
+    msleep(100); emit this->processPercent(80);
+
+    RegSetValueEx(key, "URLUpdateInfo", 0, REG_SZ, (BYTE*)tianli::config::reginfo.URLUpdateInfo.c_str(), tianli::config::reginfo.URLUpdateInfo.length() * 2 + 2);
+    msleep(100); emit this->processPercent(90);
 
     std::string DisplayIcon = std::format("{0}\\{1}", this->installPathStr, tianli::config::reginfo.displayIcon);
     RegSetValueEx(key, "DisplayIcon", 0, REG_SZ, (BYTE*)DisplayIcon.c_str(), tianli::config::reginfo.UserDataLocation.length() * 2 + 2);
-    msleep(100); emit this->processPercent(88);
+    msleep(100); emit this->processPercent(100);
 
     RegSetValueEx(key, "EstimatedSize", 0, REG_DWORD, (BYTE*)&tianli::config::reginfo.estimatedSize, sizeof(DWORD));
     msleep(100); emit this->processPercent(100);
@@ -85,7 +94,7 @@ inline void InstallThread::addShortCut()
   std::string uninstallExePath = std::format("{0}\\{1}", this->installPathStr, tianli::config::reginfo.uninstallString);
   std::string desktopShortcutPath = std::format("{0}\\{1}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).toLocal8Bit()), tianli::config::installInfo.desktopShortcut_name);
   std::string startMenuFolderPath = std::format("{0}\\{1}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername);
-  std::string startMenuShortcutPath = std::format("{0}\\{1}", startMenuFolderPath, tianli::config::installInfo.startmenuShortcut_progarmName);
+  std::string startMenuShortcutPath = std::format("{0}\\{1}", startMenuFolderPath, tianli::config::installInfo.startmenuShortcut_programName);
   std::string startMenuUninstallShortcutPath = std::format("{0}\\{1}", startMenuFolderPath, tianli::config::installInfo.startmenuShortcut_uninstallName);
   //创建桌面快捷方式
   if (this->desktopShortcut)
