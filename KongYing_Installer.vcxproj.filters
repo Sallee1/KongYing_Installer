@@ -27,6 +27,18 @@
     <Filter Include="Misc Files">
       <UniqueIdentifier>{c00ef2bb-1756-48a0-ad44-11b537368caa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\widget">
+      <UniqueIdentifier>{4d3b77dd-d755-4729-8395-af59cea4b5df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\thread">
+      <UniqueIdentifier>{4914f774-3c21-4c79-bd04-bbb33ec58d1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\widget">
+      <UniqueIdentifier>{32374b40-7ecd-4b36-801a-29afd16e8b61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\thread">
+      <UniqueIdentifier>{82702274-c11a-4a88-ad78-e9b6c55ed464}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Form Files\rounded_rectangle.ui">
@@ -55,11 +67,14 @@
     <ClInclude Include="Header Files\pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\tianli_widget_utils.h">
+    <ClInclude Include="Header Files\tianli_utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Header Files\config.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Header Files\uninstall_thread.h">
+      <Filter>Header Files\thread</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -76,47 +91,74 @@
     </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source Files\installThread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source Files\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source Files\pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\rounded_rectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\tianli_widget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\tianli_widget_utils.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source Files\time_line_label.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source Files\config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source Files\install_widget.cpp">
+      <Filter>Source Files\widget</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\time_line_label.cpp">
+      <Filter>Source Files\widget</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\rounded_rectangle.cpp">
+      <Filter>Source Files\widget</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\installThread.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\tianli_widget_super.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\tianli_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\thread_super.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\update_widget.cpp">
+      <Filter>Source Files\widget</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\uninstall_thread.cpp">
+      <Filter>Source Files\thread</Filter>
+    </ClCompile>
+    <ClCompile Include="Source Files\uninstall_widget.cpp">
+      <Filter>Source Files\widget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="Header Files\installThread.h">
+    <QtMoc Include="Header Files\tianli_widget_super.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="Header Files\rounded_rectangle.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="Header Files\tianli_widget.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\widget</Filter>
     </QtMoc>
     <QtMoc Include="Header Files\time_line_label.h">
+      <Filter>Header Files\widget</Filter>
+    </QtMoc>
+    <QtMoc Include="Header Files\installThread.h">
+      <Filter>Header Files\thread</Filter>
+    </QtMoc>
+    <QtMoc Include="Header Files\thread_super.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Header Files\install_widget.h">
+      <Filter>Header Files\widget</Filter>
+    </QtMoc>
+    <QtMoc Include="Header Files\update_widget.h">
+      <Filter>Header Files\widget</Filter>
+    </QtMoc>
+    <QtMoc Include="Header Files\uninstall_widget.h">
+      <Filter>Header Files\widget</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <None Include="outExe\x64\Debug\installer.ini">
+    <None Include="Misc Files\installer.json">
       <Filter>Misc Files</Filter>
     </None>
   </ItemGroup>

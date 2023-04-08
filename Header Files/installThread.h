@@ -1,21 +1,13 @@
 #pragma once
 #include <pch.h>
+#include "thread_super.h"
 
 namespace fs = std::filesystem;
-using std::wstring;
+using std::string;
 
-class InstallThread :public QThread
+class InstallThread :public Thread_super
 {
   Q_OBJECT
-public:
-  InstallThread(QThread* parent = nullptr);
-public slots:
-  void setInstallConfig(QString installPathStr, bool desktopShortcut, bool startMenuShortcut)
-  {
-    this->installPathStr = installPathStr;
-    this->desktopShortcut = desktopShortcut;
-    this->startMenuShortcut = startMenuShortcut;
-  }
 
 public:
   enum ProcessType {
@@ -23,6 +15,7 @@ public:
   };
 
 private:
+  uintmax_t totalSize = 0;
   //第一步，移动文件
   void copyFiles();
   void copyTrees(fs::path inPath, fs::path outPath);
@@ -31,22 +24,11 @@ private:
   void createUninstallInfoReg(HKEY &key);
   //第三步，创建开始菜单和桌面快捷方式
   void addShortCut();
-  void createShortCut(QString exePath, QString lnkPath);
+  void createShortCut(std::string exePath, std::string lnkPath);
   //第四步，回收残留文件
   void cleanCache();
-signals:
-  void processChange(int step);
-  void processPercent(int percent);
-  void installFinish(bool isSuccess);
-  void throwError(QString error);
 
 private:
-  void run() override;
-
-private:
-  uintmax_t totalSize = 0;  //用来计算进度条
-  QString installPathStr;
-  bool desktopShortcut;
-  bool startMenuShortcut;
+  void run() Q_DECL_OVERRIDE;
 };
 

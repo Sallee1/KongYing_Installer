@@ -2,49 +2,44 @@
 #include "installThread.h"
 #include "config.h"
 
-InstallThread::InstallThread(QThread* parent) :
-  installPathStr(QString::fromStdWString(config::installInfo.defaultInstallPath)), 
-  desktopShortcut(config::installInfo.desktopShortcut), startMenuShortcut(config::installInfo.startmenuShortcut) {}
-;
-
 inline void InstallThread::copyFiles()
 {
-  fs::path installPath = installPathStr.toStdWString();
-  fs::path sourcePath = L"./package";
+  fs::path installPath = installPathStr;
+  fs::path sourcePath = "./package";
   copyTrees(sourcePath, installPath);
 }
 
 inline void InstallThread::copyTrees(fs::path inPath, fs::path outPath)
 {
-    if (fs::is_regular_file(inPath))
+  if (fs::is_regular_file(inPath))
+  {
+    this->totalSize += fs::file_size(inPath) / 1024;
+    emit this->processPercent(min(this->totalSize / static_cast<float>(tianli::config::reginfo.estimatedSize), 1) * 100);
+    fs::remove(outPath);  //以防万一，先删再复制
+    fs::copy_file(inPath, outPath, fs::copy_options::overwrite_existing);
+  }
+  else
+  {
+    if (!fs::exists(outPath))
+      fs::create_directories(outPath);
+    bool inPathIsExist = fs::exists(inPath);
+    for (fs::directory_entry entry : fs::directory_iterator(inPath))
     {
-      this->totalSize += fs::file_size(inPath) / 1024;
-      emit this->processPercent(min(this->totalSize / static_cast<float>(config::reginfo.estimatedSize), 1) * 100);
-      fs::remove(outPath);  //以防万一，先删再复制
-      fs::copy_file(inPath, outPath, fs::copy_options::overwrite_existing);
-    }
-    else
-    {
-      if (!fs::exists(outPath))
-        fs::create_directories(outPath);
-      bool inPathIsExist = fs::exists(inPath);
-      for (fs::directory_entry entry : fs::directory_iterator(inPath))
-      {
-        fs::path inSubPath = entry.path();
-        fs::path outSubPath = std::format("{0}/{1}", outPath.string(), entry.path().filename().string());
-        copyTrees(inSubPath, outSubPath);
-      }
+      fs::path inSubPath = entry.path();
+      fs::path outSubPath = std::format("{0}\\{1}", outPath.string(), entry.path().filename().string());
+      copyTrees(inSubPath, outSubPath);
     }
   }
+}
 
 
 //第二步，写入注册表
 inline void InstallThread::writeReg()
 {
   HKEY key;
-  config::reginfo.InstallLocation = this->installPathStr.toStdWString();
-   //创建 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall 下的子项
-  if (RegCreateKeyEx(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", config::reginfo.displayName).c_str(),
+  tianli::config::reginfo.InstallLocation = this->installPathStr;
+  //创建 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall 下的子项
+  if (RegCreateKeyEx(HKEY_LOCAL_MACHINE, std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str(),
     0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, NULL) == ERROR_SUCCESS)
     this->createUninstallInfoReg(key);
 }
@@ -53,19 +48,39 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
 
   {
     // 添加值
-    RegSetValueEx(key, L"DisplayName", 0, REG_SZ, (BYTE*)config::reginfo.displayName.c_str(), config::reginfo.displayName.length() * 2 + 2);
-    msleep(100); emit this->processPercent(14);
-    RegSetValueEx(key, L"DisplayVersion", 0, REG_SZ, (BYTE*)config::reginfo.displayVersion.c_str(), config::reginfo.displayVersion.length() * 2 + 2);
-    msleep(100); emit this->processPercent(28);
-    RegSetValueEx(key, L"UninstallString", 0, REG_SZ, (BYTE*)config::reginfo.uninstallString.c_str(), config::reginfo.uninstallString.length() * 2 + 2);
-    msleep(100); emit this->processPercent(42);
-    RegSetValueEx(key, L"Publisher", 0, REG_SZ, (BYTE*)config::reginfo.publisher.c_str(), config::reginfo.publisher.length() * 2 + 2);
-    msleep(100); emit this->processPercent(57);
-    RegSetValueEx(key, L"InstallLocation", 0, REG_SZ, (BYTE*)config::reginfo.InstallLocation.c_str(), config::reginfo.InstallLocation.length() * 2 + 2);
-    msleep(100); emit this->processPercent(72);
-    RegSetValueEx(key, L"DisplayIcon", 0, REG_SZ, (BYTE*)config::reginfo.displayIcon.c_str(), config::reginfo.displayIcon.length() * 2 + 2);
-    msleep(100); emit this->processPercent(86);
-    RegSetValueEx(key, L"EstimatedSize", 0, REG_DWORD, (BYTE*)config::reginfo.estimatedSize, sizeof(DWORD));
+    RegSetValueEx(key, "DisplayName", 0, REG_SZ, (BYTE*)tianli::config::reginfo.displayName.c_str(), tianli::config::reginfo.displayName.length() * 2 + 2);
+    msleep(100); emit this->processPercent(10);
+
+    RegSetValueEx(key, "DisplayVersion", 0, REG_SZ, (BYTE*)tianli::config::reginfo.displayVersion.c_str(), tianli::config::reginfo.displayVersion.length() * 2 + 2);
+    msleep(100); emit this->processPercent(20);
+
+    std::string uninstallerLocation = std::format("{0}\\{1}", this->installPathStr, tianli::config::reginfo.uninstallString);
+    RegSetValueEx(key, "UninstallString", 0, REG_SZ, (BYTE*)uninstallerLocation.c_str(), uninstallerLocation.length() * 2 + 2);
+    msleep(100); emit this->processPercent(30);
+
+    RegSetValueEx(key, "Publisher", 0, REG_SZ, (BYTE*)tianli::config::reginfo.publisher.c_str(), tianli::config::reginfo.publisher.length() * 2 + 2);
+    msleep(100); emit this->processPercent(40);
+
+    RegSetValueEx(key, "InstallLocation", 0, REG_SZ, (BYTE*)tianli::config::reginfo.InstallLocation.c_str(), tianli::config::reginfo.InstallLocation.length() * 2 + 2);
+    msleep(100); emit this->processPercent(50);
+
+    RegSetValueEx(key, "UserDataLocation", 0, REG_SZ, (BYTE*)tianli::config::reginfo.UserDataLocation.c_str(), tianli::config::reginfo.UserDataLocation.length() * 2 + 2);
+    msleep(100); emit this->processPercent(60);
+
+    RegSetValueEx(key, "URLInfoAbout", 0, REG_SZ, (BYTE*)tianli::config::reginfo.URLInfoAbout.c_str(), tianli::config::reginfo.URLInfoAbout.length() * 2 + 2);
+    msleep(100); emit this->processPercent(70);
+
+    RegSetValueEx(key, "HelpLink", 0, REG_SZ, (BYTE*)tianli::config::reginfo.HelpLink.c_str(), tianli::config::reginfo.HelpLink.length() * 2 + 2);
+    msleep(100); emit this->processPercent(80);
+
+    RegSetValueEx(key, "URLUpdateInfo", 0, REG_SZ, (BYTE*)tianli::config::reginfo.URLUpdateInfo.c_str(), tianli::config::reginfo.URLUpdateInfo.length() * 2 + 2);
+    msleep(100); emit this->processPercent(90);
+
+    std::string DisplayIcon = std::format("{0}\\{1}", this->installPathStr, tianli::config::reginfo.displayIcon);
+    RegSetValueEx(key, "DisplayIcon", 0, REG_SZ, (BYTE*)DisplayIcon.c_str(), tianli::config::reginfo.UserDataLocation.length() * 2 + 2);
+    msleep(100); emit this->processPercent(100);
+
+    RegSetValueEx(key, "EstimatedSize", 0, REG_DWORD, (BYTE*)&tianli::config::reginfo.estimatedSize, sizeof(DWORD));
     msleep(100); emit this->processPercent(100);
     RegCloseKey(key);
   }
@@ -75,54 +90,62 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
 inline void InstallThread::addShortCut()
 {
   //文件路径
-  QString exePath = this->installPathStr + "\\" + QString::fromStdWString(config::installInfo.exePath);
-  QString uninstallExePath = this->installPathStr + "\\" + QString::fromStdWString(config::reginfo.uninstallString);
-  QString desktopShortcutPath = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromStdWString(config::installInfo.desktopShortcut_name);
-
-  QString startMenuFolderPath = QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdWString(config::installInfo.startmenuShortcut_foldername);
-  QString startMenuShortcutPath = startMenuFolderPath + "\\" + QString::fromStdWString(config::installInfo.startmenuShortcut_progarmName);
-  QString startMenuUninstallShortcutPath = startMenuFolderPath +"\\" + QString::fromStdWString(config::installInfo.startmenuShortcut_uninstallName);
-
+  std::string exePath = std::format("{0}\\{1}", this->installPathStr, tianli::config::installInfo.exePath);
+  std::string uninstallExePath = std::format("{0}\\{1}", this->installPathStr, tianli::config::reginfo.uninstallString);
+  std::string desktopShortcutPath = std::format("{0}\\{1}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).toLocal8Bit()), tianli::config::installInfo.desktopShortcut_name);
+  std::string startMenuFolderPath = std::format("{0}\\{1}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername);
+  std::string startMenuShortcutPath = std::format("{0}\\{1}", startMenuFolderPath, tianli::config::installInfo.startmenuShortcut_programName);
+  std::string startMenuUninstallShortcutPath = std::format("{0}\\{1}", startMenuFolderPath, tianli::config::installInfo.startmenuShortcut_uninstallName);
   //创建桌面快捷方式
   if (this->desktopShortcut)
-    createShortCut(exePath, desktopShortcutPath);
+      createShortCut(exePath, desktopShortcutPath);
   msleep(100); emit this->processPercent(25);
   // 创建开始菜单文件夹，包含卸载向导的快捷方式
   if (this->startMenuShortcut)
   {
-    if (!fs::exists(startMenuShortcutPath.toStdWString()))
-      fs::create_directory(startMenuFolderPath.toStdWString());
+    if (!fs::exists(startMenuShortcutPath))
+      fs::create_directory(startMenuFolderPath);
     msleep(100); emit this->processPercent(50);
     createShortCut(exePath, startMenuShortcutPath);
     msleep(100);  emit this->processPercent(75);
     createShortCut(uninstallExePath, startMenuUninstallShortcutPath);
-  }    
+  }
   msleep(100); emit this->processPercent(100);
 }
 
-void InstallThread::createShortCut(QString exePath, QString lnkPath)
+void InstallThread::createShortCut(std::string exePath, std::string lnkPath)
 {
   HRESULT hres;
   CoInitialize(NULL);
 
   // 创建IShellLink对象
-  IShellLink* pShellLink = NULL;
+  IShellLinkW* pShellLink = NULL;
   hres = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLinkW, (LPVOID*)&pShellLink);
 
   // 设置快捷方式路径和名称
-  pShellLink->SetPath(exePath.toStdWString().c_str());
+  std::wstring target = std::format(L"\"{0}\"", QString::fromLocal8Bit(exePath.c_str()).toStdWString());
+  pShellLink->SetPath(target.c_str());
+
+  // 获取应用程序所在的文件路径，以此设置快捷方式的起始位置
+  QFileInfo fileInfo(QString::fromLocal8Bit(exePath.c_str()));
+  std::wstring workingDirectory = std::format(L"\"{0}\"", QDir::toNativeSeparators(fileInfo.absoluteDir().absolutePath()).toStdWString());
+  pShellLink->SetWorkingDirectory(workingDirectory.c_str());
 
   // 创建IPersistFile对象
   IPersistFile* pPersistFile = NULL;
   hres = pShellLink->QueryInterface(IID_IPersistFile, (LPVOID*)&pPersistFile);
 
   // 保存快捷方式
-  hres = pPersistFile->Save(lnkPath.toStdWString().c_str(), TRUE);
+  wchar_t* lnkPath_wchr = new wchar_t[strlen(lnkPath.c_str()) + 1];
+  memset(lnkPath_wchr, 0, (strlen(lnkPath.c_str()) + 1) * sizeof(wchar_t));
+  MultiByteToWideChar(CP_ACP, MB_ERR_INVALID_CHARS, lnkPath.c_str(), -1, lnkPath_wchr, strlen(lnkPath.c_str()) + 1);
+  hres = pPersistFile->Save(lnkPath_wchr, TRUE);
 
   // 释放对象
   pPersistFile->Release();
   pShellLink->Release();
   CoUninitialize();
+  delete[] lnkPath_wchr;
 }
 
 //第四步，回收残留文件
@@ -130,10 +153,27 @@ inline void InstallThread::cleanCache()
 {
   std::error_code ec;
   uintmax_t removed_count = 0;
-  fs::_Remove_all_dir(L"./package",ec,removed_count);
+  //fs::_Remove_all_dir("./package",ec,removed_count); //能用
+  msleep(100); emit this->processPercent(75);
+
+  //创建一个bat，用来将安装卸载二合一向导复制到安装目录
+  //自己无法复制自己！！！只能在执行后用bat复制
+  fs::path installerLocation = std::string(QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toLocal8Bit());
+  fs::path uninstallerLocation = std::format("{0}\\{1}",this->installPathStr, tianli::config::reginfo.uninstallString);
+
+
+  QFile cloneBat("cloneInstaller.bat");
+  cloneBat.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
+  {
+    QTextStream qOut(&cloneBat);
+    qOut << QString::fromLocal8Bit("TIMEOUT /T 3") << endl;
+    qOut << QString::fromLocal8Bit(std::format("move \"{0}\" \"{1}\"", installerLocation.string(), uninstallerLocation.string()).c_str()) << endl;
+  }
+  cloneBat.close();
+  msleep(100); emit this->processPercent(100);
 }
 
-inline void InstallThread::run()
+void InstallThread::run()
 {
   try {
     emit this->processChange(InstallThread::ProcessType::MOVE_FILES);
@@ -150,10 +190,9 @@ inline void InstallThread::run()
 
     emit this->processChange(InstallThread::ProcessType::CLEAN_CACHE);
     emit this->processPercent(0);
-    //this->cleanCache();
-    msleep(500);
+    this->cleanCache(); msleep(500);
 
-    emit this->installFinish(true);
+    emit this->processFinish(true);
   }
   catch (std::exception e)
   {

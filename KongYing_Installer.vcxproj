@@ -5,6 +5,10 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="Out2Tmp|x64">
+      <Configuration>Out2Tmp</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
@@ -18,14 +22,19 @@
   <ItemGroup>
     <ClInclude Include="Header Files\config.h" />
     <ClInclude Include="Header Files\pch.h" />
-    <ClInclude Include="Header Files\tianli_widget_utils.h" />
+    <QtMoc Include="Header Files\tianli_widget_super.h" />
+    <QtMoc Include="Header Files\thread_super.h" />
+    <ClInclude Include="Header Files\tianli_utils.h" />
     <QtMoc Include="Header Files\time_line_label.h" />
-    <QtMoc Include="Header Files\tianli_widget.h" />
+    <QtMoc Include="Header Files\install_widget.h" />
     <QtMoc Include="Header Files\rounded_rectangle.h" />
     <QtMoc Include="Header Files\installThread.h" />
     <ClInclude Include="Header Files\ui\ui_rounded_rectangle.h" />
     <ClInclude Include="Header Files\ui\ui_tianli_widget.h" />
     <ClInclude Include="Header Files\ui\ui_time_line_label.h" />
+    <QtMoc Include="Header Files\update_widget.h" />
+    <ClInclude Include="Header Files\uninstall_thread.h" />
+    <QtMoc Include="Header Files\uninstall_widget.h" />
     <ClInclude Include="Resource Files\resource.h" />
   </ItemGroup>
   <ItemGroup>
@@ -41,20 +50,34 @@
     <ClCompile Include="Source Files\main.cpp" />
     <ClCompile Include="Source Files\pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source Files\rounded_rectangle.cpp" />
-    <ClCompile Include="Source Files\tianli_widget.cpp" />
-    <ClCompile Include="Source Files\tianli_widget_utils.cpp" />
+    <ClCompile Include="Source Files\thread_super.cpp" />
+    <ClCompile Include="Source Files\install_widget.cpp" />
+    <ClCompile Include="Source Files\tianli_widget_super.cpp" />
+    <ClCompile Include="Source Files\tianli_utils.cpp" />
     <ClCompile Include="Source Files\time_line_label.cpp" />
+    <ClCompile Include="Source Files\uninstall_thread.cpp" />
+    <ClCompile Include="Source Files\uninstall_widget.cpp">
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">input</DynamicSource>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(Filename).moc</QtMocFileName>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'">%(Filename).moc</QtMocFileName>
+      <DynamicSource Condition="'$(Configuration)|$(Platform)'=='Release|x64'">input</DynamicSource>
+      <QtMocFileName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(Filename).moc</QtMocFileName>
+    </ClCompile>
+    <ClCompile Include="Source Files\update_widget.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="outExe\x64\Debug\installer.ini" />
+    <None Include="Misc Files\installer.json" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{16992624-275D-44F6-9E6A-58182E5DAB8B}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.22000.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
@@ -62,16 +85,28 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
+    <QtInstall>deps_qt-master_5.15.7</QtInstall>
+    <QtModules>core;gui;widgets</QtModules>
+    <QtBuildConfig>debug</QtBuildConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'" Label="QtSettings">
     <QtInstall>deps_qt-master_5.15.7</QtInstall>
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
@@ -90,6 +125,10 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(QtMsBuild)\Qt.props" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(QtMsBuild)\Qt.props" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="$(QtMsBuild)\Qt.props" />
@@ -97,6 +136,10 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <OutDir>$(SolutionDir)outExe\$(Platform)\$(Configuration)\</OutDir>
+    <TargetName>install</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'">
+    <OutDir>$(TEMP)\KongYingInstaller\</OutDir>
     <TargetName>install</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
@@ -114,6 +157,26 @@
     <QtUic>
       <QtUicDir>$(projectDir)Header Files\ui</QtUicDir>
     </QtUic>
+    <PreBuildEvent>
+      <Command>xcopy /sey "$(ProjectDir)package\" "$(TargetDir)\package\"
+xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(ProjectDir)Header Files\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+    </ClCompile>
+    <QtUic>
+      <QtUicDir>$(projectDir)Header Files\ui</QtUicDir>
+    </QtUic>
+    <PreBuildEvent>
+      <Command>xcopy /sey "$(ProjectDir)package\" "$(TargetDir)\package\"
+xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -126,8 +189,24 @@
     <QtUic>
       <QtUicDir>$(projectDir)Header Files\ui</QtUicDir>
     </QtUic>
+    <PreBuildEvent>
+      <Command>xcopy /sey "$(ProjectDir)package\" "$(TargetDir)\package\"
+xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
+    <ClCompile>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
