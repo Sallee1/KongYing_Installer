@@ -85,7 +85,7 @@ namespace tianli {
     {
       tianliUtils::cleanUninstallReg();
     }
-    else
+    else if(activedWidget->currentIndex() == 2)   //安装成功
     {
       QProcess process;
       process.startDetached("cmd.exe", QStringList() << "/c" << "cloneInstaller.bat");
