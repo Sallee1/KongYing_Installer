@@ -46,12 +46,20 @@ namespace tianli {
       desktopCheckBox->setChecked(true);
       desktopCheckBox->setEnabled(false);
     }
+    else
+    {
+      desktopCheckBox->setChecked(false);
+    }
 
     std::string path = std::format("{0}\\{1}\\{2}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName);
     if (fs::exists(std::format("{0}\\{1}\\{2}",std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName)))
     {
       startmenuCheckBox->setChecked(true);
       startmenuCheckBox->setEnabled(false);
+    }
+    else
+    {
+      desktopCheckBox->setChecked(false);
     }
   }
 
