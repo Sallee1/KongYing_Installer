@@ -128,7 +128,7 @@ void InstallThread::createShortCut(std::string exePath, std::string lnkPath)
 
   // 获取应用程序所在的文件路径，以此设置快捷方式的起始位置
   QFileInfo fileInfo(QString::fromLocal8Bit(exePath.c_str()));
-  std::wstring workingDirectory = std::format(L"\"{0}\"", QDir::toNativeSeparators(fileInfo.absoluteDir().absolutePath()).toStdWString());
+  std::wstring workingDirectory =  QDir::toNativeSeparators(fileInfo.absoluteDir().absolutePath()).toStdWString();
   pShellLink->SetWorkingDirectory(workingDirectory.c_str());
 
   // 创建IPersistFile对象
