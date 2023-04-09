@@ -157,7 +157,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <OutDir>$(SolutionDir)outExe\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)release\data\</OutDir>
     <TargetName>install</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'">
