@@ -6,6 +6,8 @@
 
 ![image](https://user-images.githubusercontent.com/99392726/230767335-aa30d660-f6d4-43b7-9364-9aa269cd398e.png)
 
+感谢7Zip，Resource hacker, Gnu, [icomake](https://github.com/tringi/icomake)等开源项目为打包提供的帮助。
+
 
 ## 功能亮点
 
@@ -46,7 +48,7 @@
 |exePath|快捷方式指向的可执行程序的路径，相对软件安装目录|
 |existFileName|覆盖安装检测数组，只有列表中的文件都存在，才会识别为覆盖安装，否则会创建新文件夹|
 
-4. 在resource中，放置Logo和Icon文件，格式可参考内置示例
+4. 在resource中，放置Logo文件，格式可参考内置示例
 5. 运行pack.bat，等待命令执行完成，输出installer.exe
 
 ## 我想打包自己的软件
