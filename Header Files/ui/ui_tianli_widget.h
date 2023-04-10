@@ -13,10 +13,12 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QWidget>
 
@@ -66,9 +68,12 @@ public:
     QLabel *label_Wizard_finish;
     QLabel *label_Documentation;
     QWidget *horizontalLayoutWidget;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label_Icon_0;
-    QLabel *label_Icon_1;
+    QGridLayout *gridLayout_externLink;
+    QSpacerItem *horizontalSpacer;
+    QLabel *label_Icon_bilibili;
+    QLabel *label_Icon_youtube;
+    QLabel *label_bilibili;
+    QLabel *label_youtube;
     QPushButton *pushButton_Finished_Run;
     QPushButton *pushButton_Finished_Exit;
     QWidget *page_4;
@@ -150,7 +155,7 @@ public:
     {
         if (tianli__tianli_widget->objectName().isEmpty())
             tianli__tianli_widget->setObjectName(QString::fromUtf8("tianli__tianli_widget"));
-        tianli__tianli_widget->resize(741, 425);
+        tianli__tianli_widget->resize(743, 425);
         QFont font;
         font.setBold(true);
         tianli__tianli_widget->setFont(font);
@@ -196,7 +201,7 @@ public:
 "                "));
         label_Title = new QLabel(tianli__tianli_widget);
         label_Title->setObjectName(QString::fromUtf8("label_Title"));
-        label_Title->setGeometry(QRect(395, 56, 140, 40));
+        label_Title->setGeometry(QRect(390, 56, 140, 40));
         QFont font1;
         label_Title->setFont(font1);
         label_Title->setStyleSheet(QString::fromUtf8("\n"
@@ -294,9 +299,10 @@ public:
         label_Readme->setFont(font2);
         label_Readme->setMouseTracking(true);
         label_Readme->setTextFormat(Qt::AutoText);
+        label_Readme->setOpenExternalLinks(true);
         label_Tag_Up = new QLabel(page_1);
         label_Tag_Up->setObjectName(QString::fromUtf8("label_Tag_Up"));
-        label_Tag_Up->setGeometry(QRect(120, 0, 16, 2));
+        label_Tag_Up->setGeometry(QRect(110, 0, 16, 2));
         label_Tag_Up->setStyleSheet(QString::fromUtf8("\n"
 "                            background-color:rgb(219, 219, 219);\n"
 "                        "));
@@ -464,7 +470,7 @@ public:
         page_3->setObjectName(QString::fromUtf8("page_3"));
         label_Wizard_finish = new QLabel(page_3);
         label_Wizard_finish->setObjectName(QString::fromUtf8("label_Wizard_finish"));
-        label_Wizard_finish->setGeometry(QRect(115, 10, 301, 21));
+        label_Wizard_finish->setGeometry(QRect(110, 10, 301, 21));
         label_Wizard_finish->setFont(font);
         label_Wizard_finish->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -482,34 +488,56 @@ public:
         label_Documentation->setWordWrap(true);
         horizontalLayoutWidget = new QWidget(page_3);
         horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(119, 99, 231, 81));
-        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        label_Icon_0 = new QLabel(horizontalLayoutWidget);
-        label_Icon_0->setObjectName(QString::fromUtf8("label_Icon_0"));
-        label_Icon_0->setMinimumSize(QSize(64, 64));
-        label_Icon_0->setMaximumSize(QSize(64, 64));
-        label_Icon_0->setStyleSheet(QString::fromUtf8("\n"
+        horizontalLayoutWidget->setGeometry(QRect(110, 90, 321, 102));
+        gridLayout_externLink = new QGridLayout(horizontalLayoutWidget);
+        gridLayout_externLink->setSpacing(10);
+        gridLayout_externLink->setObjectName(QString::fromUtf8("gridLayout_externLink"));
+        gridLayout_externLink->setSizeConstraint(QLayout::SetDefaultConstraint);
+        gridLayout_externLink->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_externLink->addItem(horizontalSpacer, 1, 2, 1, 1);
+
+        label_Icon_bilibili = new QLabel(horizontalLayoutWidget);
+        label_Icon_bilibili->setObjectName(QString::fromUtf8("label_Icon_bilibili"));
+        label_Icon_bilibili->setStyleSheet(QString::fromUtf8("\n"
 "                                        font-size:13px;\n"
 "                                    "));
+        label_Icon_bilibili->setPixmap(QPixmap(QString::fromUtf8(":/link/Resource/bilibili.png")));
+        label_Icon_bilibili->setOpenExternalLinks(true);
 
-        horizontalLayout->addWidget(label_Icon_0);
+        gridLayout_externLink->addWidget(label_Icon_bilibili, 1, 0, 1, 1);
 
-        label_Icon_1 = new QLabel(horizontalLayoutWidget);
-        label_Icon_1->setObjectName(QString::fromUtf8("label_Icon_1"));
-        label_Icon_1->setMinimumSize(QSize(64, 64));
-        label_Icon_1->setMaximumSize(QSize(64, 64));
-        label_Icon_1->setStyleSheet(QString::fromUtf8("\n"
+        label_Icon_youtube = new QLabel(horizontalLayoutWidget);
+        label_Icon_youtube->setObjectName(QString::fromUtf8("label_Icon_youtube"));
+        label_Icon_youtube->setStyleSheet(QString::fromUtf8("\n"
 "                                        font-size:13px;\n"
 "                                    "));
+        label_Icon_youtube->setPixmap(QPixmap(QString::fromUtf8(":/link/Resource/youtube.png")));
+        label_Icon_youtube->setOpenExternalLinks(true);
 
-        horizontalLayout->addWidget(label_Icon_1);
+        gridLayout_externLink->addWidget(label_Icon_youtube, 2, 0, 1, 1);
+
+        label_bilibili = new QLabel(horizontalLayoutWidget);
+        label_bilibili->setObjectName(QString::fromUtf8("label_bilibili"));
+        QFont font4;
+        font4.setPointSize(11);
+        font4.setBold(false);
+        label_bilibili->setFont(font4);
+        label_bilibili->setOpenExternalLinks(true);
+
+        gridLayout_externLink->addWidget(label_bilibili, 1, 1, 1, 1);
+
+        label_youtube = new QLabel(horizontalLayoutWidget);
+        label_youtube->setObjectName(QString::fromUtf8("label_youtube"));
+        label_youtube->setFont(font4);
+        label_youtube->setOpenExternalLinks(true);
+
+        gridLayout_externLink->addWidget(label_youtube, 2, 1, 1, 1);
 
         pushButton_Finished_Run = new QPushButton(page_3);
         pushButton_Finished_Run->setObjectName(QString::fromUtf8("pushButton_Finished_Run"));
-        pushButton_Finished_Run->setGeometry(QRect(115, 220, 58, 32));
+        pushButton_Finished_Run->setGeometry(QRect(110, 220, 61, 32));
         pushButton_Finished_Run->setFont(font1);
         pushButton_Finished_Run->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #FFFFFF;\n"
@@ -524,7 +552,7 @@ public:
 "                        "));
         pushButton_Finished_Exit = new QPushButton(page_3);
         pushButton_Finished_Exit->setObjectName(QString::fromUtf8("pushButton_Finished_Exit"));
-        pushButton_Finished_Exit->setGeometry(QRect(190, 220, 58, 32));
+        pushButton_Finished_Exit->setGeometry(QRect(190, 220, 61, 32));
         pushButton_Finished_Exit->setFont(font1);
         pushButton_Finished_Exit->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #7B7B7B;\n"
@@ -576,9 +604,9 @@ public:
         label_err_info = new QLabel(page_4);
         label_err_info->setObjectName(QString::fromUtf8("label_err_info"));
         label_err_info->setGeometry(QRect(120, 90, 301, 91));
-        QFont font4;
-        font4.setPointSize(10);
-        label_err_info->setFont(font4);
+        QFont font5;
+        font5.setPointSize(10);
+        label_err_info->setFont(font5);
         label_err_info->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_err_info->setWordWrap(true);
         stackedWidget_install->addWidget(page_4);
@@ -628,9 +656,10 @@ public:
         label_Readme_Update->setFont(font2);
         label_Readme_Update->setMouseTracking(true);
         label_Readme_Update->setTextFormat(Qt::AutoText);
+        label_Readme_Update->setOpenExternalLinks(true);
         label_Tag_Up_2 = new QLabel(page_6);
         label_Tag_Up_2->setObjectName(QString::fromUtf8("label_Tag_Up_2"));
-        label_Tag_Up_2->setGeometry(QRect(120, 0, 16, 2));
+        label_Tag_Up_2->setGeometry(QRect(110, 0, 16, 2));
         label_Tag_Up_2->setStyleSheet(QString::fromUtf8("\n"
 "                            background-color:rgb(219, 219, 219);\n"
 "                        "));
@@ -883,7 +912,7 @@ public:
         label_err_info_Update = new QLabel(page_9);
         label_err_info_Update->setObjectName(QString::fromUtf8("label_err_info_Update"));
         label_err_info_Update->setGeometry(QRect(120, 90, 301, 91));
-        label_err_info_Update->setFont(font4);
+        label_err_info_Update->setFont(font5);
         label_err_info_Update->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_err_info_Update->setWordWrap(true);
         stackedWidget_update->addWidget(page_9);
@@ -929,7 +958,7 @@ public:
 "                        "));
         label_Tag_Up_4 = new QLabel(page_14);
         label_Tag_Up_4->setObjectName(QString::fromUtf8("label_Tag_Up_4"));
-        label_Tag_Up_4->setGeometry(QRect(120, 0, 16, 2));
+        label_Tag_Up_4->setGeometry(QRect(110, 0, 16, 2));
         label_Tag_Up_4->setStyleSheet(QString::fromUtf8("\n"
 "                            background-color:rgb(219, 219, 219);\n"
 "                        "));
@@ -1122,7 +1151,7 @@ public:
         label_err_info_Uninstall = new QLabel(page_17);
         label_err_info_Uninstall->setObjectName(QString::fromUtf8("label_err_info_Uninstall"));
         label_err_info_Uninstall->setGeometry(QRect(120, 90, 301, 91));
-        label_err_info_Uninstall->setFont(font4);
+        label_err_info_Uninstall->setFont(font5);
         label_err_info_Uninstall->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_err_info_Uninstall->setWordWrap(true);
         stackedWidget_uninstall->addWidget(page_17);
@@ -1163,7 +1192,7 @@ public:
         label_MainShadow_B->setText(QString());
         label_Satellite_Orbit->setText(QString());
         label_Star->setText(QString());
-        label_Title->setText(QCoreApplication::translate("tianli::tianli_widget", "\347\251\272\350\215\247\351\205\222\351\246\206\342\204\242", nullptr));
+        label_Title->setText(QCoreApplication::translate("tianli::tianli_widget", "\347\251\272\350\215\247\351\205\222\351\246\206", nullptr));
         pushButton_UI_Close->setText(QString());
         pushButton_UI_Mini->setText(QString());
         label_MainImage->setText(QString());
@@ -1187,8 +1216,10 @@ public:
         pushButton_installing_Cancel->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\217\226\346\266\210\345\256\211\350\243\205", nullptr));
         label_Wizard_finish->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\256\211\350\243\205\345\256\214\346\210\220", nullptr));
         label_Documentation->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\346\204\237\350\260\242\346\202\250\347\232\204\345\256\211\350\243\205\357\274\214\346\202\250\345\217\257\344\273\245\351\200\232\350\277\207\344\273\245\344\270\213\346\226\271\345\274\217\345\205\263\346\263\250\346\210\221\344\273\254\347\232\204\347\244\276\344\272\244\350\264\246\345\217\267\357\274\232</p></body></html>", nullptr));
-        label_Icon_0->setText(QString());
-        label_Icon_1->setText(QString());
+        label_Icon_bilibili->setText(QString());
+        label_Icon_youtube->setText(QString());
+        label_bilibili->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p><a href=\"https://space.bilibili.com/518076785\"><span style=\" text-decoration: underline; color:#000000;\">@\345\216\237\347\245\236\347\251\272\350\215\247\351\205\222\351\246\206</span></a></p></body></html>", nullptr));
+        label_youtube->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p><a href=\"https://www.youtube.com/@KongyingTavernOfficial\"><span style=\" text-decoration: underline; color:#000000;\">@Kongying Tavern Official</span></a></p></body></html>", nullptr));
         pushButton_Finished_Run->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\220\257\345\212\250", nullptr));
         pushButton_Finished_Exit->setText(QCoreApplication::translate("tianli::tianli_widget", "\351\200\200\345\207\272", nullptr));
         label_Wizard_failed->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\256\211\350\243\205\345\244\261\350\264\245", nullptr));

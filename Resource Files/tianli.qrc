@@ -9,6 +9,10 @@
     <file>Resource/checked.png</file>
     <file>resource/vector.png</file>
   </qresource>
+  <qresource prefix="/link">
+    <file>Resource/bilibili.png</file>
+    <file>Resource/youtube.png</file>
+  </qresource>
   <qresource prefix="/sys_button">
     <file>resource/sys_button/exit.png</file>
     <file>resource/sys_button/exit_hover.png</file>
