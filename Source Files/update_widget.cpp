@@ -66,6 +66,8 @@ namespace tianli {
     {
       desktopCheckBox->setChecked(false);
     }
+    //ÉèÖÃ°ïÖúÐÅÏ¢
+    ui->gridLayout_externLink->setParent(this->activedWidget->widget(2));
   }
 
   void update_widget::connectSignal()
