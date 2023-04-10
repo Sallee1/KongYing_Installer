@@ -33,9 +33,6 @@ namespace tianli {
     mainShadow_B->setColor(QColor(255, 0, 0));
     mainShadow_B->setBlurRadius(14);
     ui->label_MainShadow_B->setGraphicsEffect(mainShadow_B);
-    //允许链接
-    ui->label_Readme->setOpenExternalLinks(true);
-    ui->label_Readme_Update->setOpenExternalLinks(true);
     //加载标题字体
     tianliUtils::setFont(":/font/Resource/fonts/SOURCEHANSERIFSC-HEAVY.ttf", ui->label_Title, true);   //标题 思源宋体
   }
@@ -52,6 +49,8 @@ namespace tianli {
     this->pathLineEdit->setText(QString::fromLocal8Bit(tianli::config::installInfo.defaultInstallPath.c_str()));
     this->desktopCheckBox->setChecked(tianli::config::installInfo.desktopShortcut);
     this->startmenuCheckBox->setChecked(tianli::config::installInfo.startmenuShortcut);
+    //显示第一页
+    this->activedWidget->setCurrentIndex(0);
 
   }
 
