@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -108,12 +107,15 @@ public:
     QWidget *page_8;
     QLabel *label_Wizard_finish_Update;
     QLabel *label_Documentation_Update;
-    QWidget *horizontalLayoutWidget_2;
-    QHBoxLayout *horizontalLayout_2;
-    QLabel *label_Icon_2;
-    QLabel *label_Icon_3;
     QPushButton *pushButton_Finished_Run_Update;
     QPushButton *pushButton_Finished_Exit_Update;
+    QWidget *horizontalLayoutWidget_2;
+    QGridLayout *gridLayout_externLink_2;
+    QSpacerItem *horizontalSpacer_2;
+    QLabel *label_Icon_bilibili_2;
+    QLabel *label_Icon_youtube_2;
+    QLabel *label_youtube_2;
+    QLabel *label_bilibili_2;
     QWidget *page_9;
     QLabel *label_Wizard_failed_Update;
     QLabel *label_err_documentation_Update;
@@ -140,10 +142,6 @@ public:
     QWidget *page_16;
     QLabel *label_Wizard_finish_Uninstall;
     QLabel *label_Documentation_Uninstall;
-    QWidget *horizontalLayoutWidget_4;
-    QHBoxLayout *horizontalLayout_4;
-    QLabel *label_Icon_6;
-    QLabel *label_Icon_7;
     QPushButton *pushButton_Finished_Exit_Uninstall;
     QWidget *page_17;
     QLabel *label_Wizard_failed_Uninstall;
@@ -278,7 +276,7 @@ public:
         page_1->setObjectName(QString::fromUtf8("page_1"));
         label_Wizard_start = new QLabel(page_1);
         label_Wizard_start->setObjectName(QString::fromUtf8("label_Wizard_start"));
-        label_Wizard_start->setGeometry(QRect(115, 10, 281, 21));
+        label_Wizard_start->setGeometry(QRect(110, 10, 281, 21));
         label_Wizard_start->setFont(font);
         label_Wizard_start->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -444,7 +442,7 @@ public:
         page_2->setObjectName(QString::fromUtf8("page_2"));
         label_Wizard_installing = new QLabel(page_2);
         label_Wizard_installing->setObjectName(QString::fromUtf8("label_Wizard_installing"));
-        label_Wizard_installing->setGeometry(QRect(115, 10, 291, 21));
+        label_Wizard_installing->setGeometry(QRect(110, 10, 291, 21));
         label_Wizard_installing->setFont(font);
         label_Wizard_installing->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -452,7 +450,7 @@ public:
 "                        "));
         pushButton_installing_Cancel = new QPushButton(page_2);
         pushButton_installing_Cancel->setObjectName(QString::fromUtf8("pushButton_installing_Cancel"));
-        pushButton_installing_Cancel->setGeometry(QRect(115, 220, 84, 32));
+        pushButton_installing_Cancel->setGeometry(QRect(110, 220, 84, 32));
         pushButton_installing_Cancel->setFont(font1);
         pushButton_installing_Cancel->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #7B7B7B;\n"
@@ -570,7 +568,7 @@ public:
         page_4->setObjectName(QString::fromUtf8("page_4"));
         label_Wizard_failed = new QLabel(page_4);
         label_Wizard_failed->setObjectName(QString::fromUtf8("label_Wizard_failed"));
-        label_Wizard_failed->setGeometry(QRect(115, 10, 301, 21));
+        label_Wizard_failed->setGeometry(QRect(110, 10, 301, 21));
         label_Wizard_failed->setFont(font);
         label_Wizard_failed->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -638,7 +636,7 @@ public:
         page_6->setObjectName(QString::fromUtf8("page_6"));
         label_Wizard_start_Update = new QLabel(page_6);
         label_Wizard_start_Update->setObjectName(QString::fromUtf8("label_Wizard_start_Update"));
-        label_Wizard_start_Update->setGeometry(QRect(115, 10, 281, 21));
+        label_Wizard_start_Update->setGeometry(QRect(110, 10, 281, 21));
         label_Wizard_start_Update->setFont(font);
         label_Wizard_start_Update->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -774,7 +772,7 @@ public:
         page_7->setObjectName(QString::fromUtf8("page_7"));
         label_Wizard_updateing = new QLabel(page_7);
         label_Wizard_updateing->setObjectName(QString::fromUtf8("label_Wizard_updateing"));
-        label_Wizard_updateing->setGeometry(QRect(115, 10, 291, 21));
+        label_Wizard_updateing->setGeometry(QRect(110, 10, 291, 21));
         label_Wizard_updateing->setFont(font);
         label_Wizard_updateing->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -782,7 +780,7 @@ public:
 "                        "));
         pushButton_update_Cancel = new QPushButton(page_7);
         pushButton_update_Cancel->setObjectName(QString::fromUtf8("pushButton_update_Cancel"));
-        pushButton_update_Cancel->setGeometry(QRect(115, 220, 84, 32));
+        pushButton_update_Cancel->setGeometry(QRect(110, 220, 84, 32));
         pushButton_update_Cancel->setFont(font1);
         pushButton_update_Cancel->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #7B7B7B;\n"
@@ -800,7 +798,7 @@ public:
         page_8->setObjectName(QString::fromUtf8("page_8"));
         label_Wizard_finish_Update = new QLabel(page_8);
         label_Wizard_finish_Update->setObjectName(QString::fromUtf8("label_Wizard_finish_Update"));
-        label_Wizard_finish_Update->setGeometry(QRect(115, 10, 301, 21));
+        label_Wizard_finish_Update->setGeometry(QRect(110, 10, 301, 21));
         label_Wizard_finish_Update->setFont(font);
         label_Wizard_finish_Update->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -816,36 +814,9 @@ public:
         label_Documentation_Update->setTextFormat(Qt::RichText);
         label_Documentation_Update->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_Documentation_Update->setWordWrap(true);
-        horizontalLayoutWidget_2 = new QWidget(page_8);
-        horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
-        horizontalLayoutWidget_2->setGeometry(QRect(119, 99, 231, 81));
-        horizontalLayout_2 = new QHBoxLayout(horizontalLayoutWidget_2);
-        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        horizontalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_Icon_2 = new QLabel(horizontalLayoutWidget_2);
-        label_Icon_2->setObjectName(QString::fromUtf8("label_Icon_2"));
-        label_Icon_2->setMinimumSize(QSize(64, 64));
-        label_Icon_2->setMaximumSize(QSize(64, 64));
-        label_Icon_2->setStyleSheet(QString::fromUtf8("\n"
-"                                        font-size:13px;\n"
-"                                    "));
-
-        horizontalLayout_2->addWidget(label_Icon_2);
-
-        label_Icon_3 = new QLabel(horizontalLayoutWidget_2);
-        label_Icon_3->setObjectName(QString::fromUtf8("label_Icon_3"));
-        label_Icon_3->setMinimumSize(QSize(64, 64));
-        label_Icon_3->setMaximumSize(QSize(64, 64));
-        label_Icon_3->setStyleSheet(QString::fromUtf8("\n"
-"                                        font-size:13px;\n"
-"                                    "));
-
-        horizontalLayout_2->addWidget(label_Icon_3);
-
         pushButton_Finished_Run_Update = new QPushButton(page_8);
         pushButton_Finished_Run_Update->setObjectName(QString::fromUtf8("pushButton_Finished_Run_Update"));
-        pushButton_Finished_Run_Update->setGeometry(QRect(115, 220, 58, 32));
+        pushButton_Finished_Run_Update->setGeometry(QRect(110, 220, 58, 32));
         pushButton_Finished_Run_Update->setFont(font1);
         pushButton_Finished_Run_Update->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #FFFFFF;\n"
@@ -873,12 +844,58 @@ public:
 "                            border: 2px solid #D1D1D1;\n"
 "                            border-radius: 4px;\n"
 "                        "));
+        horizontalLayoutWidget_2 = new QWidget(page_8);
+        horizontalLayoutWidget_2->setObjectName(QString::fromUtf8("horizontalLayoutWidget_2"));
+        horizontalLayoutWidget_2->setGeometry(QRect(110, 90, 321, 102));
+        gridLayout_externLink_2 = new QGridLayout(horizontalLayoutWidget_2);
+        gridLayout_externLink_2->setSpacing(10);
+        gridLayout_externLink_2->setObjectName(QString::fromUtf8("gridLayout_externLink_2"));
+        gridLayout_externLink_2->setSizeConstraint(QLayout::SetDefaultConstraint);
+        gridLayout_externLink_2->setContentsMargins(0, 0, 0, 0);
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_externLink_2->addItem(horizontalSpacer_2, 1, 2, 1, 1);
+
+        label_Icon_bilibili_2 = new QLabel(horizontalLayoutWidget_2);
+        label_Icon_bilibili_2->setObjectName(QString::fromUtf8("label_Icon_bilibili_2"));
+        label_Icon_bilibili_2->setStyleSheet(QString::fromUtf8("\n"
+"                                        font-size:13px;\n"
+"                                    "));
+        label_Icon_bilibili_2->setPixmap(QPixmap(QString::fromUtf8(":/link/Resource/bilibili.png")));
+        label_Icon_bilibili_2->setOpenExternalLinks(true);
+
+        gridLayout_externLink_2->addWidget(label_Icon_bilibili_2, 1, 0, 1, 1);
+
+        label_Icon_youtube_2 = new QLabel(horizontalLayoutWidget_2);
+        label_Icon_youtube_2->setObjectName(QString::fromUtf8("label_Icon_youtube_2"));
+        label_Icon_youtube_2->setStyleSheet(QString::fromUtf8("\n"
+"                                        font-size:13px;\n"
+"                                    "));
+        label_Icon_youtube_2->setPixmap(QPixmap(QString::fromUtf8(":/link/Resource/youtube.png")));
+        label_Icon_youtube_2->setOpenExternalLinks(true);
+
+        gridLayout_externLink_2->addWidget(label_Icon_youtube_2, 2, 0, 1, 1);
+
+        label_youtube_2 = new QLabel(horizontalLayoutWidget_2);
+        label_youtube_2->setObjectName(QString::fromUtf8("label_youtube_2"));
+        label_youtube_2->setFont(font4);
+        label_youtube_2->setOpenExternalLinks(true);
+
+        gridLayout_externLink_2->addWidget(label_youtube_2, 2, 1, 1, 1);
+
+        label_bilibili_2 = new QLabel(horizontalLayoutWidget_2);
+        label_bilibili_2->setObjectName(QString::fromUtf8("label_bilibili_2"));
+        label_bilibili_2->setFont(font4);
+        label_bilibili_2->setOpenExternalLinks(true);
+
+        gridLayout_externLink_2->addWidget(label_bilibili_2, 1, 1, 1, 1);
+
         stackedWidget_update->addWidget(page_8);
         page_9 = new QWidget();
         page_9->setObjectName(QString::fromUtf8("page_9"));
         label_Wizard_failed_Update = new QLabel(page_9);
         label_Wizard_failed_Update->setObjectName(QString::fromUtf8("label_Wizard_failed_Update"));
-        label_Wizard_failed_Update->setGeometry(QRect(115, 10, 301, 21));
+        label_Wizard_failed_Update->setGeometry(QRect(110, 10, 301, 21));
         label_Wizard_failed_Update->setFont(font);
         label_Wizard_failed_Update->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -944,7 +961,7 @@ public:
         page_14->setObjectName(QString::fromUtf8("page_14"));
         label_Wizard_start_uninstall = new QLabel(page_14);
         label_Wizard_start_uninstall->setObjectName(QString::fromUtf8("label_Wizard_start_uninstall"));
-        label_Wizard_start_uninstall->setGeometry(QRect(115, 10, 281, 21));
+        label_Wizard_start_uninstall->setGeometry(QRect(110, 10, 281, 21));
         label_Wizard_start_uninstall->setFont(font);
         label_Wizard_start_uninstall->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -1028,7 +1045,7 @@ public:
         page_15->setObjectName(QString::fromUtf8("page_15"));
         label_Wizard_Uninstalling = new QLabel(page_15);
         label_Wizard_Uninstalling->setObjectName(QString::fromUtf8("label_Wizard_Uninstalling"));
-        label_Wizard_Uninstalling->setGeometry(QRect(115, 10, 291, 21));
+        label_Wizard_Uninstalling->setGeometry(QRect(110, 10, 291, 21));
         label_Wizard_Uninstalling->setFont(font);
         label_Wizard_Uninstalling->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -1036,7 +1053,7 @@ public:
 "                        "));
         pushButton_Uninstall_Cancel = new QPushButton(page_15);
         pushButton_Uninstall_Cancel->setObjectName(QString::fromUtf8("pushButton_Uninstall_Cancel"));
-        pushButton_Uninstall_Cancel->setGeometry(QRect(115, 220, 84, 32));
+        pushButton_Uninstall_Cancel->setGeometry(QRect(110, 220, 84, 32));
         pushButton_Uninstall_Cancel->setFont(font1);
         pushButton_Uninstall_Cancel->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #7B7B7B;\n"
@@ -1054,7 +1071,7 @@ public:
         page_16->setObjectName(QString::fromUtf8("page_16"));
         label_Wizard_finish_Uninstall = new QLabel(page_16);
         label_Wizard_finish_Uninstall->setObjectName(QString::fromUtf8("label_Wizard_finish_Uninstall"));
-        label_Wizard_finish_Uninstall->setGeometry(QRect(115, 10, 301, 21));
+        label_Wizard_finish_Uninstall->setGeometry(QRect(110, 10, 301, 21));
         label_Wizard_finish_Uninstall->setFont(font);
         label_Wizard_finish_Uninstall->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -1070,36 +1087,9 @@ public:
         label_Documentation_Uninstall->setTextFormat(Qt::RichText);
         label_Documentation_Uninstall->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_Documentation_Uninstall->setWordWrap(true);
-        horizontalLayoutWidget_4 = new QWidget(page_16);
-        horizontalLayoutWidget_4->setObjectName(QString::fromUtf8("horizontalLayoutWidget_4"));
-        horizontalLayoutWidget_4->setGeometry(QRect(119, 99, 231, 81));
-        horizontalLayout_4 = new QHBoxLayout(horizontalLayoutWidget_4);
-        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
-        horizontalLayout_4->setSizeConstraint(QLayout::SetDefaultConstraint);
-        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
-        label_Icon_6 = new QLabel(horizontalLayoutWidget_4);
-        label_Icon_6->setObjectName(QString::fromUtf8("label_Icon_6"));
-        label_Icon_6->setMinimumSize(QSize(64, 64));
-        label_Icon_6->setMaximumSize(QSize(64, 64));
-        label_Icon_6->setStyleSheet(QString::fromUtf8("\n"
-"                                        font-size:13px;\n"
-"                                    "));
-
-        horizontalLayout_4->addWidget(label_Icon_6);
-
-        label_Icon_7 = new QLabel(horizontalLayoutWidget_4);
-        label_Icon_7->setObjectName(QString::fromUtf8("label_Icon_7"));
-        label_Icon_7->setMinimumSize(QSize(64, 64));
-        label_Icon_7->setMaximumSize(QSize(64, 64));
-        label_Icon_7->setStyleSheet(QString::fromUtf8("\n"
-"                                        font-size:13px;\n"
-"                                    "));
-
-        horizontalLayout_4->addWidget(label_Icon_7);
-
         pushButton_Finished_Exit_Uninstall = new QPushButton(page_16);
         pushButton_Finished_Exit_Uninstall->setObjectName(QString::fromUtf8("pushButton_Finished_Exit_Uninstall"));
-        pushButton_Finished_Exit_Uninstall->setGeometry(QRect(117, 220, 81, 32));
+        pushButton_Finished_Exit_Uninstall->setGeometry(QRect(110, 220, 81, 32));
         pushButton_Finished_Exit_Uninstall->setFont(font1);
         pushButton_Finished_Exit_Uninstall->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #7B7B7B;\n"
@@ -1117,7 +1107,7 @@ public:
         page_17->setObjectName(QString::fromUtf8("page_17"));
         label_Wizard_failed_Uninstall = new QLabel(page_17);
         label_Wizard_failed_Uninstall->setObjectName(QString::fromUtf8("label_Wizard_failed_Uninstall"));
-        label_Wizard_failed_Uninstall->setGeometry(QRect(115, 10, 301, 21));
+        label_Wizard_failed_Uninstall->setGeometry(QRect(110, 10, 301, 21));
         label_Wizard_failed_Uninstall->setFont(font);
         label_Wizard_failed_Uninstall->setStyleSheet(QString::fromUtf8("\n"
 "                            color:rgb(47, 47, 47);\n"
@@ -1135,7 +1125,7 @@ public:
         label_err_documentation_Uninstall->setWordWrap(true);
         pushButton_Fail_Close_Uninstall = new QPushButton(page_17);
         pushButton_Fail_Close_Uninstall->setObjectName(QString::fromUtf8("pushButton_Fail_Close_Uninstall"));
-        pushButton_Fail_Close_Uninstall->setGeometry(QRect(120, 220, 84, 32));
+        pushButton_Fail_Close_Uninstall->setGeometry(QRect(110, 220, 84, 32));
         pushButton_Fail_Close_Uninstall->setFont(font1);
         pushButton_Fail_Close_Uninstall->setStyleSheet(QString::fromUtf8("\n"
 "                            color: #7B7B7B;\n"
@@ -1172,7 +1162,7 @@ public:
 
         retranslateUi(tianli__tianli_widget);
 
-        stackedWidget_2->setCurrentIndex(0);
+        stackedWidget_2->setCurrentIndex(1);
         stackedWidget_install->setCurrentIndex(0);
         stackedWidget_InstallCustom->setCurrentIndex(0);
         stackedWidget_update->setCurrentIndex(0);
@@ -1244,10 +1234,12 @@ public:
         pushButton_update_Cancel->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\201\234\346\255\242", nullptr));
         label_Wizard_finish_Update->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\215\207\347\272\247\345\256\214\346\210\220", nullptr));
         label_Documentation_Update->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\346\204\237\350\260\242\346\202\250\347\232\204\345\256\211\350\243\205\357\274\214\346\202\250\345\217\257\344\273\245\351\200\232\350\277\207\344\273\245\344\270\213\346\226\271\345\274\217\345\205\263\346\263\250\346\210\221\344\273\254\347\232\204\347\244\276\344\272\244\350\264\246\345\217\267\357\274\232</p></body></html>", nullptr));
-        label_Icon_2->setText(QString());
-        label_Icon_3->setText(QString());
         pushButton_Finished_Run_Update->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\220\257\345\212\250", nullptr));
         pushButton_Finished_Exit_Update->setText(QCoreApplication::translate("tianli::tianli_widget", "\351\200\200\345\207\272", nullptr));
+        label_Icon_bilibili_2->setText(QString());
+        label_Icon_youtube_2->setText(QString());
+        label_youtube_2->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p><a href=\"https://www.youtube.com/@KongyingTavernOfficial\"><span style=\" text-decoration: underline; color:#000000;\">@Kongying Tavern Official</span></a></p></body></html>", nullptr));
+        label_bilibili_2->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p><a href=\"https://space.bilibili.com/518076785\"><span style=\" text-decoration: underline; color:#000000;\">@\345\216\237\347\245\236\347\251\272\350\215\247\351\205\222\351\246\206</span></a></p></body></html>", nullptr));
         label_Wizard_failed_Update->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\215\207\347\272\247\345\244\261\350\264\245", nullptr));
         label_err_documentation_Update->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\345\276\210\351\201\227\346\206\276\357\274\214\345\215\207\347\272\247\345\244\261\350\264\245\344\272\206\357\274\214\344\275\240\345\217\257\344\273\245\345\260\235\350\257\225\346\211\213\345\212\250\345\210\240\351\231\244\346\226\207\344\273\266\345\220\216\351\207\215\346\226\260\345\256\211\350\243\205\343\200\202\346\212\245\351\224\231\344\277\241\346\201\257\345\246\202\344\270\213\357\274\232</p></body></html>", nullptr));
         pushButton_Fail_Close_Updaye->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\205\263\351\227\255", nullptr));
@@ -1265,8 +1257,6 @@ public:
         pushButton_Uninstall_Cancel->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\201\234\346\255\242", nullptr));
         label_Wizard_finish_Uninstall->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\215\270\350\275\275\345\256\214\346\210\220", nullptr));
         label_Documentation_Uninstall->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\346\202\250\345\267\262\346\210\220\345\212\237\345\215\270\350\275\275\347\251\272\350\215\247\351\205\222\351\246\206\342\204\242\345\216\237\347\245\236\345\234\260\345\233\276\357\274\214\346\234\237\345\276\205\344\270\216\346\202\250\347\232\204\345\206\215\346\254\241\347\233\270\344\274\232\357\274\201</p></body></html>", nullptr));
-        label_Icon_6->setText(QString());
-        label_Icon_7->setText(QString());
         pushButton_Finished_Exit_Uninstall->setText(QCoreApplication::translate("tianli::tianli_widget", "\351\200\200\345\207\272", nullptr));
         label_Wizard_failed_Uninstall->setText(QCoreApplication::translate("tianli::tianli_widget", "\345\216\237\347\245\236\350\265\204\346\272\220\345\234\260\345\233\276 \345\215\270\350\275\275\345\244\261\350\264\245", nullptr));
         label_err_documentation_Uninstall->setText(QCoreApplication::translate("tianli::tianli_widget", "<html><head/><body><p>\345\276\210\351\201\227\346\206\276\357\274\214\345\215\270\350\275\275\345\244\261\350\264\245\344\272\206\343\200\202\344\270\215\350\277\207\344\270\215\347\224\250\346\213\205\345\277\203\357\274\214\346\263\250\345\206\214\350\241\250\351\241\271\345\267\262\346\270\205\351\231\244\357\274\214\344\275\240\345\217\252\351\234\200\350\246\201\345\210\240\351\231\244\345\211\251\344\275\231\347\232\204\346\226\207\344\273\266\345\215\263\345\217\257\343\200\202</p></body></html>", nullptr));

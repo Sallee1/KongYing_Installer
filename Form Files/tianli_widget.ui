@@ -234,7 +234,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page_install">
     <widget class="QStackedWidget" name="stackedWidget_install">
@@ -275,7 +275,7 @@ QCheckBox::indicator:checked {
       <widget class="QLabel" name="label_Wizard_start">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>281</width>
          <height>21</height>
@@ -710,7 +710,7 @@ border-bottom-color: rgba(0, 0, 0, 0);
       <widget class="QLabel" name="label_Wizard_installing">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>291</width>
          <height>21</height>
@@ -735,7 +735,7 @@ border-bottom-color: rgba(0, 0, 0, 0);
       <widget class="QPushButton" name="pushButton_installing_Cancel">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>220</y>
          <width>84</width>
          <height>32</height>
@@ -989,7 +989,7 @@ border-bottom-color: rgba(0, 0, 0, 0);
       <widget class="QLabel" name="label_Wizard_failed">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>301</width>
          <height>21</height>
@@ -1141,7 +1141,7 @@ QCheckBox::indicator:checked {
       <widget class="QLabel" name="label_Wizard_start_Update">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>281</width>
          <height>21</height>
@@ -1513,7 +1513,7 @@ QCheckBox::indicator:checked {
       <widget class="QLabel" name="label_Wizard_updateing">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>291</width>
          <height>21</height>
@@ -1538,7 +1538,7 @@ QCheckBox::indicator:checked {
       <widget class="QPushButton" name="pushButton_update_Cancel">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>220</y>
          <width>84</width>
          <height>32</height>
@@ -1571,7 +1571,7 @@ QCheckBox::indicator:checked {
       <widget class="QLabel" name="label_Wizard_finish_Update">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>301</width>
          <height>21</height>
@@ -1626,73 +1626,10 @@ QCheckBox::indicator:checked {
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QWidget" name="horizontalLayoutWidget_2">
-       <property name="geometry">
-        <rect>
-         <x>119</x>
-         <y>99</y>
-         <width>231</width>
-         <height>81</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_Icon_2">
-          <property name="minimumSize">
-           <size>
-            <width>64</width>
-            <height>64</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>64</width>
-            <height>64</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">
-                                        font-size:13px;
-                                    </string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Icon_3">
-          <property name="minimumSize">
-           <size>
-            <width>64</width>
-            <height>64</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>64</width>
-            <height>64</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">
-                                        font-size:13px;
-                                    </string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
       <widget class="QPushButton" name="pushButton_Finished_Run_Update">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>220</y>
          <width>58</width>
          <height>32</height>
@@ -1751,12 +1688,111 @@ QCheckBox::indicator:checked {
         <string>退出</string>
        </property>
       </widget>
+      <widget class="QWidget" name="horizontalLayoutWidget_2">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>90</y>
+         <width>321</width>
+         <height>102</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_externLink_2">
+        <property name="sizeConstraint">
+         <enum>QLayout::SetDefaultConstraint</enum>
+        </property>
+        <property name="spacing">
+         <number>10</number>
+        </property>
+        <item row="1" column="2">
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_Icon_bilibili_2">
+          <property name="styleSheet">
+           <string notr="true">
+                                        font-size:13px;
+                                    </string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="../Resource Files/tianli.qrc">:/link/Resource/bilibili.png</pixmap>
+          </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_Icon_youtube_2">
+          <property name="styleSheet">
+           <string notr="true">
+                                        font-size:13px;
+                                    </string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap resource="../Resource Files/tianli.qrc">:/link/Resource/youtube.png</pixmap>
+          </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QLabel" name="label_youtube_2">
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/@KongyingTavernOfficial&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#000000;&quot;&gt;@Kongying Tavern Official&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QLabel" name="label_bilibili_2">
+          <property name="font">
+           <font>
+            <pointsize>11</pointsize>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://space.bilibili.com/518076785&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#000000;&quot;&gt;@原神空荧酒馆&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
      <widget class="QWidget" name="page_9">
       <widget class="QLabel" name="label_Wizard_failed_Update">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>301</width>
          <height>21</height>
@@ -1908,7 +1944,7 @@ QCheckBox::indicator:checked {
       <widget class="QLabel" name="label_Wizard_start_uninstall">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>281</width>
          <height>21</height>
@@ -2149,7 +2185,7 @@ QCheckBox::indicator:checked {
       <widget class="QLabel" name="label_Wizard_Uninstalling">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>291</width>
          <height>21</height>
@@ -2174,7 +2210,7 @@ QCheckBox::indicator:checked {
       <widget class="QPushButton" name="pushButton_Uninstall_Cancel">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>220</y>
          <width>84</width>
          <height>32</height>
@@ -2207,7 +2243,7 @@ QCheckBox::indicator:checked {
       <widget class="QLabel" name="label_Wizard_finish_Uninstall">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>301</width>
          <height>21</height>
@@ -2262,73 +2298,10 @@ QCheckBox::indicator:checked {
         <bool>true</bool>
        </property>
       </widget>
-      <widget class="QWidget" name="horizontalLayoutWidget_4">
-       <property name="geometry">
-        <rect>
-         <x>119</x>
-         <y>99</y>
-         <width>231</width>
-         <height>81</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_4">
-        <property name="sizeConstraint">
-         <enum>QLayout::SetDefaultConstraint</enum>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_Icon_6">
-          <property name="minimumSize">
-           <size>
-            <width>64</width>
-            <height>64</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>64</width>
-            <height>64</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">
-                                        font-size:13px;
-                                    </string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label_Icon_7">
-          <property name="minimumSize">
-           <size>
-            <width>64</width>
-            <height>64</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>64</width>
-            <height>64</height>
-           </size>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">
-                                        font-size:13px;
-                                    </string>
-          </property>
-          <property name="text">
-           <string/>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
       <widget class="QPushButton" name="pushButton_Finished_Exit_Uninstall">
        <property name="geometry">
         <rect>
-         <x>117</x>
+         <x>110</x>
          <y>220</y>
          <width>81</width>
          <height>32</height>
@@ -2361,7 +2334,7 @@ QCheckBox::indicator:checked {
       <widget class="QLabel" name="label_Wizard_failed_Uninstall">
        <property name="geometry">
         <rect>
-         <x>115</x>
+         <x>110</x>
          <y>10</y>
          <width>301</width>
          <height>21</height>
@@ -2419,7 +2392,7 @@ QCheckBox::indicator:checked {
       <widget class="QPushButton" name="pushButton_Fail_Close_Uninstall">
        <property name="geometry">
         <rect>
-         <x>120</x>
+         <x>110</x>
          <y>220</y>
          <width>84</width>
          <height>32</height>
