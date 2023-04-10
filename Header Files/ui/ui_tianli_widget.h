@@ -379,15 +379,9 @@ public:
         lineEdit_installPath = new QLineEdit(page2_CustomInstallOption);
         lineEdit_installPath->setObjectName(QString::fromUtf8("lineEdit_installPath"));
         lineEdit_installPath->setGeometry(QRect(100, 10, 291, 30));
-        QFont font4;
-        font4.setFamily(QString::fromUtf8("sans-serif"));
-        font4.setPointSize(9);
-        font4.setBold(false);
-        lineEdit_installPath->setFont(font4);
         lineEdit_installPath->setStyleSheet(QString::fromUtf8("background-color: rgba(0, 0, 0, 0);\n"
 "border-bottom-color: rgb(242, 110, 75);\n"
 "border-bottom-color: rgba(0, 0, 0, 0);\n"
-"font-family: sans-serif\n"
 ""));
         lineEdit_installPath->setClearButtonEnabled(false);
         checkBox_desktopShortcut = new QCheckBox(page2_CustomInstallOption);
@@ -582,9 +576,9 @@ public:
         label_err_info = new QLabel(page_4);
         label_err_info->setObjectName(QString::fromUtf8("label_err_info"));
         label_err_info->setGeometry(QRect(120, 90, 301, 91));
-        QFont font5;
-        font5.setPointSize(10);
-        label_err_info->setFont(font5);
+        QFont font4;
+        font4.setPointSize(10);
+        label_err_info->setFont(font4);
         label_err_info->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_err_info->setWordWrap(true);
         stackedWidget_install->addWidget(page_4);
@@ -889,7 +883,7 @@ public:
         label_err_info_Update = new QLabel(page_9);
         label_err_info_Update->setObjectName(QString::fromUtf8("label_err_info_Update"));
         label_err_info_Update->setGeometry(QRect(120, 90, 301, 91));
-        label_err_info_Update->setFont(font5);
+        label_err_info_Update->setFont(font4);
         label_err_info_Update->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_err_info_Update->setWordWrap(true);
         stackedWidget_update->addWidget(page_9);
@@ -1128,7 +1122,7 @@ public:
         label_err_info_Uninstall = new QLabel(page_17);
         label_err_info_Uninstall->setObjectName(QString::fromUtf8("label_err_info_Uninstall"));
         label_err_info_Uninstall->setGeometry(QRect(120, 90, 301, 91));
-        label_err_info_Uninstall->setFont(font5);
+        label_err_info_Uninstall->setFont(font4);
         label_err_info_Uninstall->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop);
         label_err_info_Uninstall->setWordWrap(true);
         stackedWidget_uninstall->addWidget(page_17);
@@ -1149,7 +1143,7 @@ public:
 
         retranslateUi(tianli__tianli_widget);
 
-        stackedWidget_2->setCurrentIndex(2);
+        stackedWidget_2->setCurrentIndex(0);
         stackedWidget_install->setCurrentIndex(0);
         stackedWidget_InstallCustom->setCurrentIndex(0);
         stackedWidget_update->setCurrentIndex(0);

@@ -234,7 +234,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="page_install">
     <widget class="QStackedWidget" name="stackedWidget_install">
@@ -552,18 +552,10 @@ QCheckBox::indicator:checked {
            <height>30</height>
           </rect>
          </property>
-         <property name="font">
-          <font>
-           <family>sans-serif</family>
-           <pointsize>9</pointsize>
-           <bold>false</bold>
-          </font>
-         </property>
          <property name="styleSheet">
           <string notr="true">background-color: rgba(0, 0, 0, 0);
 border-bottom-color: rgb(242, 110, 75);
 border-bottom-color: rgba(0, 0, 0, 0);
-font-family: sans-serif
 </string>
          </property>
          <property name="text">
