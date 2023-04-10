@@ -15,6 +15,7 @@ namespace tianli {
     ~update_widget();
   protected:
     void init() override;
+    void afterInit() override;
     void connectSignal() override;
     void pushButton_Fast();
   };

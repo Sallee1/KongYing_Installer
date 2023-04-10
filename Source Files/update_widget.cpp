@@ -39,6 +39,11 @@ namespace tianli {
     errorExitButton = ui->pushButton_Fail_Close_Updaye;
     errorInfoLabel = ui->label_err_info_Update;
     thread = new InstallThread();     //可以沿用安装线程
+  }
+
+  void update_widget::afterInit()
+  {
+    tianli::tianli_widget_super::afterInit();
 
     //检查快捷方式是否存在
     if (fs::exists(std::format("{0}\\{1}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).toLocal8Bit()), tianli::config::installInfo.desktopShortcut_name)))
@@ -52,7 +57,7 @@ namespace tianli {
     }
 
     std::string path = std::format("{0}\\{1}\\{2}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName);
-    if (fs::exists(std::format("{0}\\{1}\\{2}",std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName)))
+    if (fs::exists(std::format("{0}\\{1}\\{2}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName)))
     {
       startmenuCheckBox->setChecked(true);
       startmenuCheckBox->setEnabled(false);
@@ -72,7 +77,7 @@ namespace tianli {
     connect(this->fastButton, &QPushButton::clicked, this, &update_widget::pushButton_Fast);
 
     connect(customButton, &QPushButton::clicked, [=]() {
-      ui->label_FastUpdate_Documentation->setText(QString::fromLocal8Bit("使用自定义预设方案"));
+      ui->label_FastUpdate_Documentation->setText(QString::fromLocal8Bit("使用自定义方案"));
       });
   }
 

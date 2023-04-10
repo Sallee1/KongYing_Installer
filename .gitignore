@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 package
 outExe
+/Resource Files/Resource/youtube.png
+/Resource Files/Resource/bilibili.png
+*.svg
