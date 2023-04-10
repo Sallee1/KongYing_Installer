@@ -33,6 +33,14 @@ namespace tianli {
     thread = new InstallThread();
   }
 
+  void Install_widget::connectSignal() {
+    tianli_widget_super::connectSignal();
+    connect(customButton, &QPushButton::clicked, [=]() {
+      ui->label_FastInstall->setText(QString::fromLocal8Bit("安装"));
+      ui->label_FastInstall_Documentation->setText(QString::fromLocal8Bit("使用自定义预设方案"));
+    });
+  };
+
   inline Install_widget::~Install_widget() {
     delete thread;
   }

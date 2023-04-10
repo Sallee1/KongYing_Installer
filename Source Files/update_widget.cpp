@@ -70,6 +70,10 @@ namespace tianli {
     
     fastButton->disconnect();
     connect(this->fastButton, &QPushButton::clicked, this, &update_widget::pushButton_Fast);
+
+    connect(customButton, &QPushButton::clicked, [=]() {
+      ui->label_FastUpdate_Documentation->setText(QString::fromLocal8Bit("使用自定义预设方案"));
+      });
   }
 
   void update_widget::pushButton_Fast()      //重写快速安装按钮，从注册表读取路径，并取消路径校验
