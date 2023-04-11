@@ -187,6 +187,10 @@
       <Command>xcopy /sey "$(ProjectDir)release\package\" "$(TargetDir)\package\"
 xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
     </PreBuildEvent>
+    <Link>
+      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+      <UACUIAccess>false</UACUIAccess>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Out2Tmp|x64'">
     <ClCompile>
@@ -203,6 +207,12 @@ xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
       <Command>xcopy /sey "$(ProjectDir)release\package\" "$(TargetDir)\package\"
 xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
     </PreBuildEvent>
+    <Link>
+      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+    </Link>
+    <Link>
+      <UACUIAccess>false</UACUIAccess>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -218,6 +228,12 @@ xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
     <PreBuildEvent>
       <Command>xcopy /y "$(ProjectDir)Misc Files\*" "$(TargetDir)"</Command>
     </PreBuildEvent>
+    <Link>
+      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+    </Link>
+    <Link>
+      <UACUIAccess>false</UACUIAccess>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release_test|x64'">
     <ClCompile>
@@ -234,6 +250,12 @@ xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
       <Command>xcopy /sey "$(ProjectDir)release\package\" "$(TargetDir)\package\"
 xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
     </PreBuildEvent>
+    <Link>
+      <UACExecutionLevel>HighestAvailable</UACExecutionLevel>
+    </Link>
+    <Link>
+      <UACUIAccess>false</UACUIAccess>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
