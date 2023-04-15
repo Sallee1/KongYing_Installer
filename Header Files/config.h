@@ -71,7 +71,8 @@ namespace tianli {
       tianli::config::reginfo.displayIcon = std::string(regInfo_obj.value("displayIcon").toString().toLocal8Bit());
       tianli::config::reginfo.URLInfoAbout = std::string(regInfo_obj.value("URLInfoAbout").toString().toLocal8Bit());
       tianli::config::reginfo.HelpLink = std::string(regInfo_obj.value("HelpLink").toString().toLocal8Bit());
-      tianli::config::reginfo.URLUpdateInfo = regInfo_obj.value("URLUpdateInfo").toInt();
+      tianli::config::reginfo.URLUpdateInfo = std::string(regInfo_obj.value("URLUpdateInfo").toString().toLocal8Bit());
+      tianli::config::reginfo.estimatedSize = regInfo_obj.value("estimatedSize").toInt();
 
       tianli::config::installInfo.defaultInstallPath = std::string(InstallerGlobal_obj.value("defaultInstallPath").toString().toLocal8Bit());
       tianli::config::installInfo.desktopShortcut = InstallerGlobal_obj.value("desktopShortcut").toBool();
