@@ -320,7 +320,9 @@ namespace tianli {
   {
     QProcess process;
     std::string processPath = std::format("\"{0}\\{1}\"", std::string(ui->lineEdit_installPath->text().toLocal8Bit()), config::installInfo.exePath);
-    process.startDetached(QString::fromLocal8Bit(processPath.c_str()));
+    process.setProgram(QString::fromLocal8Bit(processPath.c_str()));
+    process.setWorkingDirectory(QString::fromStdString(std::string(ui->lineEdit_installPath->text().toLocal8Bit())));
+    process.startDetached();
     this->close();
   }
 
