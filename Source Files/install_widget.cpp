@@ -36,8 +36,8 @@ namespace tianli {
   void Install_widget::connectSignal() {
     tianli_widget_super::connectSignal();
     connect(customButton, &QPushButton::clicked, [=]() {
-      ui->label_FastInstall->setText(QString::fromLocal8Bit("安装"));
-      ui->label_FastInstall_Documentation->setText(QString::fromLocal8Bit("使用自定义方案"));
+      ui->label_FastInstall->setText(QString("安装"));
+      ui->label_FastInstall_Documentation->setText(QString("使用自定义方案"));
       });
   };
 

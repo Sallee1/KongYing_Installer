@@ -123,11 +123,11 @@ void InstallThread::createShortCut(std::string exePath, std::string lnkPath)
   hres = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLinkW, (LPVOID*)&pShellLink);
 
   // 设置快捷方式路径和名称
-  std::wstring target = std::format(L"\"{0}\"", QString::fromLocal8Bit(exePath.c_str()).toStdWString());
+  std::wstring target = std::format(L"\"{0}\"", QString::fromStdString(exePath).toStdWString());
   pShellLink->SetPath(target.c_str());
 
   // 获取应用程序所在的文件路径，以此设置快捷方式的起始位置
-  QFileInfo fileInfo(QString::fromLocal8Bit(exePath.c_str()));
+  QFileInfo fileInfo(QString::fromStdString(exePath));
   std::wstring workingDirectory = QDir::toNativeSeparators(fileInfo.absoluteDir().absolutePath()).toStdWString();
   pShellLink->SetWorkingDirectory(workingDirectory.c_str());
 
@@ -166,8 +166,8 @@ inline void InstallThread::cleanCache()
   cloneBat.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
   {
     QTextStream qOut(&cloneBat);
-    qOut << QString::fromLocal8Bit("TIMEOUT /T 3") << endl;
-    qOut << QString::fromLocal8Bit(std::format("move \"{0}\" \"{1}\"", installerLocation.string(), uninstallerLocation.string()).c_str()) << endl;
+    qOut << QString("TIMEOUT /T 3") << endl;
+    qOut << QString::fromStdString(std::format("move \"{0}\" \"{1}\"", installerLocation.string(), uninstallerLocation.string())) << endl;
   }
   cloneBat.close();
   msleep(100); emit this->processPercent(100);
@@ -196,6 +196,6 @@ void InstallThread::run()
   }
   catch (std::exception e)
   {
-    emit this->throwError(QString::fromLocal8Bit(e.what()));
+    emit this->throwError(QString(e.what()));
   }
 }

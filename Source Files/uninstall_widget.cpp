@@ -9,10 +9,10 @@ namespace tianli {
     afterInit();
     ui->stackedWidget_2->setCurrentIndex(2);
     //修改说明文字
-    timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("清理注册表"));
-    timeLineLabelList[1]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除快捷方式"));
-    timeLineLabelList[2]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除程序"));
-    timeLineLabelList[3]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("删除用户数据"));
+    timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString("清理注册表"));
+    timeLineLabelList[1]->findChild<QLabel*>("label_Title")->setText(QString("删除快捷方式"));
+    timeLineLabelList[2]->findChild<QLabel*>("label_Title")->setText(QString("删除程序"));
+    timeLineLabelList[3]->findChild<QLabel*>("label_Title")->setText(QString("删除用户数据"));
   }
 
   uninstall_widget::~uninstall_widget()
@@ -90,16 +90,16 @@ namespace tianli {
     if (activedWidget->currentIndex() == 2)   //卸载成功
     {
       //删除残留文件
-      QFile removeSelfBat(QString::fromLocal8Bit(std::format("{0}\\removeSelf.bat", tianli::config::reginfo.InstallLocation).c_str()));
+      QFile removeSelfBat(QString::fromStdString(std::format("{0}\\removeSelf.bat", tianli::config::reginfo.InstallLocation)));
       removeSelfBat.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
       {
         QTextStream qOut(&removeSelfBat);
-        qOut << QString::fromLocal8Bit(bat::removeSelf.c_str());
+        qOut << QString::fromStdString(bat::removeSelf);
       }
       removeSelfBat.close();
 
       QProcess process;
-      process.startDetached("cmd.exe", QStringList() << "/c" << QString::fromLocal8Bit(std::format("{0}\\removeSelf.bat", tianli::config::reginfo.InstallLocation).c_str()));
+      process.startDetached("cmd.exe", QStringList() << "/c" << QString::fromStdString(std::format("{0}\\removeSelf.bat", tianli::config::reginfo.InstallLocation)));
       return;
     }
   }

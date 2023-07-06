@@ -22,7 +22,7 @@ int main_window(int argc, char* argv[]) {
 
   QApplication a(argc, argv);
 
-  QFont font(QString::fromLocal8Bit("Microsoft YaHei UI"));
+  QFont font(QString("Microsoft YaHei UI"));
   font.setPointSize(9);
   a.setFont(font);
 
@@ -52,7 +52,8 @@ int main_window(int argc, char* argv[]) {
     QJsonParseError err = tianli::config::readconfigFromJson("installer.json");
     if (err.error != QJsonParseError::NoError)
     {
-      QMessageBox::critical(nullptr, QString::fromLocal8Bit("配置文件错误"), QString::fromLocal8Bit(std::format("installer.json存在问题，无法继续安装流程，报错信息如下：\n{0}", std::string(err.errorString().toLocal8Bit())).c_str()));
+      QMessageBox::critical(nullptr, QString::fromStdString("配置文件错误"),
+        QString::fromStdString(std::format("installer.json存在问题，无法继续安装流程，报错信息如下：\n{0}", std::string(err.errorString().toLocal8Bit()))));
       return -1;
     }
   }

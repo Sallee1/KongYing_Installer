@@ -41,8 +41,8 @@ void Uninstall_thread::eraserReg()
 
 void Uninstall_thread::removeShortcut()
 {
-  QString desktopShortcutPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromLocal8Bit(tianli::config::installInfo.desktopShortcut_name.c_str()));
-  QString startMenuFolderPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromLocal8Bit(tianli::config::installInfo.startmenuShortcut_foldername.c_str()));
+  QString desktopShortcutPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.desktopShortcut_name));
+  QString startMenuFolderPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_foldername));
 
   //删除桌面快捷方式
   if (fs::exists(std::string(desktopShortcutPath.toLocal8Bit())))
@@ -130,6 +130,6 @@ void Uninstall_thread::run()
   }
   catch (std::exception e)
   {
-    emit this->throwError(QString::fromLocal8Bit(e.what()));
+    emit this->throwError(QString(e.what()));
   }
 }

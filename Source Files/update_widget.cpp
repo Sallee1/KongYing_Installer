@@ -79,7 +79,7 @@ namespace tianli {
     connect(this->fastButton, &QPushButton::clicked, this, &update_widget::pushButton_Fast);
 
     connect(customButton, &QPushButton::clicked, [=]() {
-      ui->label_FastUpdate_Documentation->setText(QString::fromLocal8Bit("使用自定义方案"));
+      ui->label_FastUpdate_Documentation->setText(QString("使用自定义方案"));
       });
   }
 
@@ -99,7 +99,7 @@ namespace tianli {
       errorInfoLabel->setText("尝试获取安装路径失败，请尝试重新安装。");
     }
 
-    this->pathLineEdit->setText(QString::fromLocal8Bit(installPath.c_str()));
+    this->pathLineEdit->setText(QString::fromStdString(installPath));
     this->activedWidget->setCurrentIndex(1);
     this->beginProcess();
   }

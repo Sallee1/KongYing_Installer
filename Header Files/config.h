@@ -43,7 +43,7 @@ namespace tianli {
   public:
     static QJsonParseError readconfigFromJson(fs::path path)
     {
-      QFile jsonFile(QString::fromLocal8Bit(path.string().c_str()));
+      QFile jsonFile(QString::fromStdString(path.string()));
       QJsonDocument jsonDoc;
       jsonFile.open(QFile::ReadOnly | QFile::Text);
       {
