@@ -14,7 +14,7 @@ namespace tianli {
     init();
     afterInit();
     ui->stackedWidget_2->setCurrentIndex(1);
-    //¶ÁÈ¡×¢²á±í£¬»ñÈ¡°²×°Â·¾¶
+    //è¯»å–æ³¨å†Œè¡¨ï¼ŒèŽ·å–å®‰è£…è·¯å¾„
   }
 
   update_widget::~update_widget()
@@ -38,14 +38,14 @@ namespace tianli {
     finishExitButton = ui->pushButton_Finished_Exit_Update;
     errorExitButton = ui->pushButton_Fail_Close_Updaye;
     errorInfoLabel = ui->label_err_info_Update;
-    thread = new InstallThread();     //¿ÉÒÔÑØÓÃ°²×°Ïß³Ì
+    thread = new InstallThread();     //å¯ä»¥æ²¿ç”¨å®‰è£…çº¿ç¨‹
   }
 
   void update_widget::afterInit()
   {
     tianli::tianli_widget_super::afterInit();
 
-    //¼ì²é¿ì½Ý·½Ê½ÊÇ·ñ´æÔÚ
+    //æ£€æŸ¥å¿«æ·æ–¹å¼æ˜¯å¦å­˜åœ¨
     if (fs::exists(std::format("{0}\\{1}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).toLocal8Bit()), tianli::config::installInfo.desktopShortcut_name)))
     {
       desktopCheckBox->setChecked(true);
@@ -66,7 +66,7 @@ namespace tianli {
     {
       desktopCheckBox->setChecked(false);
     }
-    //ÉèÖÃ°ïÖúÐÅÏ¢
+    //è®¾ç½®å¸®åŠ©ä¿¡æ¯
     ui->gridLayout_externLink->setParent(this->activedWidget->widget(2));
   }
 
@@ -79,11 +79,11 @@ namespace tianli {
     connect(this->fastButton, &QPushButton::clicked, this, &update_widget::pushButton_Fast);
 
     connect(customButton, &QPushButton::clicked, [=]() {
-      ui->label_FastUpdate_Documentation->setText(QString::fromLocal8Bit("Ê¹ÓÃ×Ô¶¨Òå·½°¸"));
+      ui->label_FastUpdate_Documentation->setText(QString::fromLocal8Bit("ä½¿ç”¨è‡ªå®šä¹‰æ–¹æ¡ˆ"));
       });
   }
 
-  void update_widget::pushButton_Fast()      //ÖØÐ´¿ìËÙ°²×°°´Å¥£¬´Ó×¢²á±í¶ÁÈ¡Â·¾¶£¬²¢È¡ÏûÂ·¾¶Ð£Ñé
+  void update_widget::pushButton_Fast()      //é‡å†™å¿«é€Ÿå®‰è£…æŒ‰é’®ï¼Œä»Žæ³¨å†Œè¡¨è¯»å–è·¯å¾„ï¼Œå¹¶å–æ¶ˆè·¯å¾„æ ¡éªŒ
   { 
     string installPath = "";
 
@@ -96,7 +96,7 @@ namespace tianli {
     if (!isSuccess)
     {
       activedWidget->setCurrentIndex(3);
-      errorInfoLabel->setText("³¢ÊÔ»ñÈ¡°²×°Â·¾¶Ê§°Ü£¬Çë³¢ÊÔÖØÐÂ°²×°¡£");
+      errorInfoLabel->setText("å°è¯•èŽ·å–å®‰è£…è·¯å¾„å¤±è´¥ï¼Œè¯·å°è¯•é‡æ–°å®‰è£…ã€‚");
     }
 
     this->pathLineEdit->setText(QString::fromLocal8Bit(installPath.c_str()));

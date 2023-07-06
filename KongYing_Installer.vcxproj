@@ -221,6 +221,7 @@ xcopy /y "$(ProjectDir)Misc Files\installer.json" "$(TargetDir)"</Command>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <QtUic>
       <QtUicDir>$(projectDir)Header Files\ui</QtUicDir>

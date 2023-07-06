@@ -8,29 +8,29 @@ void Uninstall_thread::readReg()
   bool isSuccess;
   std::string installPath;
   std::string userDataPath;
-  isSuccess=tianliUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
+  isSuccess = tianliUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
     std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
     "InstallLocation",
     installPath);
-  if (!isSuccess) throw std::exception("readReg: ¶ÁÈ¡InstallLocationÊ§°Ü£¬×¢²áÐÅÏ¢¿ÉÄÜÒÑ¾­Ëð»µ");
+  if (!isSuccess) throw std::exception("readReg: è¯»å–InstallLocationå¤±è´¥ï¼Œæ³¨å†Œä¿¡æ¯å¯èƒ½å·²ç»æŸå");
 
   isSuccess = tianliUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
     std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
     "UserDataLocation",
     userDataPath);
-  if (!isSuccess) throw std::exception("readReg: ¶ÁÈ¡UserDataLocationÊ§°Ü£¬×¢²áÐÅÏ¢¿ÉÄÜÒÑ¾­Ëð»µ");
+  if (!isSuccess) throw std::exception("readReg: è¯»å–UserDataLocationå¤±è´¥ï¼Œæ³¨å†Œä¿¡æ¯å¯èƒ½å·²ç»æŸå");
 
   int EstimatedSize;
   isSuccess = tianliUtils::getRegValue_DWORD(HKEY_LOCAL_MACHINE,
     std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
     "EstimatedSize",
     EstimatedSize);
-  if (!isSuccess) throw std::exception("readReg: ¶ÁÈ¡EstimatedSizeÊ§°Ü£¬×¢²áÐÅÏ¢¿ÉÄÜÒÑ¾­Ëð»µ");
+  if (!isSuccess) throw std::exception("readReg: è¯»å–EstimatedSizeå¤±è´¥ï¼Œæ³¨å†Œä¿¡æ¯å¯èƒ½å·²ç»æŸå");
 
   tianli::config::reginfo.InstallLocation = installPath;
   tianli::config::reginfo.UserDataLocation = userDataPath;
   tianli::config::reginfo.uninstallString = std::string(QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toLocal8Bit());
-  
+
 }
 
 void Uninstall_thread::eraserReg()
@@ -44,16 +44,16 @@ void Uninstall_thread::removeShortcut()
   QString desktopShortcutPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromLocal8Bit(tianli::config::installInfo.desktopShortcut_name.c_str()));
   QString startMenuFolderPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromLocal8Bit(tianli::config::installInfo.startmenuShortcut_foldername.c_str()));
 
-  //É¾³ý×ÀÃæ¿ì½Ý·½Ê½
+  //åˆ é™¤æ¡Œé¢å¿«æ·æ–¹å¼
   if (fs::exists(std::string(desktopShortcutPath.toLocal8Bit())))
     fs::remove(std::string(desktopShortcutPath.toLocal8Bit()));
   msleep(100); emit this->processPercent(25);
 
-  //É¾³ý¿ªÊ¼²Ëµ¥¿ì½Ý·½Ê½
+  //åˆ é™¤å¼€å§‹èœå•å¿«æ·æ–¹å¼
   std::error_code ec;
   uintmax_t removed_count = 0;
   if (fs::exists(std::string(startMenuFolderPath.toLocal8Bit())))
-    fs::_Remove_all_dir(std::string(startMenuFolderPath.toLocal8Bit()),ec,removed_count);
+    fs::_Remove_all_dir(std::string(startMenuFolderPath.toLocal8Bit()), ec, removed_count);
   msleep(100); emit this->processPercent(100);
 }
 
@@ -73,7 +73,7 @@ void Uninstall_thread::removeTree(fs::path rmPath)
 {
   if (fs::is_regular_file(rmPath))
   {
-    if (rmPath == fs::path(tianli::config::reginfo.uninstallString))    //ÅÅ³ý×Ô¼ºÒÔÃâÉ¾³ýÊ§°Ü
+    if (rmPath == fs::path(tianli::config::reginfo.uninstallString))    //æŽ’é™¤è‡ªå·±ä»¥å…åˆ é™¤å¤±è´¥
       return;
     this->totalSize += fs::file_size(rmPath) / 1024;
     emit this->processPercent(min(this->totalSize / static_cast<float>(tianli::config::reginfo.estimatedSize), 1) * 100);

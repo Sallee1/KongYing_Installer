@@ -26,7 +26,7 @@ namespace tianli {
     
 
   signals:
-    void setUninstallConfig(bool); //³õÊ¼»¯Ğ¶ÔØÏß³Ì
+    void setUninstallConfig(bool); //åˆå§‹åŒ–å¸è½½çº¿ç¨‹
   };
 
 } // tianli

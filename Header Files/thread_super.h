@@ -1,5 +1,5 @@
 #pragma once
-#include <pch.h>
+#include <pch.h> 
 
 class Thread_super :public QThread
 {
@@ -22,7 +22,7 @@ signals:
   void throwError(QString error);
 
 protected:
-  uintmax_t totalSize = 0;  //ÓÃÀ´¼ÆËã½ø¶ÈÌõ
+  uintmax_t totalSize = 0;  //ç”¨æ¥è®¡ç®—è¿›åº¦æ¡
   std::string installPathStr;
   bool desktopShortcut;
   bool startMenuShortcut;

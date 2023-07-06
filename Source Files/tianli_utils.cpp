@@ -9,19 +9,19 @@ namespace tianliUtils {
   {
     if (pathStr == "")return false;
     fs::path folderPath = std::string(pathStr.toLocal8Bit());
-    //ÎÄ¼ş¼Ğ²»´æÔÚ£¬Â·¾¶ÓĞĞ§
+    //æ–‡ä»¶å¤¹ä¸å­˜åœ¨ï¼Œè·¯å¾„æœ‰æ•ˆ
     if (!fs::exists(folderPath))
     {
       outPathStr = pathStr;
       return true;
     }
-    //ÎÄ¼ş¼ĞÎª¿Õ£¬ÔòÉè¶¨ÎªÓĞĞ§Â·¾¶
+    //æ–‡ä»¶å¤¹ä¸ºç©ºï¼Œåˆ™è®¾å®šä¸ºæœ‰æ•ˆè·¯å¾„
     if (fs::directory_iterator(folderPath) == fs::directory_iterator())
     {
       outPathStr = pathStr;
       return true;
     }
-    //·Ç¿Õ£¬¸²¸Ç°²×°¼ì²â
+    //éç©ºï¼Œè¦†ç›–å®‰è£…æ£€æµ‹
     bool isOverWrite = true;
     for (std::string fileName : tianli::config::installInfo.existFileName)
     {
@@ -37,7 +37,7 @@ namespace tianliUtils {
       return true;
     }
 
-    //·ñÔò£¬·Åµ½×ÓÎÄ¼ş¼Ğ²¢¼ì²â£¬Èç¹ûÂ·¾¶´æÔÚ£¬²¢ÇÒ·Ç¿Õ£¬²¢ÇÒÃ»ÓĞÍ¨¹ı¸²¸Ç¼ì²â£¬ÔòÎŞĞ§
+    //å¦åˆ™ï¼Œæ”¾åˆ°å­æ–‡ä»¶å¤¹å¹¶æ£€æµ‹ï¼Œå¦‚æœè·¯å¾„å­˜åœ¨ï¼Œå¹¶ä¸”éç©ºï¼Œå¹¶ä¸”æ²¡æœ‰é€šè¿‡è¦†ç›–æ£€æµ‹ï¼Œåˆ™æ— æ•ˆ
     outPathStr = pathStr + "\\KongYingMap";
     folderPath = std::string(outPathStr.toLocal8Bit());
     if (fs::exists(folderPath) && fs::directory_iterator(folderPath) != fs::directory_iterator())
@@ -55,12 +55,12 @@ namespace tianliUtils {
   }
 
   void setFont(const QString& fontPath, QWidget* widget, bool isBold) {
-    // ¼ÓÔØ×ÖÌåÎÄ¼ş
+    // åŠ è½½å­—ä½“æ–‡ä»¶
     int id = QFontDatabase::addApplicationFont(fontPath);
     if (id != -1) {
-      // »ñÈ¡×ÖÌå¼Ò×å
+      // è·å–å­—ä½“å®¶æ—
       QString family = QFontDatabase::applicationFontFamilies(id).at(0);
-      // ÉèÖÃ×ÖÌå
+      // è®¾ç½®å­—ä½“
       QFont font(family);
       if (isBold)
         font.setBold(true);
@@ -77,7 +77,7 @@ namespace tianliUtils {
     RegDeleteKey(HKEY_LOCAL_MACHINE, std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str());
   }
 
-  bool getRegValue_REG_SZ(HKEY root,std::string Item, std::string Key, std::string& ret, int maxLength)
+  bool getRegValue_REG_SZ(HKEY root, std::string Item, std::string Key, std::string& ret, int maxLength)
   {
     HKEY hKey;
     long lRes = RegOpenKeyEx(root, Item.c_str(), 0, KEY_READ, &hKey);
@@ -131,11 +131,11 @@ namespace tianliUtils {
 
   std::string envPath2AbsolutePath(std::string envPath)
   {
-    char expanded_path[4096]; 
+    char expanded_path[4096];
 
     DWORD result = ExpandEnvironmentStrings(envPath.c_str(), expanded_path, MAX_PATH);
-    if (result == 0) throw std::exception("ExpandEnvironmentStrings:Â·¾¶ÖĞ°üº¬²»ºÏ·¨µÄ»·¾³±äÁ¿");
-    
+    if (result == 0) throw std::exception("ExpandEnvironmentStrings:è·¯å¾„ä¸­åŒ…å«ä¸åˆæ³•çš„ç¯å¢ƒå˜é‡");
+
     return std::string(expanded_path);
   }
 };

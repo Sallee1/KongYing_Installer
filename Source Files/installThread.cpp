@@ -15,7 +15,7 @@ inline void InstallThread::copyTrees(fs::path inPath, fs::path outPath)
   {
     this->totalSize += fs::file_size(inPath) / 1024;
     emit this->processPercent(min(this->totalSize / static_cast<float>(tianli::config::reginfo.estimatedSize), 1) * 100);
-    fs::remove(outPath);  //ÒÔ·ÀÍòÒ»£¬ÏÈÉ¾ÔÙ¸´ÖÆ
+    fs::remove(outPath);  //ä»¥é˜²ä¸‡ä¸€ï¼Œå…ˆåˆ å†å¤åˆ¶
     fs::copy_file(inPath, outPath, fs::copy_options::overwrite_existing);
   }
   else
@@ -33,12 +33,12 @@ inline void InstallThread::copyTrees(fs::path inPath, fs::path outPath)
 }
 
 
-//µÚ¶þ²½£¬Ð´Èë×¢²á±í
+//ç¬¬äºŒæ­¥ï¼Œå†™å…¥æ³¨å†Œè¡¨
 inline void InstallThread::writeReg()
 {
   HKEY key;
   tianli::config::reginfo.InstallLocation = this->installPathStr;
-  //´´½¨ HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall ÏÂµÄ×ÓÏî
+  //åˆ›å»º HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall ä¸‹çš„å­é¡¹
   if (RegCreateKeyEx(HKEY_LOCAL_MACHINE, std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str(),
     0, NULL, REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &key, NULL) == ERROR_SUCCESS)
     this->createUninstallInfoReg(key);
@@ -47,7 +47,7 @@ inline void InstallThread::writeReg()
 inline void InstallThread::createUninstallInfoReg(HKEY& key) {
 
   {
-    // Ìí¼ÓÖµ
+    // æ·»åŠ å€¼
     RegSetValueEx(key, "DisplayName", 0, REG_SZ, (BYTE*)tianli::config::reginfo.displayName.c_str(), tianli::config::reginfo.displayName.length() * 2 + 2);
     msleep(100); emit this->processPercent(10);
 
@@ -86,21 +86,21 @@ inline void InstallThread::createUninstallInfoReg(HKEY& key) {
   }
 }
 
-//µÚÈý²½£¬´´½¨¿ªÊ¼²Ëµ¥ºÍ×ÀÃæ¿ì½Ý·½Ê½
+//ç¬¬ä¸‰æ­¥ï¼Œåˆ›å»ºå¼€å§‹èœå•å’Œæ¡Œé¢å¿«æ·æ–¹å¼
 inline void InstallThread::addShortCut()
 {
-  //ÎÄ¼þÂ·¾¶
+  //æ–‡ä»¶è·¯å¾„
   std::string exePath = std::format("{0}\\{1}", this->installPathStr, tianli::config::installInfo.exePath);
   std::string uninstallExePath = std::format("{0}\\{1}", this->installPathStr, tianli::config::reginfo.uninstallString);
   std::string desktopShortcutPath = std::format("{0}\\{1}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).toLocal8Bit()), tianli::config::installInfo.desktopShortcut_name);
   std::string startMenuFolderPath = std::format("{0}\\{1}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername);
   std::string startMenuShortcutPath = std::format("{0}\\{1}", startMenuFolderPath, tianli::config::installInfo.startmenuShortcut_programName);
   std::string startMenuUninstallShortcutPath = std::format("{0}\\{1}", startMenuFolderPath, tianli::config::installInfo.startmenuShortcut_uninstallName);
-  //´´½¨×ÀÃæ¿ì½Ý·½Ê½
+  //åˆ›å»ºæ¡Œé¢å¿«æ·æ–¹å¼
   if (this->desktopShortcut)
-      createShortCut(exePath, desktopShortcutPath);
+    createShortCut(exePath, desktopShortcutPath);
   msleep(100); emit this->processPercent(25);
-  // ´´½¨¿ªÊ¼²Ëµ¥ÎÄ¼þ¼Ð£¬°üº¬Ð¶ÔØÏòµ¼µÄ¿ì½Ý·½Ê½
+  // åˆ›å»ºå¼€å§‹èœå•æ–‡ä»¶å¤¹ï¼ŒåŒ…å«å¸è½½å‘å¯¼çš„å¿«æ·æ–¹å¼
   if (this->startMenuShortcut)
   {
     if (!fs::exists(startMenuShortcutPath))
@@ -118,48 +118,48 @@ void InstallThread::createShortCut(std::string exePath, std::string lnkPath)
   HRESULT hres;
   CoInitialize(NULL);
 
-  // ´´½¨IShellLink¶ÔÏó
+  // åˆ›å»ºIShellLinkå¯¹è±¡
   IShellLinkW* pShellLink = NULL;
   hres = CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER, IID_IShellLinkW, (LPVOID*)&pShellLink);
 
-  // ÉèÖÃ¿ì½Ý·½Ê½Â·¾¶ºÍÃû³Æ
+  // è®¾ç½®å¿«æ·æ–¹å¼è·¯å¾„å’Œåç§°
   std::wstring target = std::format(L"\"{0}\"", QString::fromLocal8Bit(exePath.c_str()).toStdWString());
   pShellLink->SetPath(target.c_str());
 
-  // »ñÈ¡Ó¦ÓÃ³ÌÐòËùÔÚµÄÎÄ¼þÂ·¾¶£¬ÒÔ´ËÉèÖÃ¿ì½Ý·½Ê½µÄÆðÊ¼Î»ÖÃ
+  // èŽ·å–åº”ç”¨ç¨‹åºæ‰€åœ¨çš„æ–‡ä»¶è·¯å¾„ï¼Œä»¥æ­¤è®¾ç½®å¿«æ·æ–¹å¼çš„èµ·å§‹ä½ç½®
   QFileInfo fileInfo(QString::fromLocal8Bit(exePath.c_str()));
-  std::wstring workingDirectory =  QDir::toNativeSeparators(fileInfo.absoluteDir().absolutePath()).toStdWString();
+  std::wstring workingDirectory = QDir::toNativeSeparators(fileInfo.absoluteDir().absolutePath()).toStdWString();
   pShellLink->SetWorkingDirectory(workingDirectory.c_str());
 
-  // ´´½¨IPersistFile¶ÔÏó
+  // åˆ›å»ºIPersistFileå¯¹è±¡
   IPersistFile* pPersistFile = NULL;
   hres = pShellLink->QueryInterface(IID_IPersistFile, (LPVOID*)&pPersistFile);
 
-  // ±£´æ¿ì½Ý·½Ê½
+  // ä¿å­˜å¿«æ·æ–¹å¼
   wchar_t* lnkPath_wchr = new wchar_t[strlen(lnkPath.c_str()) + 1];
   memset(lnkPath_wchr, 0, (strlen(lnkPath.c_str()) + 1) * sizeof(wchar_t));
   MultiByteToWideChar(CP_ACP, MB_ERR_INVALID_CHARS, lnkPath.c_str(), -1, lnkPath_wchr, strlen(lnkPath.c_str()) + 1);
   hres = pPersistFile->Save(lnkPath_wchr, TRUE);
 
-  // ÊÍ·Å¶ÔÏó
+  // é‡Šæ”¾å¯¹è±¡
   pPersistFile->Release();
   pShellLink->Release();
   CoUninitialize();
   delete[] lnkPath_wchr;
 }
 
-//µÚËÄ²½£¬»ØÊÕ²ÐÁôÎÄ¼þ
+//ç¬¬å››æ­¥ï¼Œå›žæ”¶æ®‹ç•™æ–‡ä»¶
 inline void InstallThread::cleanCache()
 {
   std::error_code ec;
   uintmax_t removed_count = 0;
-  //fs::_Remove_all_dir("./package",ec,removed_count); //ÄÜÓÃ
+  //fs::_Remove_all_dir("./package",ec,removed_count); //èƒ½ç”¨
   msleep(100); emit this->processPercent(75);
 
-  //´´½¨Ò»¸öbat£¬ÓÃÀ´½«°²×°Ð¶ÔØ¶þºÏÒ»Ïòµ¼¸´ÖÆµ½°²×°Ä¿Â¼
-  //×Ô¼ºÎÞ·¨¸´ÖÆ×Ô¼º£¡£¡£¡Ö»ÄÜÔÚÖ´ÐÐºóÓÃbat¸´ÖÆ
+  //åˆ›å»ºä¸€ä¸ªbatï¼Œç”¨æ¥å°†å®‰è£…å¸è½½äºŒåˆä¸€å‘å¯¼å¤åˆ¶åˆ°å®‰è£…ç›®å½•
+  //è‡ªå·±æ— æ³•å¤åˆ¶è‡ªå·±ï¼ï¼ï¼åªèƒ½åœ¨æ‰§è¡ŒåŽç”¨batå¤åˆ¶
   fs::path installerLocation = std::string(QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toLocal8Bit());
-  fs::path uninstallerLocation = std::format("{0}\\{1}",this->installPathStr, tianli::config::reginfo.uninstallString);
+  fs::path uninstallerLocation = std::format("{0}\\{1}", this->installPathStr, tianli::config::reginfo.uninstallString);
 
 
   QFile cloneBat("cloneInstaller.bat");

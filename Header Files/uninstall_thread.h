@@ -13,17 +13,17 @@ public:
 private:
   uintmax_t totalSize = 0;
   bool userData = false;
-  //µÚÁã²½£¬¶ÁÈ¡×¢²á±í
+  //ç¬¬é›¶æ­¥ï¼Œè¯»å–æ³¨å†Œè¡¨
   void readReg();
-  //µÚÒ»²½£¬Çå¿Õ×¢²á±í
+  //ç¬¬ä¸€æ­¥ï¼Œæ¸…ç©ºæ³¨å†Œè¡¨
   void eraserReg();
-  //µÚ¶ş²½£¬É¾³ı¿ì½İ·½Ê½
+  //ç¬¬äºŒæ­¥ï¼Œåˆ é™¤å¿«æ·æ–¹å¼
   void removeShortcut();
-  //µÚÈı²½£¬É¾³ıÎÄ¼ş
+  //ç¬¬ä¸‰æ­¥ï¼Œåˆ é™¤æ–‡ä»¶
   void removeProgram();
   void removeTree(fs::path path);
 
-  //µÚËÄ²½£¬É¾³ıÓÃ»§Êı¾İ
+  //ç¬¬å››æ­¥ï¼Œåˆ é™¤ç”¨æˆ·æ•°æ®
   void removeUserData();
 
 public slots:

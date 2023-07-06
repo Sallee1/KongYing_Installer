@@ -4,13 +4,13 @@
 
 #include "pch.h"
 #include "install_widget.h"
-#include "tianli_utils.h"
+#include "tianli_utils.h" 
 #include "config.h"
 
 namespace tianli {
   Install_widget::Install_widget(QWidget* parent) : tianli_widget_super(parent) {
     init();
-    afterInit();    
+    afterInit();
     ui->stackedWidget_2->setCurrentIndex(0);
 
   }
@@ -36,9 +36,9 @@ namespace tianli {
   void Install_widget::connectSignal() {
     tianli_widget_super::connectSignal();
     connect(customButton, &QPushButton::clicked, [=]() {
-      ui->label_FastInstall->setText(QString::fromLocal8Bit("°²×°"));
-      ui->label_FastInstall_Documentation->setText(QString::fromLocal8Bit("Ê¹ÓÃ×Ô¶¨Òå·½°¸"));
-    });
+      ui->label_FastInstall->setText(QString::fromLocal8Bit("å®‰è£…"));
+      ui->label_FastInstall_Documentation->setText(QString::fromLocal8Bit("ä½¿ç”¨è‡ªå®šä¹‰æ–¹æ¡ˆ"));
+      });
   };
 
   inline Install_widget::~Install_widget() {

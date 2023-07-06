@@ -33,17 +33,17 @@ namespace tianli {
     private:
         QTimer *timer;
     private:
-        // Ò»Ğ©²ÎÊı ÊôĞÔ
+        // ä¸€äº›å‚æ•° å±æ€§
 
-        // ÊÇ·ñ±»Ñ¡ÖĞ
+        // æ˜¯å¦è¢«é€‰ä¸­
         bool m_isChecked = false;
-        // ÊÇ·ñ¼¤»î
+        // æ˜¯å¦æ¿€æ´»
         bool m_isAction = false;
-        // ÊÇ·ñÊÇµÚÒ»¸ö
+        // æ˜¯å¦æ˜¯ç¬¬ä¸€ä¸ª
         bool m_isBegin = false;
-        // ÊÇ·ñÊÇ×îºóÒ»¸ö
+        // æ˜¯å¦æ˜¯æœ€åä¸€ä¸ª
         bool m_isEnd = false;
-        // ½Ç¶È
+        // è§’åº¦
         int alpha = 0;
     public:
         void setAction(bool value);
@@ -57,7 +57,7 @@ namespace tianli {
     signals:
         void checkChange();
     private:
-        // Ò»Ğ©²ÎÊı »æÍ¼ÓÃ
+        // ä¸€äº›å‚æ•° ç»˜å›¾ç”¨
         float m_c_Width = 21;
         float m_c_Height = 31;
         float m_c_MiniD = 7;

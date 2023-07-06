@@ -1,5 +1,5 @@
 #pragma once
-#include <pch.h>
+#include <pch.h> 
 #include "thread_super.h"
 
 namespace fs = std::filesystem;
@@ -16,16 +16,16 @@ public:
 
 private:
   uintmax_t totalSize = 0;
-  //µÚÒ»²½£¬ÒÆ¶¯ÎÄ¼ş
+  //ç¬¬ä¸€æ­¥ï¼Œç§»åŠ¨æ–‡ä»¶
   void copyFiles();
   void copyTrees(fs::path inPath, fs::path outPath);
-  //µÚ¶ş²½£¬Ğ´Èë×¢²á±í
+  //ç¬¬äºŒæ­¥ï¼Œå†™å…¥æ³¨å†Œè¡¨
   void writeReg();
-  void createUninstallInfoReg(HKEY &key);
-  //µÚÈı²½£¬´´½¨¿ªÊ¼²Ëµ¥ºÍ×ÀÃæ¿ì½İ·½Ê½
+  void createUninstallInfoReg(HKEY& key);
+  //ç¬¬ä¸‰æ­¥ï¼Œåˆ›å»ºå¼€å§‹èœå•å’Œæ¡Œé¢å¿«æ·æ–¹å¼
   void addShortCut();
   void createShortCut(std::string exePath, std::string lnkPath);
-  //µÚËÄ²½£¬»ØÊÕ²ĞÁôÎÄ¼ş
+  //ç¬¬å››æ­¥ï¼Œå›æ”¶æ®‹ç•™æ–‡ä»¶
   void cleanCache();
 
 private:

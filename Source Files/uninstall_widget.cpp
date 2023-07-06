@@ -8,11 +8,11 @@ namespace tianli {
     init();
     afterInit();
     ui->stackedWidget_2->setCurrentIndex(2);
-    //ĞŞ¸ÄËµÃ÷ÎÄ×Ö
-    timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("ÇåÀí×¢²á±í"));
-    timeLineLabelList[1]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("É¾³ı¿ì½İ·½Ê½"));
-    timeLineLabelList[2]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("É¾³ı³ÌĞò"));
-    timeLineLabelList[3]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("É¾³ıÓÃ»§Êı¾İ"));
+    //ä¿®æ”¹è¯´æ˜æ–‡å­—
+    timeLineLabelList[0]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("æ¸…ç†æ³¨å†Œè¡¨"));
+    timeLineLabelList[1]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("åˆ é™¤å¿«æ·æ–¹å¼"));
+    timeLineLabelList[2]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("åˆ é™¤ç¨‹åº"));
+    timeLineLabelList[3]->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("åˆ é™¤ç”¨æˆ·æ•°æ®"));
   }
 
   uninstall_widget::~uninstall_widget()
@@ -36,9 +36,9 @@ namespace tianli {
     finishExitButton = ui->pushButton_Finished_Exit_Uninstall;
     errorExitButton = ui->pushButton_Fail_Close_Uninstall;
     errorInfoLabel = ui->label_err_info_Uninstall;
-    thread = new Uninstall_thread();     //ÖØĞ´µÄĞ¶ÔØÏß³Ì
+    thread = new Uninstall_thread();     //é‡å†™çš„å¸è½½çº¿ç¨‹
 
-    //Ğ¶ÔØµÄËµÃ÷ÎÄ¼ş
+    //å¸è½½çš„è¯´æ˜æ–‡ä»¶
     ui->label_Uninstall_ReadMe->setHidden(true);
   }
 
@@ -70,7 +70,7 @@ namespace tianli {
     if (!isSuccess)
     {
       activedWidget->setCurrentIndex(3);
-      errorInfoLabel->setText("³¢ÊÔ»ñÈ¡°²×°Â·¾¶Ê§°Ü£¬ÇëÊÖ¶¯É¾³ıÎÄ¼ş");
+      errorInfoLabel->setText("å°è¯•è·å–å®‰è£…è·¯å¾„å¤±è´¥ï¼Œè¯·æ‰‹åŠ¨åˆ é™¤æ–‡ä»¶");
     }
     else
     {
@@ -83,13 +83,13 @@ namespace tianli {
 
   void uninstall_widget::afterClose()
   {
-    if (activedWidget->currentIndex() == 3)  //Ğ¶ÔØÊ§°Ü
+    if (activedWidget->currentIndex() == 3)  //å¸è½½å¤±è´¥
     {
       tianliUtils::cleanUninstallReg();
     }
-    if (activedWidget->currentIndex() == 2)   //Ğ¶ÔØ³É¹¦
+    if (activedWidget->currentIndex() == 2)   //å¸è½½æˆåŠŸ
     {
-      //É¾³ı²ĞÁôÎÄ¼ş
+      //åˆ é™¤æ®‹ç•™æ–‡ä»¶
       QFile removeSelfBat(QString::fromLocal8Bit(std::format("{0}\\removeSelf.bat", tianli::config::reginfo.InstallLocation).c_str()));
       removeSelfBat.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
       {

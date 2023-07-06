@@ -1,6 +1,6 @@
 #pragma once
 //
-// Created by Sallee on 2023/4/4.
+// Created by Sallee on 2023/4/4. 
 //
 
 #include "pch.h"
@@ -12,12 +12,12 @@
 
 class QGraphicsDropShadowEffect;
 class QPropertyAnimation;
-namespace tianli{
+namespace tianli {
   QT_BEGIN_NAMESPACE
     namespace Ui { class tianli_widget; }
   QT_END_NAMESPACE
 
-  class tianli_widget_super:public QWidget
+    class tianli_widget_super :public QWidget
   {
     Q_OBJECT
   public:
@@ -26,8 +26,8 @@ namespace tianli{
 
   protected:
     Ui::tianli_widget* ui;
-  
-  //¶¯»­×é¼ş
+
+    //åŠ¨ç”»ç»„ä»¶
   private:
     QGraphicsDropShadowEffect* mainShadow_A;
     QGraphicsDropShadowEffect* mainShadow_B;
@@ -36,7 +36,7 @@ namespace tianli{
     QPropertyAnimation* exitAnimation;
     QPropertyAnimation* exitAnimation_hide;
 
-  //ÊÂ¼ş×é¼ş
+    //äº‹ä»¶ç»„ä»¶
   protected:
     QPoint m_Press;
     QPoint m_Move;
@@ -47,66 +47,66 @@ namespace tianli{
     void closeEvent(QCloseEvent* event) Q_DECL_OVERRIDE;
     bool eventFilter(QObject* object, QEvent* event) Q_DECL_OVERRIDE;
 
-  //×ÓÀàĞèÒª×°ÅäµÄ½çÃæÖ¸Õë
+    //å­ç±»éœ€è¦è£…é…çš„ç•Œé¢æŒ‡é’ˆ
   protected:
-    QStackedWidget* activedWidget;    //»î¶¯µÄÁ÷³ÌÒ³Ãæ
-    QPushButton* fastButton;          //µÚÒ»Ò³£¬¿ìËÙ²Ù×÷°´Å¥
-    QPushButton* customButton;        //µÚÒ»Ò³£¬×Ô¶¨Òå°´Å¥
-    QStackedWidget* customStackedWidget;  //µÚÒ»Ò³£¬×Ô¶¨Òå°´Å¥ÇĞ»»·­Ò³
-    QPushButton* previewButton;       //µÚÒ»Ò³£¬Ô¤ÀÀ°´Å¥
-    QLineEdit* pathLineEdit;          //µÚÒ»Ò³£¬Â·¾¶À¸
-    QCheckBox* desktopCheckBox;       //µÚÒ»Ò³£¬×ÀÃæ¿ì½İ·½Ê½Ñ¡¿ò
-    QCheckBox* startmenuCheckBox;     //µÚÒ»Ò³£¬¿ªÊ¼²Ëµ¥¿ì½İ·½Ê½Ñ¡¿ò
-    QCheckBox* removeUserDataCheckBox;//µÚÒ»Ò³£¬É¾³ıÓÃ»§Êı¾İµÄÑ¡¿ò
-    QPushButton* cancelButton;        //µÚ¶şÒ³£¬È¡Ïû°´Å¥
-    QPushButton* startProgramButton;  //µÚÈıÒ³£¬Æô¶¯Èí¼ş°´Å¥
-    QPushButton* finishExitButton;    //µÚÈıÒ³£¬¹Ø±Õ°´Å¥
-    QPushButton* errorExitButton;     //µÚËÄÒ³£¬´íÎó¹Ø±Õ°´Å¥
-    QLabel* errorInfoLabel;           //µÚËÄÒ³£¬±¨´íĞÅÏ¢
+    QStackedWidget* activedWidget;    //æ´»åŠ¨çš„æµç¨‹é¡µé¢
+    QPushButton* fastButton;          //ç¬¬ä¸€é¡µï¼Œå¿«é€Ÿæ“ä½œæŒ‰é’®
+    QPushButton* customButton;        //ç¬¬ä¸€é¡µï¼Œè‡ªå®šä¹‰æŒ‰é’®
+    QStackedWidget* customStackedWidget;  //ç¬¬ä¸€é¡µï¼Œè‡ªå®šä¹‰æŒ‰é’®åˆ‡æ¢ç¿»é¡µ
+    QPushButton* previewButton;       //ç¬¬ä¸€é¡µï¼Œé¢„è§ˆæŒ‰é’®
+    QLineEdit* pathLineEdit;          //ç¬¬ä¸€é¡µï¼Œè·¯å¾„æ 
+    QCheckBox* desktopCheckBox;       //ç¬¬ä¸€é¡µï¼Œæ¡Œé¢å¿«æ·æ–¹å¼é€‰æ¡†
+    QCheckBox* startmenuCheckBox;     //ç¬¬ä¸€é¡µï¼Œå¼€å§‹èœå•å¿«æ·æ–¹å¼é€‰æ¡†
+    QCheckBox* removeUserDataCheckBox;//ç¬¬ä¸€é¡µï¼Œåˆ é™¤ç”¨æˆ·æ•°æ®çš„é€‰æ¡†
+    QPushButton* cancelButton;        //ç¬¬äºŒé¡µï¼Œå–æ¶ˆæŒ‰é’®
+    QPushButton* startProgramButton;  //ç¬¬ä¸‰é¡µï¼Œå¯åŠ¨è½¯ä»¶æŒ‰é’®
+    QPushButton* finishExitButton;    //ç¬¬ä¸‰é¡µï¼Œå…³é—­æŒ‰é’®
+    QPushButton* errorExitButton;     //ç¬¬å››é¡µï¼Œé”™è¯¯å…³é—­æŒ‰é’®
+    QLabel* errorInfoLabel;           //ç¬¬å››é¡µï¼ŒæŠ¥é”™ä¿¡æ¯
 
-  //¿ÉÖØĞ´µÄ·½·¨
+    //å¯é‡å†™çš„æ–¹æ³•
   public:
-    void virtual init() = 0;         //³õÊ¼»¯£¬ĞèÒª×ÓÀàÖ´ĞĞ³õÊ¼»¯µÄĞÅºÅ
+    void virtual init() = 0;         //åˆå§‹åŒ–ï¼Œéœ€è¦å­ç±»æ‰§è¡Œåˆå§‹åŒ–çš„ä¿¡å·
     void virtual afterInit();
-    void virtual initTimeLine();     //³õÊ¼»¯½ø¶ÈÌõ
-    void virtual beginProcess();     //Ïß³Ì¿ªÊ¼Ç°µÄ×¼±¸¹¤×÷
-    void virtual connectSignal();    //×°ÅäĞÅºÅ£¬ÒòÎª²Ûº¯Êı²»ÄÜÖØĞ´£¬ËùÒÔĞèÒªÔÚÕâÀïÊÖ¶¯Ö¸¶¨ÒªÖØĞ´µÄ²Ûº¯Êı
-    void virtual afterClose();    //¹Ø±ÕºóÒªÖ´ĞĞµÄ·½·¨
+    void virtual initTimeLine();     //åˆå§‹åŒ–è¿›åº¦æ¡
+    void virtual beginProcess();     //çº¿ç¨‹å¼€å§‹å‰çš„å‡†å¤‡å·¥ä½œ
+    void virtual connectSignal();    //è£…é…ä¿¡å·ï¼Œå› ä¸ºæ§½å‡½æ•°ä¸èƒ½é‡å†™ï¼Œæ‰€ä»¥éœ€è¦åœ¨è¿™é‡Œæ‰‹åŠ¨æŒ‡å®šè¦é‡å†™çš„æ§½å‡½æ•°
+    void virtual afterClose();    //å…³é—­åè¦æ‰§è¡Œçš„æ–¹æ³•
 
-  //ÆäËû·½·¨
+    //å…¶ä»–æ–¹æ³•
   protected:
-    void setTimeLine(int step);   //ÉèÖÃ»î¶¯µÄ½ø¶ÈÌõ
+    void setTimeLine(int step);   //è®¾ç½®æ´»åŠ¨çš„è¿›åº¦æ¡
 
-  //ÈİÆ÷
+    //å®¹å™¨
   protected:
     std::vector<time_line_label*> timeLineLabelList;
     int activedTimeLabelIdx;
 
-  //Ïß³Ì
+    //çº¿ç¨‹
   protected:
     Thread_super* thread;
 
-  //²Ûº¯Êı
+    //æ§½å‡½æ•°
   protected slots:
-    //Ç°¶Ë->½çÃæ²Û
-    void pushButton_UI_Close();         //µ¥»÷¹Ø±Õ°´Å¥
-    void pushButton_UI_Mini();         //µ¥»÷×îĞ¡»¯°´Å¥
+    //å‰ç«¯->ç•Œé¢æ§½
+    void pushButton_UI_Close();         //å•å‡»å…³é—­æŒ‰é’®
+    void pushButton_UI_Mini();         //å•å‡»æœ€å°åŒ–æŒ‰é’®
 
-    void pushButton_Fast();             //µ¥»÷µÚÒ»Ò³¿ìËÙ²Ù×÷°´Å¥
-    void pushButton_Customize();        //µ¥»÷µÚÒ»Ò³×Ô¶¨Òå°´Å¥
-    void pushButton_preview();          //µ¥»÷µÚÒ»Ò³Â·¾¶Ô¤ÀÀ°´Å¥          
-    void pushButton_Cancel();           //µ¥»÷µÚ¶şÒ³È¡Ïû°´Å¥ 
-    void pushButton_Finished_Run();     //µ¥»÷µÚÈıÒ³Æô¶¯Èí¼ş°´Å¥          
-    void pushButton_Finished_Exit();    //µ¥»÷µÚÈıÒ³¹Ø±Õ°´Å¥
-    void pushButton_Error_exit();       //µ¥»÷µÚËÄÒ³´íÎó¹Ø±Õ°´Å¥
+    void pushButton_Fast();             //å•å‡»ç¬¬ä¸€é¡µå¿«é€Ÿæ“ä½œæŒ‰é’®
+    void pushButton_Customize();        //å•å‡»ç¬¬ä¸€é¡µè‡ªå®šä¹‰æŒ‰é’®
+    void pushButton_preview();          //å•å‡»ç¬¬ä¸€é¡µè·¯å¾„é¢„è§ˆæŒ‰é’®          
+    void pushButton_Cancel();           //å•å‡»ç¬¬äºŒé¡µå–æ¶ˆæŒ‰é’® 
+    void pushButton_Finished_Run();     //å•å‡»ç¬¬ä¸‰é¡µå¯åŠ¨è½¯ä»¶æŒ‰é’®          
+    void pushButton_Finished_Exit();    //å•å‡»ç¬¬ä¸‰é¡µå…³é—­æŒ‰é’®
+    void pushButton_Error_exit();       //å•å‡»ç¬¬å››é¡µé”™è¯¯å…³é—­æŒ‰é’®
 
-    //Ïß³Ì->Ç°¶Ë²Û
-    void processPercent(int percent);         //Ïß³Ì½ø¶ÈÌõ
-    void processChange(int state);          //ÉèÖÃ²½Öè
-    void onThreadFinish();                      //Ïß³Ì½áÊø
-    void onThreadThrowError(QString error);     //Ïß³ÌÊ§°Ü
-  //ĞÅºÅ
+    //çº¿ç¨‹->å‰ç«¯æ§½
+    void processPercent(int percent);         //çº¿ç¨‹è¿›åº¦æ¡
+    void processChange(int state);          //è®¾ç½®æ­¥éª¤
+    void onThreadFinish();                      //çº¿ç¨‹ç»“æŸ
+    void onThreadThrowError(QString error);     //çº¿ç¨‹å¤±è´¥
+    //ä¿¡å·
   signals:
-    void setInstallConfig(QString, bool, bool); //³õÊ¼»¯°²×°Ïß³Ì
+    void setInstallConfig(QString, bool, bool); //åˆå§‹åŒ–å®‰è£…çº¿ç¨‹
   };
 };

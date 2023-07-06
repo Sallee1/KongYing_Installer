@@ -5,13 +5,13 @@ namespace tianli {
 
   tianli_widget_super::tianli_widget_super(QWidget* parent) :
     QWidget(parent), ui(new Ui::tianli_widget) {
-    //×¼±¸¹¤×÷
+    //å‡†å¤‡å·¥ä½œ
     ui->setupUi(this);
 
     this->setWindowFlags(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
-    //ÌØĞ§
+    //ç‰¹æ•ˆ
     mainShadow = new QGraphicsDropShadowEffect();
     mainShadow->setOffset(0, 0);
     mainShadow->setColor(QColor(255, 255, 255));
@@ -33,8 +33,8 @@ namespace tianli {
     mainShadow_B->setColor(QColor(255, 0, 0));
     mainShadow_B->setBlurRadius(14);
     ui->label_MainShadow_B->setGraphicsEffect(mainShadow_B);
-    //¼ÓÔØ±êÌâ×ÖÌå
-    tianliUtils::setFont(":/font/Resource/fonts/SOURCEHANSERIFSC-HEAVY.ttf", ui->label_Title, true);   //±êÌâ Ë¼Ô´ËÎÌå
+    //åŠ è½½æ ‡é¢˜å­—ä½“
+    tianliUtils::setFont(":/font/Resource/fonts/SOURCEHANSERIFSC-HEAVY.ttf", ui->label_Title, true);   //æ ‡é¢˜ æ€æºå®‹ä½“
   }
 
   tianli_widget_super::~tianli_widget_super()
@@ -45,22 +45,22 @@ namespace tianli {
   inline void tianli_widget_super::afterInit() {
     connectSignal();
     initTimeLine();
-    //¼ÓÔØÄ¬ÈÏÉèÖÃ
+    //åŠ è½½é»˜è®¤è®¾ç½®
     this->pathLineEdit->setText(QString::fromLocal8Bit(tianli::config::installInfo.defaultInstallPath.c_str()));
     this->desktopCheckBox->setChecked(tianli::config::installInfo.desktopShortcut);
     this->startmenuCheckBox->setChecked(tianli::config::installInfo.startmenuShortcut);
-    //ÏÔÊ¾µÚÒ»Ò³
+    //æ˜¾ç¤ºç¬¬ä¸€é¡µ
     this->activedWidget->setCurrentIndex(0);
 
   }
 
   void tianli_widget_super::connectSignal()
   {
-    //¹«ÓÃĞÅºÅ
+    //å…¬ç”¨ä¿¡å·
     connect(ui->pushButton_UI_Close, &QPushButton::clicked, this, &tianli_widget_super::pushButton_UI_Close);
     connect(ui->pushButton_UI_Mini, &QPushButton::clicked, this, &tianli_widget_super::pushButton_UI_Mini);
 
-    //Ö¸ÕëÒıÓÃĞÅºÅ
+    //æŒ‡é’ˆå¼•ç”¨ä¿¡å·
     connect(this->fastButton, &QPushButton::clicked, this, &tianli_widget_super::pushButton_Fast);
     connect(this->customButton, &QPushButton::clicked, this, &tianli_widget_super::pushButton_Customize);
     connect(this->previewButton, &QPushButton::clicked, this, &tianli_widget_super::pushButton_preview);
@@ -69,7 +69,7 @@ namespace tianli {
     connect(this->finishExitButton, &QPushButton::clicked, this, &tianli_widget_super::pushButton_Finished_Exit);
     connect(this->errorExitButton, &QPushButton::clicked, this, &tianli_widget_super::pushButton_Error_exit);
 
-    //Ïß³ÌĞÅºÅ
+    //çº¿ç¨‹ä¿¡å·
     connect(this, &tianli_widget_super::setInstallConfig, this->thread, &Thread_super::setInstallConfig);
     connect(this->thread, &Thread_super::processChange, this, &tianli_widget_super::processChange);
     connect(this->thread, &Thread_super::processPercent, this, &tianli_widget_super::processPercent);
@@ -78,18 +78,18 @@ namespace tianli {
   }
 
 
-  inline void tianli_widget_super::afterClose() 
+  inline void tianli_widget_super::afterClose()
   {
-    if (activedWidget->currentIndex() == 3)  //°²×°Ê§°Ü
+    if (activedWidget->currentIndex() == 3)  //å®‰è£…å¤±è´¥
     {
       tianliUtils::cleanUninstallReg();
     }
-    else if(activedWidget->currentIndex() == 2)   //°²×°³É¹¦
+    else if (activedWidget->currentIndex() == 2)   //å®‰è£…æˆåŠŸ
     {
       QProcess process;
       process.startDetached("cmd.exe", QStringList() << "/c" << "cloneInstaller.bat");
     }
-    //Ö»ÓĞ°²×°Æ÷ÔÚTempÄ¿Â¼£¬²ÅÔÊĞí×ÔÎÒÉ¾³ı£¬ÒÔ±ÜÃâÎóÉ¾
+    //åªæœ‰å®‰è£…å™¨åœ¨Tempç›®å½•ï¼Œæ‰å…è®¸è‡ªæˆ‘åˆ é™¤ï¼Œä»¥é¿å…è¯¯åˆ 
     fs::path pt1 = fs::absolute(fs::path(".."));
     fs::path pt2 = tianliUtils::envPath2AbsolutePath("%TEMP%");
     if (fs::equivalent(fs::path("..\\"), tianliUtils::envPath2AbsolutePath("%TEMP%")))
@@ -113,7 +113,7 @@ namespace tianli {
     int y = 51;
 
     time_line_label* timeLineLabel_1 = new time_line_label();
-    timeLineLabel_1->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("¸´ÖÆÎÄ¼ş"));
+    timeLineLabel_1->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("å¤åˆ¶æ–‡ä»¶"));
     timeLineLabel_1->findChild<QLabel*>("label_Title")->setStyleSheet("color:#999999");
     timeLineLabel_1->setParent(activedWidget->widget(1));
     timeLineLabel_1->setGeometry(102, y, 15, 124);
@@ -121,7 +121,7 @@ namespace tianli {
     timeLineLabel_1->setBegin(true);
 
     time_line_label* timeLineLabel_2 = new time_line_label();
-    timeLineLabel_2->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("Ğ´Èë×¢²á±í"));
+    timeLineLabel_2->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("å†™å…¥æ³¨å†Œè¡¨"));
     timeLineLabel_2->findChild<QLabel*>("label_Title")->setStyleSheet("color:#999999");
     timeLineLabel_2->setParent(activedWidget->widget(1));
     timeLineLabel_2->setGeometry(102, y + 31 * 1, 15, 124);
@@ -129,14 +129,14 @@ namespace tianli {
 
 
     time_line_label* timeLineLabel_3 = new time_line_label();
-    timeLineLabel_3->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("´´½¨¿ì½İ·½Ê½"));
+    timeLineLabel_3->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("åˆ›å»ºå¿«æ·æ–¹å¼"));
     timeLineLabel_3->findChild<QLabel*>("label_Title")->setStyleSheet("color:#999999");
     timeLineLabel_3->setParent(activedWidget->widget(1));
     timeLineLabel_3->setGeometry(102, y + 31 * 2, 15, 124);
     timeLineLabel_3->setAction(false);
 
     time_line_label* timeLineLabel_4 = new time_line_label();
-    timeLineLabel_4->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("ÇåÀí°²×°»º´æ"));
+    timeLineLabel_4->findChild<QLabel*>("label_Title")->setText(QString::fromLocal8Bit("æ¸…ç†å®‰è£…ç¼“å­˜"));
     timeLineLabel_4->findChild<QLabel*>("label_Title")->setStyleSheet("color:#999999");
     timeLineLabel_4->setParent(activedWidget->widget(1));
     timeLineLabel_4->setGeometry(102, y + 31 * 3, 15, 124);
@@ -173,7 +173,7 @@ namespace tianli {
     ui->pushButton_UI_Close->hide();
     ui->pushButton_UI_Mini->hide();
 
-    // ½¥½¥ËõĞ¡
+    // æ¸æ¸ç¼©å°
     exitAnimation = new QPropertyAnimation(ui->label_MainShadow, "geometry");
     exitAnimation->setDuration(200);
     exitAnimation->setEndValue(QRect(10 + 50, 20 + 50, 720 - 100, 384 - 100));
@@ -184,7 +184,7 @@ namespace tianli {
       this->close();
       });
     exitAnimation->start();
-    // ½¥½¥Òş²Ø
+    // æ¸æ¸éšè—
     exitAnimation_hide = new QPropertyAnimation(ui->label_MainShadow, "windowOpacity");
 
     update();
@@ -222,7 +222,7 @@ namespace tianli {
 
   void tianli_widget_super::closeEvent(QCloseEvent* event)
   {
-    if (activedWidget->currentIndex() == 3)  //°²×°Ê§°Ü£¬¹Ø±ÕÊ±ÇåÀí×¢²á±í£¬·ÀÖ¹³öÏÖÎŞ·¨Ğ¶ÔØ
+    if (activedWidget->currentIndex() == 3)  //å®‰è£…å¤±è´¥ï¼Œå…³é—­æ—¶æ¸…ç†æ³¨å†Œè¡¨ï¼Œé˜²æ­¢å‡ºç°æ— æ³•å¸è½½
     {
       tianliUtils::cleanUninstallReg();
     }
@@ -236,12 +236,12 @@ namespace tianli {
     {
       if (QApplication::activeWindow() != this)
       {
-        // ½¹µã×ªÒÆ
+        // ç„¦ç‚¹è½¬ç§»
         mainShadow_B->setEnabled(false);
       }
       else
       {
-        //½¹µã×ª½ø
+        //ç„¦ç‚¹è½¬è¿›
         mainShadow_B->setEnabled(true);
       }
     }
@@ -267,14 +267,14 @@ namespace tianli {
 
   void tianli_widget_super::pushButton_Fast()
   {
-    //°²×°Ê±ÔÙ×ö¼ì²âÒÔ±ÜÃâÄ¬ÈÏÂ·¾¶ÓĞÆäËûÈí¼ş
+    //å®‰è£…æ—¶å†åšæ£€æµ‹ä»¥é¿å…é»˜è®¤è·¯å¾„æœ‰å…¶ä»–è½¯ä»¶
     QString folderPathStr = pathLineEdit->text();
     QString outPathStr = "";
     if (tianliUtils::checkPathIsAvilable(folderPathStr, outPathStr))
     {
       if (outPathStr != folderPathStr)
       {
-        QMessageBox::warning(this, QString::fromLocal8Bit("Â·¾¶ÎŞĞ§"), QString::fromLocal8Bit("ÇëÑ¡Ôñ¿Õ°×ÎÄ¼ş¼Ğ»òÕß¾É°æ¡°¿ÕÓ«¾Æ¹İÔ­ÉñµØÍ¼¡±°²×°Â·¾¶"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("è·¯å¾„æ— æ•ˆ"), QString::fromLocal8Bit("è¯·é€‰æ‹©ç©ºç™½æ–‡ä»¶å¤¹æˆ–è€…æ—§ç‰ˆâ€œç©ºè§é…’é¦†åŸç¥åœ°å›¾â€å®‰è£…è·¯å¾„"));
         return;
       }
       this->activedWidget->setCurrentIndex(1);
@@ -282,7 +282,7 @@ namespace tianli {
     }
     else
     {
-      QMessageBox::warning(this, QString::fromLocal8Bit("Â·¾¶ÎŞĞ§"), QString::fromLocal8Bit("ÇëÑ¡Ôñ¿Õ°×ÎÄ¼ş¼Ğ»òÕß¾É°æ¡°¿ÕÓ«¾Æ¹İÔ­ÉñµØÍ¼¡±°²×°Â·¾¶"));
+      QMessageBox::warning(this, QString::fromLocal8Bit("è·¯å¾„æ— æ•ˆ"), QString::fromLocal8Bit("è¯·é€‰æ‹©ç©ºç™½æ–‡ä»¶å¤¹æˆ–è€…æ—§ç‰ˆâ€œç©ºè§é…’é¦†åŸç¥åœ°å›¾â€å®‰è£…è·¯å¾„"));
       return;
     }
   }
@@ -294,15 +294,15 @@ namespace tianli {
 
   void tianli_widget_super::pushButton_preview()
   {
-    QString folderPathStr = QFileDialog::getExistingDirectory(this, QString::fromLocal8Bit("ÇëÑ¡ÔñĞèÒª°²×°µÄÎÄ¼ş¼Ğ"), pathLineEdit->text());
+    QString folderPathStr = QFileDialog::getExistingDirectory(this, QString::fromLocal8Bit("è¯·é€‰æ‹©éœ€è¦å®‰è£…çš„æ–‡ä»¶å¤¹"), pathLineEdit->text());
     if (folderPathStr == "")
       return;
-    folderPathStr = QDir::toNativeSeparators(folderPathStr);  //×ª»»Îªwindows·´Ğ±¸Ü
+    folderPathStr = QDir::toNativeSeparators(folderPathStr);  //è½¬æ¢ä¸ºwindowsåæ–œæ 
 
     QString outPathStr = "";
     if (!tianliUtils::checkPathIsAvilable(folderPathStr, outPathStr))
     {
-      QMessageBox::warning(this, QString::fromLocal8Bit("Â·¾¶ÎŞĞ§"), QString::fromLocal8Bit("ÇëÑ¡Ôñ¿Õ°×ÎÄ¼ş¼Ğ»òÕß¾É°æ¡°¿ÕÓ«¾Æ¹İÔ­ÉñµØÍ¼¡±°²×°Â·¾¶"));
+      QMessageBox::warning(this, QString::fromLocal8Bit("è·¯å¾„æ— æ•ˆ"), QString::fromLocal8Bit("è¯·é€‰æ‹©ç©ºç™½æ–‡ä»¶å¤¹æˆ–è€…æ—§ç‰ˆâ€œç©ºè§é…’é¦†åŸç¥åœ°å›¾â€å®‰è£…è·¯å¾„"));
       return;
     }
     pathLineEdit->setText(outPathStr);
@@ -310,10 +310,10 @@ namespace tianli {
 
   void tianli_widget_super::pushButton_Cancel()
   {
-    thread->terminate(); //Ç¿ĞĞÍ£Ö¹Ïß³Ì
+    thread->terminate(); //å¼ºè¡Œåœæ­¢çº¿ç¨‹
     activedWidget->setCurrentIndex(3);
     ui->pushButton_UI_Close->setHidden(false);
-    errorInfoLabel->setText(QString::fromLocal8Bit("ÓÃ»§ÖÕÖ¹ÁË°²×°²Ù×÷"));
+    errorInfoLabel->setText(QString::fromLocal8Bit("ç”¨æˆ·ç»ˆæ­¢äº†å®‰è£…æ“ä½œ"));
   }
 
   void tianli_widget_super::pushButton_Finished_Run()
