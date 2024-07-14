@@ -19,11 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="Form Files\rounded_rectangle.ui" />
-    <QtUic Include="Form Files\tianli_widget.ui" />
-    <QtUic Include="Form Files\time_line_label.ui" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Header Files\config.h" />
     <ClInclude Include="Header Files\pch.h" />
     <QtMoc Include="Header Files\tianli_widget_super.h" />
@@ -79,6 +74,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Misc Files\installer.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Form Files\rounded_rectangle.ui" />
+    <QtUic Include="Form Files\tianli_widget.ui" />
+    <QtUic Include="Form Files\time_line_label.ui" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{16992624-275D-44F6-9E6A-58182E5DAB8B}</ProjectGuid>

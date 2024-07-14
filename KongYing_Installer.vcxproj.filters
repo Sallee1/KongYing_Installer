@@ -41,17 +41,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="Form Files\rounded_rectangle.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="Form Files\tianli_widget.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="Form Files\time_line_label.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="Resource Files\resource.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
@@ -161,5 +150,16 @@
     <None Include="Misc Files\installer.json">
       <Filter>Misc Files</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Form Files\rounded_rectangle.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Form Files\tianli_widget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Form Files\time_line_label.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
 </Project>

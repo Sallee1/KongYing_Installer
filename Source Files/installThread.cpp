@@ -186,7 +186,7 @@ void InstallThread::run()
 
     emit this->processChange(InstallThread::ProcessType::CLEAN_CACHE);
     emit this->processPercent(0);
-    //this->cleanCache(); msleep(500);
+    this->cleanCache(); msleep(500);
 
     emit this->processFinish(true);
   }

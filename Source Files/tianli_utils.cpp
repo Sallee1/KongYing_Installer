@@ -86,7 +86,7 @@ namespace tianliUtils {
       RegCloseKey(hKey);
       return false;
     }
-    char* lpData = new char[maxLength];
+    wchar_t* lpData = new wchar_t[maxLength];
     DWORD dwType = REG_SZ;
     DWORD dwSize = maxLength;
 
@@ -98,7 +98,7 @@ namespace tianliUtils {
       return false;
     }
 
-    ret = QString::fromLocal8Bit(lpData).toStdWString();
+    ret = lpData;
     delete[] lpData;
     RegCloseKey(hKey);
     return true;
