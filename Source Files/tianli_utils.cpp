@@ -75,6 +75,12 @@ namespace tianliUtils {
     RegDeleteTree(hKey, NULL);
     RegCloseKey(hKey);
     RegDeleteKey(HKEY_LOCAL_MACHINE, std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName).c_str());
+
+    RegOpenKeyEx(HKEY_CURRENT_USER, std::format(L"Software\\空荧酒馆", tianli::config::reginfo.displayName).c_str(), 0, KEY_ALL_ACCESS, &hKey);
+    RegDeleteTree(hKey, NULL);
+    RegCloseKey(hKey);
+    RegDeleteKey(HKEY_CURRENT_USER, std::format(L"Software\\空荧酒馆", tianli::config::reginfo.displayName).c_str());
+
   }
 
   bool getRegValue_REG_SZ(HKEY root, std::wstring Item, std::wstring Key, std::wstring& ret, int maxLength)
