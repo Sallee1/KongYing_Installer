@@ -3,7 +3,6 @@
 #include "thread_super.h"
 
 namespace fs = std::filesystem;
-using std::string;
 
 class InstallThread :public Thread_super
 {
@@ -24,7 +23,7 @@ private:
   void createUninstallInfoReg(HKEY& key);
   //第三步，创建开始菜单和桌面快捷方式
   void addShortCut();
-  void createShortCut(std::string exePath, std::string lnkPath);
+  void createShortCut(std::wstring exePath, std::wstring lnkPath);
   //第四步，回收残留文件
   void cleanCache();
 

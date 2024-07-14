@@ -10,7 +10,7 @@ public:
 public slots:
   void setInstallConfig(QString installPathStr, bool desktopShortcut, bool startMenuShortcut)
   {
-    this->installPathStr = std::string(installPathStr.toLocal8Bit());
+    this->installPathStr = std::wstring(installPathStr.toStdWString());
     this->desktopShortcut = desktopShortcut;
     this->startMenuShortcut = startMenuShortcut;
   }
@@ -23,7 +23,7 @@ signals:
 
 protected:
   uintmax_t totalSize = 0;  //用来计算进度条
-  std::string installPathStr;
+  std::wstring installPathStr;
   bool desktopShortcut;
   bool startMenuShortcut;
 

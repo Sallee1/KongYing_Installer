@@ -6,30 +6,30 @@
 void Uninstall_thread::readReg()
 {
   bool isSuccess;
-  std::string installPath;
-  std::string userDataPath;
+  std::wstring installPath;
+  std::wstring userDataPath;
   isSuccess = tianliUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
-    std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
-    "InstallLocation",
+    std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
+    L"InstallLocation",
     installPath);
   if (!isSuccess) throw std::exception("readReg: 读取InstallLocation失败，注册信息可能已经损坏");
 
   isSuccess = tianliUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
-    std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
-    "UserDataLocation",
+    std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
+    L"UserDataLocation",
     userDataPath);
   if (!isSuccess) throw std::exception("readReg: 读取UserDataLocation失败，注册信息可能已经损坏");
 
   int EstimatedSize;
   isSuccess = tianliUtils::getRegValue_DWORD(HKEY_LOCAL_MACHINE,
-    std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
-    "EstimatedSize",
+    std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
+    L"EstimatedSize",
     EstimatedSize);
   if (!isSuccess) throw std::exception("readReg: 读取EstimatedSize失败，注册信息可能已经损坏");
 
   tianli::config::reginfo.InstallLocation = installPath;
   tianli::config::reginfo.UserDataLocation = userDataPath;
-  tianli::config::reginfo.uninstallString = std::string(QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toLocal8Bit());
+  tianli::config::reginfo.uninstallString = std::wstring(QDir::toNativeSeparators(QCoreApplication::applicationFilePath()).toStdWString());
 
 }
 
@@ -41,19 +41,19 @@ void Uninstall_thread::eraserReg()
 
 void Uninstall_thread::removeShortcut()
 {
-  QString desktopShortcutPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.desktopShortcut_name));
-  QString startMenuFolderPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdString(tianli::config::installInfo.startmenuShortcut_foldername));
+  QString desktopShortcutPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation) + "\\" + QString::fromStdWString(tianli::config::installInfo.desktopShortcut_name));
+  QString startMenuFolderPath = QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation) + "\\" + QString::fromStdWString(tianli::config::installInfo.startmenuShortcut_foldername));
 
   //删除桌面快捷方式
-  if (fs::exists(std::string(desktopShortcutPath.toLocal8Bit())))
-    fs::remove(std::string(desktopShortcutPath.toLocal8Bit()));
+  if (fs::exists(std::wstring(desktopShortcutPath.toStdWString())))
+    fs::remove(std::wstring(desktopShortcutPath.toStdWString()));
   msleep(100); emit this->processPercent(25);
 
   //删除开始菜单快捷方式
   std::error_code ec;
   uintmax_t removed_count = 0;
-  if (fs::exists(std::string(startMenuFolderPath.toLocal8Bit())))
-    fs::_Remove_all_dir(std::string(startMenuFolderPath.toLocal8Bit()), ec, removed_count);
+  if (fs::exists(std::wstring(startMenuFolderPath.toStdWString())))
+    fs::_Remove_all_dir(std::wstring(startMenuFolderPath.toStdWString()), ec, removed_count);
   msleep(100); emit this->processPercent(100);
 }
 
@@ -94,7 +94,7 @@ void Uninstall_thread::removeTree(fs::path rmPath)
 
 void Uninstall_thread::removeUserData()
 {
-  string absoluteUserPath = tianliUtils::envPath2AbsolutePath(tianli::config::reginfo.UserDataLocation);
+  std::wstring absoluteUserPath = tianliUtils::envPath2AbsolutePath(tianli::config::reginfo.UserDataLocation);
 
   std::error_code ec;
   uintmax_t removed_count = 0;

@@ -1,5 +1,7 @@
 ﻿#pragma once
-using std::string;
+#include <string>
+#include <filesystem>
+
 namespace fs = std::filesystem;
 
 namespace tianli {
@@ -7,33 +9,33 @@ namespace tianli {
   {
   public:
     typedef struct RegInfo {
-      string displayName = "空荧酒馆原神地图";
-      string displayVersion = "Beta3.5";
-      string publisher = "空荧酒馆";
-      string displayIcon = "Map.exe";
-      string uninstallString = "Uninstall.exe";
-      string InstallLocation = "";        //自动配置，留空
-      string UserDataLocation = "%APPDATA%\\..\\LocalLow\\空荧酒馆";    //用户数据存储的位置
+      std::wstring displayName = L"空荧酒馆原神地图";
+      std::wstring displayVersion = L"Beta3.5";
+      std::wstring publisher = L"空荧酒馆";
+      std::wstring displayIcon = L"Map.exe";
+      std::wstring uninstallString = L"Uninstall.exe";
+      std::wstring InstallLocation = L"";        //自动配置，留空
+      std::wstring UserDataLocation = L"%APPDATA%\\..\\LocalLow\\空荧酒馆";    //用户数据存储的位置
 
-      string URLInfoAbout = "https://yuanshen.site/docs/";
-      string HelpLink = "https://support.qq.com/products/321980/faqs/94938";
-      string URLUpdateInfo = "https://support.qq.com/products/321980/blog/505884";
+      std::wstring URLInfoAbout = L"https://yuanshen.site/docs/";
+      std::wstring HelpLink = L"https://support.qq.com/products/321980/faqs/94938";
+      std::wstring URLUpdateInfo = L"https://support.qq.com/products/321980/blog/505884";
       DWORD estimatedSize = 342016;         //预估大小，影响到控制面板中显示的程序大小以及安装过程的进度条
     } RegInfo;
 
     typedef struct InstallInfo {
-      string defaultInstallPath = "C:\\Program Files\\KongYingMap";
+      std::wstring defaultInstallPath = L"C:\\Program Files\\KongYingMap";
 
       bool desktopShortcut = true;
-      string desktopShortcut_name = "空荧酒馆原神地图.lnk";
+      std::wstring desktopShortcut_name = L"空荧酒馆原神地图.lnk";
       bool startmenuShortcut = true;
-      string startmenuShortcut_foldername = "空荧酒馆原神地图";
-      string startmenuShortcut_programName = "启动地图.lnk";
-      string startmenuShortcut_uninstallName = "卸载.lnk";
+      std::wstring startmenuShortcut_foldername = L"空荧酒馆原神地图";
+      std::wstring startmenuShortcut_programName = L"启动地图.lnk";
+      std::wstring startmenuShortcut_uninstallName = L"卸载.lnk";
 
-      string exePath = "Map.exe";
+      std::wstring exePath = L"Map.exe";
       //放置用来覆盖安装检测的文件名(夹)，同时检测到文件存在则采取覆盖安装策略（不创建子文件夹）
-      std::vector<string> existFileName = { "Map.exe" ,"UnityCrashHandler64.exe","UnityPlayer.dll" };
+      std::vector<std::wstring> existFileName = { L"Map.exe" ,L"UnityCrashHandler64.exe",L"UnityPlayer.dll" };
     } InstallInfo;
 
   public:
@@ -43,7 +45,7 @@ namespace tianli {
   public:
     static QJsonParseError readconfigFromJson(fs::path path)
     {
-      QFile jsonFile(QString::fromStdString(path.string()));
+      QFile jsonFile(QString::fromStdWString(path.wstring()));
       QJsonDocument jsonDoc;
       jsonFile.open(QFile::ReadOnly | QFile::Text);
       {
@@ -59,35 +61,35 @@ namespace tianli {
       jsonFile.close();
 
       QJsonObject super_obj = jsonDoc.object();
-      QJsonObject regInfo_obj = super_obj.value("RegInfo").toObject();
-      QJsonObject InstallerGlobal_obj = super_obj.value("InstallerGlobal").toObject();
+      QJsonObject regInfo_obj = super_obj.value(L"RegInfo").toObject();
+      QJsonObject InstallerGlobal_obj = super_obj.value(L"InstallerGlobal").toObject();
 
-      tianli::config::reginfo.displayName = std::string(regInfo_obj.value("displayName").toString().toLocal8Bit());
-      tianli::config::reginfo.displayVersion = std::string(regInfo_obj.value("displayVersion").toString().toLocal8Bit());
-      tianli::config::reginfo.publisher = std::string(regInfo_obj.value("publisher").toString().toLocal8Bit());
-      tianli::config::reginfo.displayIcon = std::string(regInfo_obj.value("displayIcon").toString().toLocal8Bit());
-      tianli::config::reginfo.uninstallString = std::string(regInfo_obj.value("uninstallString").toString().toLocal8Bit());
-      tianli::config::reginfo.UserDataLocation = std::string(regInfo_obj.value("UserDataLocation").toString().toLocal8Bit());
-      tianli::config::reginfo.displayIcon = std::string(regInfo_obj.value("displayIcon").toString().toLocal8Bit());
-      tianli::config::reginfo.URLInfoAbout = std::string(regInfo_obj.value("URLInfoAbout").toString().toLocal8Bit());
-      tianli::config::reginfo.HelpLink = std::string(regInfo_obj.value("HelpLink").toString().toLocal8Bit());
-      tianli::config::reginfo.URLUpdateInfo = std::string(regInfo_obj.value("URLUpdateInfo").toString().toLocal8Bit());
-      tianli::config::reginfo.estimatedSize = regInfo_obj.value("estimatedSize").toInt();
+      tianli::config::reginfo.displayName = std::wstring(regInfo_obj.value(L"displayName").toString().toStdWString());
+      tianli::config::reginfo.displayVersion = std::wstring(regInfo_obj.value(L"displayVersion").toString().toStdWString());
+      tianli::config::reginfo.publisher = std::wstring(regInfo_obj.value(L"publisher").toString().toStdWString());
+      tianli::config::reginfo.displayIcon = std::wstring(regInfo_obj.value(L"displayIcon").toString().toStdWString());
+      tianli::config::reginfo.uninstallString = std::wstring(regInfo_obj.value(L"uninstallString").toString().toStdWString());
+      tianli::config::reginfo.UserDataLocation = std::wstring(regInfo_obj.value(L"UserDataLocation").toString().toStdWString());
+      tianli::config::reginfo.displayIcon = std::wstring(regInfo_obj.value(L"displayIcon").toString().toStdWString());
+      tianli::config::reginfo.URLInfoAbout = std::wstring(regInfo_obj.value(L"URLInfoAbout").toString().toStdWString());
+      tianli::config::reginfo.HelpLink = std::wstring(regInfo_obj.value(L"HelpLink").toString().toStdWString());
+      tianli::config::reginfo.URLUpdateInfo = std::wstring(regInfo_obj.value(L"URLUpdateInfo").toString().toStdWString());
+      tianli::config::reginfo.estimatedSize = regInfo_obj.value(L"estimatedSize").toInt();
 
-      tianli::config::installInfo.defaultInstallPath = std::string(InstallerGlobal_obj.value("defaultInstallPath").toString().toLocal8Bit());
-      tianli::config::installInfo.desktopShortcut = InstallerGlobal_obj.value("desktopShortcut").toBool();
-      tianli::config::installInfo.desktopShortcut_name = std::string(InstallerGlobal_obj.value("desktopShortcut_name").toString().toLocal8Bit());
-      tianli::config::installInfo.startmenuShortcut = InstallerGlobal_obj.value("startmenuShortcut").toBool(); ;
-      tianli::config::installInfo.startmenuShortcut_foldername = std::string(InstallerGlobal_obj.value("startmenuShortcut_foldername").toString().toLocal8Bit());
-      tianli::config::installInfo.startmenuShortcut_programName = std::string(InstallerGlobal_obj.value("startmenuShortcut_programName").toString().toLocal8Bit());
-      tianli::config::installInfo.startmenuShortcut_uninstallName = std::string(InstallerGlobal_obj.value("startmenuShortcut_uninstallName").toString().toLocal8Bit());
-      tianli::config::installInfo.exePath = std::string(InstallerGlobal_obj.value("exePath").toString().toLocal8Bit());
+      tianli::config::installInfo.defaultInstallPath = std::wstring(InstallerGlobal_obj.value(L"defaultInstallPath").toString().toStdWString());
+      tianli::config::installInfo.desktopShortcut = InstallerGlobal_obj.value(L"desktopShortcut").toBool();
+      tianli::config::installInfo.desktopShortcut_name = std::wstring(InstallerGlobal_obj.value(L"desktopShortcut_name").toString().toStdWString());
+      tianli::config::installInfo.startmenuShortcut = InstallerGlobal_obj.value(L"startmenuShortcut").toBool(); ;
+      tianli::config::installInfo.startmenuShortcut_foldername = std::wstring(InstallerGlobal_obj.value(L"startmenuShortcut_foldername").toString().toStdWString());
+      tianli::config::installInfo.startmenuShortcut_programName = std::wstring(InstallerGlobal_obj.value(L"startmenuShortcut_programName").toString().toStdWString());
+      tianli::config::installInfo.startmenuShortcut_uninstallName = std::wstring(InstallerGlobal_obj.value(L"startmenuShortcut_uninstallName").toString().toStdWString());
+      tianli::config::installInfo.exePath = std::wstring(InstallerGlobal_obj.value(L"exePath").toString().toStdWString());
 
-      QJsonArray existFileName_array = InstallerGlobal_obj.value("existFileName").toArray();
-      tianli::config::installInfo.existFileName = std::vector<std::string>();
+      QJsonArray existFileName_array = InstallerGlobal_obj.value(L"existFileName").toArray();
+      tianli::config::installInfo.existFileName = std::vector<std::wstring>();
       for (auto it : existFileName_array)
       {
-        tianli::config::installInfo.existFileName.emplace_back(std::string(it.toString().toLocal8Bit()));
+        tianli::config::installInfo.existFileName.emplace_back(std::wstring(it.toString().toStdWString()));
       }
       return QJsonParseError();
     }
@@ -95,8 +97,8 @@ namespace tianli {
 
 
   namespace bat {
-    inline std::string removeSelf =
-      R"(@echo off
+    inline std::wstring removeSelf =
+      LR"(@echo off
 setlocal enableextensions
 set "folder=%~dp0"
 timeout /t 10

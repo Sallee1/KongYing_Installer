@@ -46,7 +46,7 @@ namespace tianli {
     tianli::tianli_widget_super::afterInit();
 
     //检查快捷方式是否存在
-    if (fs::exists(std::format("{0}\\{1}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).toLocal8Bit()), tianli::config::installInfo.desktopShortcut_name)))
+    if (fs::exists(std::format(L"{0}\\{1}", std::wstring(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::DesktopLocation)).toStdWString()), tianli::config::installInfo.desktopShortcut_name)))
     {
       desktopCheckBox->setChecked(true);
       desktopCheckBox->setEnabled(false);
@@ -56,8 +56,8 @@ namespace tianli {
       desktopCheckBox->setChecked(false);
     }
 
-    std::string path = std::format("{0}\\{1}\\{2}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName);
-    if (fs::exists(std::format("{0}\\{1}\\{2}", std::string(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toLocal8Bit()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName)))
+    std::wstring path = std::format(L"{0}\\{1}\\{2}", std::wstring(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toStdWString()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName);
+    if (fs::exists(std::format(L"{0}\\{1}\\{2}", std::wstring(QDir::toNativeSeparators(QStandardPaths::writableLocation(QStandardPaths::ApplicationsLocation)).toStdWString()), tianli::config::installInfo.startmenuShortcut_foldername, tianli::config::installInfo.startmenuShortcut_programName)))
     {
       startmenuCheckBox->setChecked(true);
       startmenuCheckBox->setEnabled(false);
@@ -79,27 +79,27 @@ namespace tianli {
     connect(this->fastButton, &QPushButton::clicked, this, &update_widget::pushButton_Fast);
 
     connect(customButton, &QPushButton::clicked, [=]() {
-      ui->label_FastUpdate_Documentation->setText(QString("使用自定义方案"));
+      ui->label_FastUpdate_Documentation->setText(QString::fromWCharArray(L"使用自定义方案"));
       });
   }
 
   void update_widget::pushButton_Fast()      //重写快速安装按钮，从注册表读取路径，并取消路径校验
   { 
-    string installPath = "";
+    std::wstring installPath = L"";
 
     bool isSuccess = tianliUtils::getRegValue_REG_SZ(
       HKEY_LOCAL_MACHINE,
-      std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
-      "InstallLocation",
+      std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
+      L"InstallLocation",
       installPath);
 
     if (!isSuccess)
     {
       activedWidget->setCurrentIndex(3);
-      errorInfoLabel->setText("尝试获取安装路径失败，请尝试重新安装。");
+      errorInfoLabel->setText(QString::fromWCharArray(L"尝试获取安装路径失败，请尝试重新安装。"));
     }
 
-    this->pathLineEdit->setText(QString::fromStdString(installPath));
+    this->pathLineEdit->setText(QString::fromStdWString(installPath));
     this->activedWidget->setCurrentIndex(1);
     this->beginProcess();
   }

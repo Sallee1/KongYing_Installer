@@ -7,9 +7,9 @@
 #include <QDesktopServices>
 
 
-int print(std::vector<std::string>& arg) {
+int print(std::vector<std::wstring>& arg) {
   for (auto& i : arg) {
-    std::cout << i << std::endl;
+    std::wcout << i << std::endl;
   }
   return 0;
 }
@@ -22,38 +22,38 @@ int main_window(int argc, char* argv[]) {
 
   QApplication a(argc, argv);
 
-  QFont font(QString("Microsoft YaHei UI"));
+  QFont font(QString::fromStdWString(L"Microsoft YaHei UI"));
   font.setPointSize(9);
   a.setFont(font);
 
   tianli::tianli_widget_super* w;
 
-  std::vector<string> args;
+  std::vector<std::wstring> args;
   for (int i = 0; i < argc; i++)
-    args.emplace_back(std::string(argv[i]));
+    args.emplace_back(std::wstring(QString::fromLocal8Bit(argv[i]).toStdWString()));
 
   //智能模式
-  if (argc == 1 || (argc == 2 && args[1] == "--window") || args[1] == "-w")
+  if (argc == 1 || (argc == 2 && args[1] == L"--window") || args[1] == L"-w")
     w = getInstanceWidget();
   //安装模式
-  else if ((argc == 3 && args[1] == "--window" && args[2] == "--install") || (argc == 2 && args[1] == "-wi"))
+  else if ((argc == 3 && args[1] == L"--window" && args[2] == L"--install") || (argc == 2 && args[1] == L"-wi"))
     w = new tianli::Install_widget;
   //升级模式
-  else if ((argc == 3 && args[1] == "--window" && args[2] == "--upgrade") || (argc == 2 && args[1] == "-wu"))
+  else if ((argc == 3 && args[1] == L"--window" && args[2] == L"--upgrade") || (argc == 2 && args[1] == L"-wu"))
     w = new tianli::update_widget;
   //卸载模式
-  else if ((argc == 3 && args[1] == "--window" && args[2] == "--remove") || (argc == 2 && args[1] == "-wr"))
+  else if ((argc == 3 && args[1] == L"--window" && args[2] == L"--remove") || (argc == 2 && args[1] == L"-wr"))
     w = new tianli::uninstall_widget;
 
   //w = new tianli::uninstall_widget;
   //读取配置文件
-  std::string typeId = typeid(*w).name();
-  if (typeId != "class tianli::uninstall_widget") {
-    QJsonParseError err = tianli::config::readconfigFromJson("installer.json");
+  std::wstring typeId = QString::fromLocal8Bit(typeid(*w).name()).toStdWString();
+  if (typeId != L"class tianli::uninstall_widget") {
+    QJsonParseError err = tianli::config::readconfigFromJson(L"installer.json");
     if (err.error != QJsonParseError::NoError)
     {
-      QMessageBox::critical(nullptr, QString::fromStdString("配置文件错误"),
-        QString::fromStdString(std::format("installer.json存在问题，无法继续安装流程，报错信息如下：\n{0}", std::string(err.errorString().toLocal8Bit()))));
+      QMessageBox::critical(nullptr, QString::fromStdWString(L"配置文件错误"),
+        QString::fromStdWString(std::format(L"installer.json存在问题，无法继续安装流程，报错信息如下：\n{0}", std::wstring(err.errorString().toStdWString()))));
       return -1;
     }
   }
@@ -67,16 +67,16 @@ int main_window(int argc, char* argv[]) {
 
 tianli::tianli_widget_super* getInstanceWidget()
 {
-  string installPath;
+  std::wstring installPath;
   bool isSuccess = tianliUtils::getRegValue_REG_SZ(HKEY_LOCAL_MACHINE,
-    std::format("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
-    "InstallLocation",
+    std::format(L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\{0}", tianli::config::reginfo.displayName),
+    L"InstallLocation",
     installPath);
   if (isSuccess)    //检测成功，判断是否在安装文件夹内
   {
     if (!fs::exists(installPath))
       return new tianli::update_widget;     //安装文件夹不存在，尝试修复
-    if (fs::equivalent(std::string(QDir::toNativeSeparators(QCoreApplication::applicationDirPath()).toLocal8Bit()), installPath))
+    if (fs::equivalent(std::wstring(QDir::toNativeSeparators(QCoreApplication::applicationDirPath()).toStdWString()), installPath))
     {
       return new tianli::uninstall_widget;
     }
@@ -86,9 +86,9 @@ tianli::tianli_widget_super* getInstanceWidget()
 }
 
 int main_quiet_install(int argc, char* argv[]) {
-  std::vector<std::string> args;
+  std::vector<std::wstring> args;
   for (int i = 0; i < argc; ++i) {
-    args.push_back(argv[i]);
+    args.push_back(QString::fromLocal8Bit(argv[i]).toStdWString());
   }
   return print(args);
 }
@@ -97,38 +97,38 @@ int main_help() {
   QLocale systemLocale = QLocale::system(); // 获取系统默认的本地化设置
   QString systemLocaleName = systemLocale.name(); // 获取本地化设置的名称
 
-  std::vector<std::string> arg;
+  std::vector<std::wstring> arg;
 
 
-  if (systemLocaleName == "zh_CN") {    //显示中文帮助
+  if (systemLocaleName == L"zh_CN") {    //显示中文帮助
     arg = {
-    "Usage: ",
-    "  -h, --help                 --展开帮助列表",
-    "  -v, --version              --显示版本号",
-    "  -w, --window               --启动安装器，智能判断类型",
-    "  -wi, --window --install    --启动安装器，安装模式",
-    "  -wu, --window --upgrade    --启动安装器，升级模式",
-    "  -wr, --window --remove     --启动安装器，卸载模式"
-    "  -q, --quiet                --退出"
+    L"Usage: ",
+    L"  -h, --help                 --展开帮助列表",
+    L"  -v, --version              --显示版本号",
+    L"  -w, --window               --启动安装器，智能判断类型",
+    L"  -wi, --window --install    --启动安装器，安装模式",
+    L"  -wu, --window --upgrade    --启动安装器，升级模式",
+    L"  -wr, --window --remove     --启动安装器，卸载模式"
+    L"  -q, --quiet                --退出"
     };
   }
   else {      //非中文，显示英语帮助
     arg = {
-    "Usage:",
-    "  -h, --help                 --display this help list",
-    "  -v, --version              --display version number",
-    "  -w, --window               --start installer in automatic mode",
-    "  -wi, --window --install    --start installer in install mode",
-    "  -wu, --window --upgrade    --start installer in upgrade mode",
-    "  -wr, --window --remove     --start installer in remove mode",
-    "  -q, --quiet                --quit"
+    L"Usage:",
+    L"  -h, --help                 --display this help list",
+    L"  -v, --version              --display version number",
+    L"  -w, --window               --start installer in automatic mode",
+    L"  -wi, --window --install    --start installer in install mode",
+    L"  -wu, --window --upgrade    --start installer in upgrade mode",
+    L"  -wr, --window --remove     --start installer in remove mode",
+    L"  -q, --quiet                --quit"
     };
 
   }
 
   // print out the list
   for (const auto& s : arg) {
-    std::cout << s << "\n";
+    std::wcout << s << L"\n";
   }
 
   // return 1 to indicate success
@@ -136,7 +136,7 @@ int main_help() {
 }
 
 int main_version() {
-  std::vector<std::string> arg = {
+  std::vector<std::wstring> arg = {
     tianli::config::reginfo.displayVersion
   };
   print(arg);
@@ -148,17 +148,17 @@ int main(int argc, char* argv[])
   if (argc == 1) {
     return main_window(argc, argv);
   }
-  std::string arg = argv[1];
-  if (arg == "-h" || arg == "--help") {
+  std::wstring arg = QString::fromLocal8Bit(argv[1]).toStdWString();
+  if (arg == L"-h" || arg == L"--help") {
     return main_help();
   }
-  if (arg == "-v" || arg == "--version") {
+  if (arg == L"-v" || arg == L"--version") {
     return main_version();
   }
-  if (arg == "-w" || arg == "-wi" || arg == "-wu" || arg == "-wr" || arg == "--window") {
+  if (arg == L"-w" || arg == L"-wi" || arg == L"-wu" || arg == L"-wr" || arg == L"--window") {
     return main_window(argc, argv);
   }
-  if (arg == "-q" || arg == "--quiet") {
+  if (arg == L"-q" || arg == L"--quiet") {
     return main_quiet_install(argc, argv);
   }
   else
